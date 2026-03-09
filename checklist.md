@@ -10,12 +10,12 @@
 
 ### Externe accounts
 - [x] **Supabase** — account + nieuw project aangemaakt → API keys gekopieerd ✅
-- [ ] **Vercel** — account gekoppeld aan GitHub
+- [x] **Vercel** — account gekoppeld aan GitHub ✅
 - [x] **Replicate** — account + API token opgehaald ✅
 - [x] **Stripe** — account aangemaakt in test mode ✅
-  - [ ] iDEAL geactiveerd (Settings → Payment Methods)
-  - [ ] Bancontact geactiveerd
-  - [ ] EUR ingesteld als standaard valuta
+  - [x] iDEAL geactiveerd (Settings → Payment Methods) ✅
+  - [x] Bancontact geactiveerd ✅
+  - [x] EUR ingesteld als standaard valuta ✅
 - [x] **Resend** — account + API key opgehaald ✅
 - [ ] **Notion** — database aangemaakt voor blog CMS (Sessie 8)
 
@@ -44,22 +44,22 @@
 
 ## 🏗️ FASE 1 — Bouwen (8 Sessies ~17,5 uur)
 
-### Sessie 1 — Foundation (~2 uur)
-- [ ] Next.js 14 + TypeScript + Tailwind geïnstalleerd
-- [ ] Mobile-first layout basis (Tailwind breakpoints)
-- [ ] Supabase client ingesteld + verbinding getest
-- [ ] Database tabellen aangemaakt via migraties:
-  - [ ] `portraits` (incl. customer_email + retry_count kolommen)
-  - [ ] `orders`
-  - [ ] `frames`
-  - [ ] `abandoned_checkouts`
-- [ ] Supabase Storage buckets aangemaakt:
-  - [ ] `portraits-public` (PUBLIC)
-  - [ ] `portraits-private` (PRIVATE)
-  - [ ] `frames` (PUBLIC)
-- [ ] Frames tabel gevuld met 6 standaard kaderopties
-- [ ] Eerste Vercel deploy succesvol (lege homepage live)
-- [ ] Learnings opgeslagen → `learnings/dag-01.md`
+### Sessie 1 — Foundation (~2 uur) ✅
+- [x] Next.js 14 + TypeScript + Tailwind geïnstalleerd ✅
+- [x] Mobile-first layout basis (Tailwind breakpoints) ✅
+- [x] Supabase client ingesteld + verbinding getest ✅
+- [x] Database tabellen aangemaakt via migraties:
+  - [x] `portraits` (incl. customer_email + retry_count kolommen) ✅
+  - [x] `orders` ✅
+  - [x] `frames` ✅
+  - [x] `abandoned_checkouts` ✅
+- [x] Supabase Storage buckets aangemaakt:
+  - [x] `portraits-public` (PUBLIC) ✅
+  - [x] `portraits-private` (PRIVATE) ✅
+  - [x] `frames` (PUBLIC) ✅
+- [x] Frames tabel gevuld met 6 standaard kaderopties ✅
+- [x] Eerste Vercel deploy succesvol (lege homepage live) ✅
+- [x] Learnings opgeslagen → `learnings/dag-01.md` ✅
 
 ### Sessie 2 — Upload + AI Generatie (~3 uur)
 - [ ] Drag-and-drop upload component werkend

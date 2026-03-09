@@ -331,7 +331,7 @@ NOTION_DATABASE_ID=
 
 | # | Dag | Titel | Status |
 |---|---|---|---|
-| 1 | Dag 1 | Project Foundation | ⬜ Te doen |
+| 1 | Dag 1 | Project Foundation | ✅ Klaar |
 | 2 | Dag 2 | Upload + AI Generatie | ⬜ Te doen |
 | 3 | Dag 3 | Preview + Prijzen + Kaders | ⬜ Te doen |
 | 4 | Dag 4 | E-mail Modal + Stripe Checkout | ⬜ Te doen |
@@ -402,12 +402,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [0]
-Sessie titel:   [Voorbereiding & Setup]
+Sessie nummer:  [1]
+Sessie titel:   [Project Foundation]
 Status:         [Klaar ✅]
-Vorige sessie:  [N/A]
-Volgende stap:  [Sessie 1 — Project Foundation: Next.js 14 + Supabase + Vercel deploy]
-Openstaande issues: [Stripe iDEAL/Bancontact/EUR activeren, Vercel account koppelen, Stripe CLI toevoegen aan PATH]
+Vorige sessie:  [Sessie 0 — Voorbereiding & Setup]
+Volgende stap:  [Sessie 2 — Upload + AI Generatie: drag-and-drop upload, Replicate FLUX.1 Pro, polling, watermark]
+Openstaande issues: [Geen]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
