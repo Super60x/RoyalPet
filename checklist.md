@@ -9,14 +9,14 @@
 ## 🔧 FASE 0 — Accounts & Setup (Doe dit eerst)
 
 ### Externe accounts
-- [ ] **Supabase** — account + nieuw project aangemaakt → API keys gekopieerd
+- [x] **Supabase** — account + nieuw project aangemaakt → API keys gekopieerd ✅
 - [ ] **Vercel** — account gekoppeld aan GitHub
-- [ ] **Replicate** — account + API token opgehaald
-- [ ] **Stripe** — account aangemaakt in test mode
+- [x] **Replicate** — account + API token opgehaald ✅
+- [x] **Stripe** — account aangemaakt in test mode ✅
   - [ ] iDEAL geactiveerd (Settings → Payment Methods)
   - [ ] Bancontact geactiveerd
   - [ ] EUR ingesteld als standaard valuta
-- [ ] **Resend** — account + API key opgehaald
+- [x] **Resend** — account + API key opgehaald ✅
 - [ ] **Notion** — database aangemaakt voor blog CMS (Sessie 8)
 
 ### Domein & hosting
@@ -25,20 +25,20 @@
 - [ ] SSL actief (gratis via Vercel, automatisch)
 
 ### VS Code & GitHub
-- [ ] GitHub repo aangemaakt (`royalpet_app`)
-- [ ] Folder structuur aangemaakt (zie `CLAUDE.md`)
-- [ ] `CLAUDE.md` ingevuld ✓
-- [ ] `checklist.md` ingevuld ✓
-- [ ] `.env.local` aangemaakt met alle API keys
-- [ ] `.gitignore` bevat `.env.local` — **controleer voor eerste commit!**
-- [ ] Claude Code plugin actief in VS Code
+- [x] GitHub repo aangemaakt (`royalpet_app`) ✅
+- [x] Folder structuur aangemaakt (zie `CLAUDE.md`) ✅
+- [x] `CLAUDE.md` ingevuld ✅
+- [x] `checklist.md` ingevuld ✅
+- [x] `.env.local` aangemaakt met alle API keys ✅
+- [x] `.gitignore` bevat `.env.local` — **controleer voor eerste commit!** ✅
+- [x] Claude Code plugin actief in VS Code ✅
 
 ### Claude Code skills installeren
 - [ ] `npx claude-code-templates@latest --skill=development/senior-fullstack --yes`
 - [ ] `npx claude-code-templates@latest --skill=development/senior-frontend --yes`
 
 ### Dev tools
-- [ ] Stripe CLI geïnstalleerd (`npm i -g stripe` of via https://stripe.com/docs/stripe-cli)
+- [x] Stripe CLI geïnstalleerd + geconfigureerd (acct_1T9AYwGmgK4ipwzS) ✅
 
 ---
 

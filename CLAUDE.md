@@ -402,12 +402,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [1]
-Sessie titel:   [Project Foundation]
-Status:         [Te starten]
+Sessie nummer:  [0]
+Sessie titel:   [Voorbereiding & Setup]
+Status:         [Klaar ✅]
 Vorige sessie:  [N/A]
-Volgende stap:  [Zie docs/session-prompts.md → Sessie 1 prompt]
-Openstaande issues: [geen]
+Volgende stap:  [Sessie 1 — Project Foundation: Next.js 14 + Supabase + Vercel deploy]
+Openstaande issues: [Stripe iDEAL/Bancontact/EUR activeren, Vercel account koppelen, Stripe CLI toevoegen aan PATH]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
