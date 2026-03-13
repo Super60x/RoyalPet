@@ -1,0 +1,47 @@
+Resting/Laying Down Prompt:
+
+A breathtaking 17th century Flemish Masters oil painting portrait 
+of a border collie dog resting regally as a noble aristocrat.
+
+POSE: [PET PICTURE] lying down relaxed on a large golden velvet cushion 
+with tasseled corners, body horizontal and at rest, 
+head held high and alert looking toward viewer, 
+natural dog paws tucked underneath or extended forward, 
+NO human hands, NO human arms, [PET PICTURE] anatomy only.
+
+ATTIRE: luxurious deep crimson royal mantle draped over the 
+dog's back and body, trimmed with white ermine fur with black 
+spots, heavy gold chain necklace with medallion resting on chest, 
+subtle pearl collar underneath, fabric pooling naturally 
+around the cushion.
+
+ANATOMY: preserve natural [PET PICTURE] paws exactly, 
+four legs with natural paws tucked or extended forward, 
+no humanoid limbs whatsoever, natural resting dog position.
+
+LIGHTING: dramatic Rembrandt chiaroscuro, warm golden light 
+from upper left illuminating the face and chest, 
+deep rich shadows on right side and background, 
+warm amber tones on fur.
+
+BACKGROUND: very dark near-black background, deep walnut brown, 
+subtle hints of draped velvet curtain in dark burgundy, 
+no distracting elements, all focus on the subject.
+
+COLOR PRESERVATION: black and white fur markings must remain 
+exactly as the original dog — natural coat colors preserved.
+
+STYLE: Jan van Eyck, Rembrandt van Rijn, 17th century 
+Dutch Golden Age, oil on canvas, visible aged brushstrokes, 
+canvas texture, crackled varnish effect, museum masterpiece 
+quality, ultra detailed.
+
+MOOD: regal, dignified, serene, timeless, aristocratic.
+
+
+Negative prompt:
+
+human hands, human arms, human fingers, humanoid limbs,
+standing upright, sitting upright, cartoon, anime, blurry, 
+watermark, modern clothing, photograph, bright background,
+modern furniture, flat lighting

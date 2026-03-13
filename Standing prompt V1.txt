@@ -1,0 +1,35 @@
+Gecorrigeerde Standing Prompt:
+
+A breathtaking 17th century Flemish Masters oil painting portrait 
+of a [PET PICTURE] as a noble military commander.
+
+POSE: [PET PICTURE] in upright seated position, chest forward, 
+head held high with proud dignified expression, 
+natural dog paws visible resting on a stone ledge, 
+NO human hands, NO human arms, dog anatomy only.
+
+ATTIRE: ornate dark teal military jacket with gold buttons 
+and red trim draped over the dog's shoulders like a cape, 
+elaborate white lace ruff collar around the neck, 
+red velvet royal mantle over shoulders.
+
+ANATOMY: preserve natural dog paws and legs exactly, 
+four legs with natural paws, no humanoid limbs whatsoever.
+
+LIGHTING: dramatic Rembrandt chiaroscuro, warm golden light 
+from upper left, deep shadows on right side.
+
+BACKGROUND: dark interior, stone column, burgundy velvet 
+drape, warm amber tones.
+
+COLOR PRESERVATION: black and white fur markings must remain 
+exactly as the original dog — natural coat colors preserved.
+
+STYLE: Anthony van Dyck, Rembrandt, 17th century Dutch Golden 
+Age oil on canvas, visible brushstrokes, museum quality.
+
+
+Negative prompt:
+human hands, human arms, human fingers, humanoid limbs, 
+cartoon, anime, blurry, watermark, modern clothing, 
+lying down, cushion, photograph

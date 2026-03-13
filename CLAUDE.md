@@ -120,11 +120,15 @@ created_at       timestamp DEFAULT now()
 
 ## 🤖 AI Generatie — Technische Details
 
-- **Model:** FLUX.1 Pro via Replicate (~€0,05/generatie)
-- **Prompt:** config-based — opgeslagen in config/env bestand, NIET hardcoded in code
+- **Primary model:** GPT Image 1.5 via Replicate (`openai/gpt-image-1.5`) — 1024x1536, quality=high
+- **Fallback model:** FLUX.2 Pro via Replicate (`black-forest-labs/flux-2-pro`) — auto-fallback bij primary failure
+- **Upscaler:** Real-ESRGAN via Replicate (`nightmareai/real-esrgan`) — 2x upscale op elke generatie
+- **Prompt:** instruction-based — "Transform this pet photo into..." format in `src/config/prompts.ts`
+- **Model history:** flux-1.1-pro → flux-canny-pro → flux-depth-pro → flux-kontext-pro → **gpt-image-1.5 (huidig)**
 - **Polling:** client-side, elke 2-3 seconden via `/api/generate/status`
 - **Geen** Replicate webhooks, geen SSE — puur client polling
 - **Rate limiting:** max 5 generaties per IP per uur op `/api/generate`
+- **Model history:** flux-1.1-pro (geen stijl) → flux-canny-pro (verkeerde kleuren) → flux-depth-pro (cartoonachtig) → flux-kontext-pro (beste resultaat)
 
 ---
 
@@ -332,8 +336,8 @@ NOTION_DATABASE_ID=
 | # | Dag | Titel | Status |
 |---|---|---|---|
 | 1 | Dag 1 | Project Foundation | ✅ Klaar |
-| 2 | Dag 2 | Upload + AI Generatie | ⬜ Te doen |
-| 3 | Dag 3 | Preview + Prijzen + Kaders | ⬜ Te doen |
+| 2 | Dag 2 | Upload + AI Generatie | ✅ Klaar |
+| 3 | Dag 3 | Preview + Prijzen + Kaders | 🔄 Bezig |
 | 4 | Dag 4 | E-mail Modal + Stripe Checkout | ⬜ Te doen |
 | 5 | Dag 5 | Share URL + Virale Loop + i18n | ⬜ Te doen |
 | 6 | Dag 6 | Auth + Admin Dashboard | ⬜ Te doen |
@@ -402,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [1]
-Sessie titel:   [Project Foundation]
-Status:         [Klaar ✅]
-Vorige sessie:  [Sessie 0 — Voorbereiding & Setup]
-Volgende stap:  [Sessie 2 — Upload + AI Generatie: drag-and-drop upload, Replicate FLUX.1 Pro, polling, watermark]
-Openstaande issues: [Geen]
+Sessie nummer:  [3]
+Sessie titel:   [Usage Limiting + Model Switch (GPT Image 1.5) + Prompt Overhaul + Auto-Upscaling]
+Status:         [Klaar ✅ — code gebouwd, build slaagt, migration 006 gerund, nog testen met echte generaties]
+Vorige sessie:  [Sessie 2 — Upload + AI Generatie + Style System + Retry]
+Volgende stap:  [Test generaties met nieuwe models, commit alle code, dan Sessie 3 checklist — Preview + Prijzen + Kaders]
+Openstaande issues: [GPT Image 1.5 + FLUX.2 Pro + Real-ESRGAN nog niet live getest, Vercel function timeout (45s upscale) kan issue zijn op Hobby plan]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
