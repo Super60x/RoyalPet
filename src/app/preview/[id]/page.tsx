@@ -11,15 +11,22 @@ export const dynamic = "force-dynamic";
 export default async function PreviewPage({ params }: PreviewPageProps) {
   const supabase = createAdminClient();
 
-  const { data: portrait, error } = await supabase
-    .from("portraits")
-    .select("*")
-    .eq("id", params.id)
-    .single();
+  // Fetch portrait and frames in parallel
+  const [portraitResult, framesResult] = await Promise.all([
+    supabase.from("portraits").select("*").eq("id", params.id).single(),
+    supabase
+      .from("frames")
+      .select("id, name, price_cents, overlay_url")
+      .eq("active", true)
+      .order("price_cents", { ascending: true }),
+  ]);
 
-  if (error || !portrait) {
+  if (portraitResult.error || !portraitResult.data) {
     notFound();
   }
+
+  const portrait = portraitResult.data;
+  const frames = framesResult.data || [];
 
   return (
     <PreviewClient
@@ -30,6 +37,7 @@ export default async function PreviewPage({ params }: PreviewPageProps) {
         style: portrait.style,
         retry_count: portrait.retry_count,
       }}
+      frames={frames}
     />
   );
 }

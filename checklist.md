@@ -77,23 +77,28 @@
 - **Bonus:** Model geïtereerd van flux-1.1-pro → flux-canny-pro → flux-depth-pro → flux-kontext-pro (beste likeness + stijl) ✅
 - **Bonus:** Retry panel als donkere overlay over portret (competitor-stijl) ✅
 
-### Sessie 3 — Preview + Prijzen + Kaders (~2 uur) 🔄
+### Sessie 3 — Preview + Prijzen + Kaders (~2 uur) ✅
 - [x] Sharp watermark op server gegenereerd ✅ (gebouwd in Sessie 2, verbeterd in Sessie 3)
 - [x] Watermarked preview zichtbaar op `/preview/[id]` ✅
-- [ ] Product selector werkend (Digitaal / Fine Art / Canvas)
-- [ ] Maatvarianten per producttype zichtbaar
-- [ ] Alle prijzen correct conform prijstabel in `CLAUDE.md`
-- [ ] Kaderkeuzebalk met 6 opties werkend
+- [x] Product selector werkend (Digitaal / Fine Art / Canvas) ✅
+- [x] Maatvarianten per producttype zichtbaar ✅
+- [x] Alle prijzen correct conform prijstabel in `CLAUDE.md` ✅
+- [x] Kaderkeuzebalk met 6 opties werkend ✅
 - [ ] Placeholder kader-overlay PNGs aangemaakt (vervangen door Fiverr versies later)
 - [ ] Live frame preview via PNG overlay (`position: absolute`)
-- [ ] Dynamische prijsupdate (product + kader gecombineerd)
-- [ ] Retry knop werkend (1 gratis retry, daarna €4,99 via Stripe)
-- [ ] Learnings opgeslagen → `learnings/dag-03.md`
+- [x] Dynamische prijsupdate (product + kader gecombineerd) ✅
+- [x] Retry knop werkend (1 gratis retry, daarna €4,99 via Stripe) ✅
+- [x] Learnings opgeslagen → `learnings/dag-03.md` ✅
 - **Bonus Sessie 3:** Usage limiting — IP + signed cookie (max 3 uploads/30 dagen) ✅
 - **Bonus Sessie 3:** Model switch naar GPT Image 1.5 (primary) + FLUX.2 Pro (fallback) ✅
 - **Bonus Sessie 3:** Auto-upscaling via Real-ESRGAN 2x op elke generatie ✅
 - **Bonus Sessie 3:** 8 gestructureerde prompts (4 stijlen × 2 poses) — pet-agnostisch, anti-instructies ✅
 - **Bonus Sessie 3:** Pose toggle (liggend/staand) + kleur aanpassen in RetryPanel ✅
+- **Bonus Sessie 4:** Two-step product selector (type → maat) met tooltips voor 50+ UX ✅
+- **Bonus Sessie 4:** PortraitHero component met 2:3 aspect ratio + frame overlay systeem ✅
+- **Bonus Sessie 4:** Sticky mobile price bar + desktop prijsoverzicht ✅
+- **Bonus Sessie 4:** SocialProof component (trust signals) ✅
+- **Bonus Sessie 4:** RetryPanel volledig vertaald naar Nederlands ✅
 
 ### Sessie 4 — E-mail Modal + Stripe Checkout (~1,5 uur)
 - [ ] E-mail modal: 1 veld + Continue knop (GEEN adresformulier hier)

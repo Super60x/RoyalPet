@@ -337,8 +337,8 @@ NOTION_DATABASE_ID=
 |---|---|---|---|
 | 1 | Dag 1 | Project Foundation | ✅ Klaar |
 | 2 | Dag 2 | Upload + AI Generatie | ✅ Klaar |
-| 3 | Dag 3 | Preview + Prijzen + Kaders | 🔄 Bezig |
-| 4 | Dag 4 | E-mail Modal + Stripe Checkout | ⬜ Te doen |
+| 3 | Dag 3 | Preview + Prijzen + Kaders | ✅ Klaar |
+| 4 | Dag 4 | E-mail Modal + Stripe Checkout | 🔄 Bezig |
 | 5 | Dag 5 | Share URL + Virale Loop + i18n | ⬜ Te doen |
 | 6 | Dag 6 | Auth + Admin Dashboard | ⬜ Te doen |
 | 7 | Dag 7 | Abandoned Checkout Recovery | ⬜ Te doen |
@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [3]
-Sessie titel:   [Usage Limiting + Model Switch (GPT Image 1.5) + Prompt Overhaul + Auto-Upscaling]
-Status:         [Klaar ✅ — code gebouwd, build slaagt, migration 006 gerund, nog testen met echte generaties]
-Vorige sessie:  [Sessie 2 — Upload + AI Generatie + Style System + Retry]
-Volgende stap:  [Test generaties met nieuwe models, commit alle code, dan Sessie 3 checklist — Preview + Prijzen + Kaders]
-Openstaande issues: [GPT Image 1.5 + FLUX.2 Pro + Real-ESRGAN nog niet live getest, Vercel function timeout (45s upscale) kan issue zijn op Hobby plan]
+Sessie nummer:  [4]
+Sessie titel:   [Preview Page — Product Selector + Kaders + Dynamische Prijzen + Dutch UI]
+Status:         [Klaar ✅ — alle preview componenten gebouwd, build slaagt, retry werkt (maar Replicate throttled bij <$5 credit)]
+Vorige sessie:  [Sessie 3 — Usage Limiting + Model Switch + Prompt Overhaul + Auto-Upscaling]
+Volgende stap:  [Top up Replicate credit, test generaties live, dan Sessie 4 checklist — E-mail Modal + Stripe Checkout]
+Openstaande issues: [Replicate <$5 credit = 429 throttling, frame overlay PNGs nog niet in Supabase Storage, .next cache corruptie op Windows]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
