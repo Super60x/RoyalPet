@@ -7,6 +7,7 @@ import {
   COOKIE_NAME,
   COOKIE_OPTIONS,
 } from "@/lib/usage-limit";
+import { getCredits, CREDIT_EMAIL_COOKIE } from "@/lib/credits";
 
 export async function GET(request: NextRequest) {
   const ip =
@@ -15,9 +16,18 @@ export async function GET(request: NextRequest) {
 
   const result = checkUsageLimit(ip, cookieValue);
 
+  // Check for purchased credits
+  const creditEmail = request.cookies.get(CREDIT_EMAIL_COOKIE)?.value;
+  let credits = 0;
+  if (creditEmail) {
+    credits = await getCredits(creditEmail);
+  }
+
   const response = NextResponse.json({
     remaining: result.remaining,
-    total: 3,
+    total: 1,
+    credits,
+    creditEmail: creditEmail || null,
   });
 
   // If new visitor, set an initial cookie (count=0) so we can track them

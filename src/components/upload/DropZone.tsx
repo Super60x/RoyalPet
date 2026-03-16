@@ -152,12 +152,7 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
         />
       </div>
 
-      {/* Remaining count */}
-      {typeof remaining === "number" && remaining > 0 && (
-        <p className="mt-3 text-center text-xs font-body text-royal-brown/40">
-          {remaining} van 3 gratis portretten beschikbaar
-        </p>
-      )}
+      {/* Remaining count — hidden when using credits (shown separately in UploadSection) */}
 
       {error && (
         <div className="mt-4 p-3 rounded-lg bg-red-50 border border-red-200">

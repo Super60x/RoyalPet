@@ -151,11 +151,13 @@ export function buildPrompt(options: PromptOptions): string {
   const stylePrompts = BASE_PROMPTS[styleId] || BASE_PROMPTS.flemish_masters;
   let prompt = stylePrompts[pose] || stylePrompts.laying_down;
 
-  // Gender modifier (keep short)
-  if (gender === "masculine") {
-    prompt += " Make the attire masculine — military doublet, dark bold colors.";
-  } else if (gender === "feminine") {
+  // Gender modifier — default to masculine/noble when not specified
+  // Most pet owners expect a "regal" look, not feminine
+  if (gender === "feminine") {
     prompt += " Make the attire feminine — elegant gown, delicate lace, refined jewelry.";
+  } else {
+    // Default + explicit masculine: noble, commanding look
+    prompt += " Make the attire masculine and noble — military doublet, dark bold colors, commanding presence.";
   }
 
   // Color preference

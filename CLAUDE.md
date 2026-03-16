@@ -338,7 +338,7 @@ NOTION_DATABASE_ID=
 | 1 | Dag 1 | Project Foundation | ✅ Klaar |
 | 2 | Dag 2 | Upload + AI Generatie | ✅ Klaar |
 | 3 | Dag 3 | Preview + Prijzen + Kaders | ✅ Klaar |
-| 4 | Dag 4 | E-mail Modal + Stripe Checkout | 🔄 Bezig |
+| 4 | Dag 4 | E-mail Modal + Stripe Checkout + Paywall + Credits | ✅ Klaar |
 | 5 | Dag 5 | Share URL + Virale Loop + i18n | ⬜ Te doen |
 | 6 | Dag 6 | Auth + Admin Dashboard | ⬜ Te doen |
 | 7 | Dag 7 | Abandoned Checkout Recovery | ⬜ Te doen |
@@ -407,11 +407,11 @@ Je opereert binnen het WAT framework:
 
 ```
 Sessie nummer:  [4]
-Sessie titel:   [Preview Page — Product Selector + Kaders + Dynamische Prijzen + Dutch UI]
-Status:         [Klaar ✅ — alle preview componenten gebouwd, build slaagt, retry werkt (maar Replicate throttled bij <$5 credit)]
-Vorige sessie:  [Sessie 3 — Usage Limiting + Model Switch + Prompt Overhaul + Auto-Upscaling]
-Volgende stap:  [Top up Replicate credit, test generaties live, dan Sessie 4 checklist — E-mail Modal + Stripe Checkout]
-Openstaande issues: [Replicate <$5 credit = 429 throttling, frame overlay PNGs nog niet in Supabase Storage, .next cache corruptie op Windows]
+Sessie titel:   [E-mail Modal + Stripe Checkout + Paywall + Generation Credits]
+Status:         [Klaar ✅ — volledige checkout flow + paywall + credits systeem gebouwd en getest]
+Vorige sessie:  [Sessie 3 — Preview Page + Product Selector + Usage Limiting + Model Switch]
+Volgende stap:  [Commit alle code, Sessie 5 — Share URL + Virale Loop + Resend emails]
+Openstaande issues: [Resend emails nog niet (Sessie 6), frame overlay PNGs niet in Storage, MAX_FREE_UPLOADS hardcoded 1 (zet terug naar dev override voor testen)]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

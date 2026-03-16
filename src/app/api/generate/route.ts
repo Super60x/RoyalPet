@@ -11,6 +11,7 @@ import {
 } from "@/lib/usage-limit";
 import { startGeneration } from "@/lib/replicate";
 import { getRandomStyle, buildPrompt } from "@/config/prompts";
+import { getCredits, deductCredit, CREDIT_EMAIL_COOKIE } from "@/lib/credits";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_SIZE = 10 * 1024 * 1024; // 10MB
@@ -39,19 +40,41 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 1b. Usage limit check (3 uploads per 30 days, IP + cookie)
+    // 1b. Usage limit check (1 free upload per 30 days, IP + cookie)
     const cookieValue = request.cookies.get(COOKIE_NAME)?.value;
     const usageLimit = checkUsageLimit(ip, cookieValue);
 
+    // Track whether this generation uses a credit (not free usage)
+    let usedCredit = false;
+
     if (!usageLimit.allowed) {
-      return NextResponse.json(
-        {
-          error:
-            "U heeft uw 3 gratis portretten gebruikt. Uw tegoed wordt over 30 dagen automatisch vernieuwd.",
-          limitReached: true,
-        },
-        { status: 403 }
-      );
+      // Free limit reached — check for purchased credits
+      const creditEmail = request.cookies.get(CREDIT_EMAIL_COOKIE)?.value;
+      if (creditEmail) {
+        const credits = await getCredits(creditEmail);
+        if (credits > 0) {
+          const deducted = await deductCredit(creditEmail);
+          if (deducted) {
+            usedCredit = true;
+            // Continue with generation — credit consumed
+          } else {
+            return NextResponse.json(
+              { error: "Er ging iets mis bij het afschrijven van uw credit.", limitReached: true },
+              { status: 403 }
+            );
+          }
+        } else {
+          return NextResponse.json(
+            { error: "Uw gratis portret is gebruikt. Koop credits om meer portretten te genereren.", limitReached: true },
+            { status: 403 }
+          );
+        }
+      } else {
+        return NextResponse.json(
+          { error: "Uw gratis portret is gebruikt. Koop credits om meer portretten te genereren.", limitReached: true },
+          { status: 403 }
+        );
+      }
     }
 
     // 2. Parse form data
@@ -145,12 +168,9 @@ export async function POST(request: NextRequest) {
       .update({ prediction_id: predictionId, status: "processing", model_used: model })
       .eq("id", id);
 
-    // Increment usage and set cookie
-    const cookie = parseCookie(cookieValue);
-    const { newCookieValue } = incrementUsage(ip, cookie);
-
+    // Increment free usage (only if not using credits)
     const response = NextResponse.json(
-      { id, remaining: usageLimit.remaining - 1 },
+      { id, remaining: usedCredit ? 0 : usageLimit.remaining - 1, usedCredit },
       {
         headers: {
           "X-RateLimit-Remaining": String(rateLimit.remaining),
@@ -158,7 +178,12 @@ export async function POST(request: NextRequest) {
       }
     );
 
-    response.cookies.set(COOKIE_NAME, newCookieValue, COOKIE_OPTIONS);
+    if (!usedCredit) {
+      const cookie = parseCookie(cookieValue);
+      const { newCookieValue } = incrementUsage(ip, cookie);
+      response.cookies.set(COOKIE_NAME, newCookieValue, COOKIE_OPTIONS);
+    }
+
     return response;
   } catch (error) {
     console.error("Generate error:", error);

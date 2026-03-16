@@ -3,6 +3,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { startGeneration } from "@/lib/replicate";
 import { buildPrompt, STYLES } from "@/config/prompts";
+import { getCredits, deductCredit, CREDIT_EMAIL_COOKIE } from "@/lib/credits";
 
 export async function POST(request: NextRequest) {
   try {
@@ -49,16 +50,35 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 4. Check retry count (1 free retry allowed, unlimited in dev)
-    const isDev = process.env.NODE_ENV === "development";
-    if (!isDev && portrait.retry_count >= 1) {
-      return NextResponse.json(
-        {
-          error:
-            "Uw gratis poging is gebruikt. Betaalde retries worden binnenkort beschikbaar.",
-        },
-        { status: 403 }
-      );
+    // 4. Check retry count (1 free retry, then credits required)
+    let usedCredit = false;
+
+    if (portrait.retry_count >= 1) {
+      // Free retry used — check for purchased credits
+      const creditEmail = request.cookies.get(CREDIT_EMAIL_COOKIE)?.value;
+      if (creditEmail) {
+        const credits = await getCredits(creditEmail);
+        if (credits > 0) {
+          const deducted = await deductCredit(creditEmail);
+          if (!deducted) {
+            return NextResponse.json(
+              { error: "Er ging iets mis bij het afschrijven van uw credit." },
+              { status: 403 }
+            );
+          }
+          usedCredit = true;
+        } else {
+          return NextResponse.json(
+            { error: "Uw gratis poging is gebruikt. Koop credits voor meer retries.", needsCredits: true },
+            { status: 403 }
+          );
+        }
+      } else {
+        return NextResponse.json(
+          { error: "Uw gratis poging is gebruikt. Koop credits voor meer retries.", needsCredits: true },
+          { status: 403 }
+        );
+      }
     }
 
     // 5. Find the original uploaded photo in storage

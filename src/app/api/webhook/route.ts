@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { createAdminClient } from "@/lib/supabase/admin";
+import { addCredits } from "@/lib/credits";
 import Stripe from "stripe";
 
 // Disable body parsing — Stripe needs the raw body for signature verification
@@ -35,13 +36,57 @@ export async function POST(request: NextRequest) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    await handleCheckoutCompleted(session);
+    const metadata = session.metadata || {};
+
+    // Route based on checkout type
+    if (metadata.type === "credit_pack") {
+      await handleCreditPackPurchase(session);
+    } else {
+      await handleProductPurchase(session);
+    }
   }
 
   return NextResponse.json({ received: true });
 }
 
-async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
+// --- Credit pack purchase ---
+async function handleCreditPackPurchase(session: Stripe.Checkout.Session) {
+  const metadata = session.metadata || {};
+  const email = metadata.email;
+  const packId = metadata.pack_id;
+  const credits = parseInt(metadata.credits || "0", 10);
+
+  if (!email || !packId || !credits) {
+    console.error("Webhook: missing credit pack metadata", metadata);
+    return;
+  }
+
+  // Idempotency: skip if credits already added for this Stripe session
+  const supabase = createAdminClient();
+  const { data: existing } = await supabase
+    .from("generation_credits")
+    .select("id")
+    .eq("stripe_session_id", session.id)
+    .limit(1)
+    .single();
+
+  if (existing) {
+    console.log(`Webhook: credits already added for session ${session.id}, skipping`);
+    return;
+  }
+
+  await addCredits({
+    email,
+    creditsPurchased: credits,
+    packId,
+    stripeSessionId: session.id,
+  });
+
+  console.log(`Credit pack ${packId} (${credits} credits) added for ${email}`);
+}
+
+// --- Product purchase (existing flow) ---
+async function handleProductPurchase(session: Stripe.Checkout.Session) {
   const supabase = createAdminClient();
   const metadata = session.metadata || {};
 
@@ -53,6 +98,19 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
   if (!portraitId) {
     console.error("Webhook: missing portrait_id in metadata");
+    return;
+  }
+
+  // Idempotency: skip if order already exists for this Stripe session
+  const { data: existingOrder } = await supabase
+    .from("orders")
+    .select("id")
+    .eq("stripe_session_id", session.id)
+    .limit(1)
+    .single();
+
+  if (existingOrder) {
+    console.log(`Webhook: order already exists for session ${session.id}, skipping`);
     return;
   }
 
@@ -74,7 +132,6 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 
   // 3. Extract shipping address from Stripe session
-  // shipping_details exists on the expanded session object but may not be in TS types
   // eslint-disable-next-line
   const shippingDetails = (session as unknown as { shipping_details?: { name?: string; address?: { line1?: string; line2?: string; city?: string; postal_code?: string; country?: string } } }).shipping_details || null;
   const shippingAddress = shippingDetails

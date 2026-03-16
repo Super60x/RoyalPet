@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import GenerationProgress from "@/components/upload/GenerationProgress";
 import RetryPanel from "@/components/preview/RetryPanel";
 import PortraitHero from "@/components/preview/PortraitHero";
@@ -38,6 +38,15 @@ export default function PreviewClient({
   const [showRetry, setShowRetry] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  // Credits
+  const [credits, setCredits] = useState<number | null>(null);
+  useEffect(() => {
+    fetch("/api/usage")
+      .then((res) => res.json())
+      .then((data) => setCredits(data.credits || 0))
+      .catch(() => {});
+  }, []);
+
   // Product + Frame selection state
   const [selectedProduct, setSelectedProduct] =
     useState<ProductSelection | null>(null);
@@ -63,10 +72,14 @@ export default function PreviewClient({
       const res = await fetch(`/api/generate/status?id=${portrait.id}`);
       const data = await res.json();
       if (data.status === "completed" && data.image_url) {
+        // Cache-bust: append timestamp to force browser to fetch new image
+        const bustUrl = data.image_url.includes("?")
+          ? `${data.image_url}&t=${Date.now()}`
+          : `${data.image_url}?t=${Date.now()}`;
         setPortrait((prev) => ({
           ...prev,
           status: "completed",
-          image_url: data.image_url,
+          image_url: bustUrl,
         }));
       }
     } catch {
@@ -111,6 +124,16 @@ export default function PreviewClient({
       <div className="max-w-5xl mx-auto">
         {/* Title */}
         <div className="text-center mb-8">
+          {credits !== null && credits > 0 && (
+            <div className="mb-3">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-royal-gold/10 text-royal-gold text-xs font-body font-semibold">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                </svg>
+                {credits} credit{credits !== 1 ? "s" : ""} resterend
+              </span>
+            </div>
+          )}
           <h1 className="text-3xl md:text-4xl font-heading font-bold text-royal-brown mb-2">
             Uw Renaissance Meesterwerk
           </h1>

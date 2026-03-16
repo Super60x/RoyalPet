@@ -2,6 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { formatPrice } from "@/config/products";
+
+// Product ID to readable label
+function getProductLabel(productId: string): string {
+  const labels: Record<string, string> = {
+    digital: "Digitale Download — High-res",
+    fine_art_20x25: "Fine Art Print — 20x25cm",
+    fine_art_30x40: "Fine Art Print — 30x40cm",
+    fine_art_45x60: "Fine Art Print — 45x60cm",
+    fine_art_60x90: "Fine Art Print — 60x90cm",
+    canvas_30x40: "Canvas — 30x40cm",
+    canvas_45x60: "Canvas — 45x60cm",
+    canvas_60x90: "Canvas — 60x90cm",
+    canvas_100x150: "Canvas — 100x150cm",
+  };
+  return labels[productId] || productId;
+}
 
 interface SuccessClientProps {
   portrait: {
@@ -15,6 +32,10 @@ interface SuccessClientProps {
     product: string;
     status: string;
     customer_email: string;
+    frame_id: string | null;
+    frame_price_cents: number | null;
+    price_cents: number;
+    frameName: string | null;
   } | null;
   isDigital: boolean;
   downloadUrl: string | null;
@@ -47,6 +68,8 @@ export default function SuccessClient({
       </main>
     );
   }
+
+  const totalCents = (order?.price_cents || 0) + (order?.frame_price_cents || 0);
 
   return (
     <main className="min-h-screen px-4 py-12 md:py-20">
@@ -82,6 +105,31 @@ export default function SuccessClient({
                 className="object-cover"
                 sizes="256px"
               />
+            </div>
+          </div>
+        )}
+
+        {/* Order summary */}
+        {order && (
+          <div className="mb-8 bg-royal-cream/50 rounded-lg p-5 border border-royal-brown/10 max-w-sm mx-auto">
+            <h2 className="font-heading font-bold text-royal-brown mb-3 text-left">
+              Uw bestelling
+            </h2>
+            <div className="space-y-2 text-sm font-body text-left">
+              <div className="flex justify-between text-royal-brown/70">
+                <span>{getProductLabel(order.product)}</span>
+                <span>{formatPrice(order.price_cents)}</span>
+              </div>
+              {order.frameName && order.frame_price_cents && order.frame_price_cents > 0 && (
+                <div className="flex justify-between text-royal-brown/70">
+                  <span>Kader: {order.frameName}</span>
+                  <span>+{formatPrice(order.frame_price_cents)}</span>
+                </div>
+              )}
+              <div className="border-t border-royal-brown/10 pt-2 flex justify-between font-heading font-bold text-royal-brown">
+                <span>Totaal</span>
+                <span>{formatPrice(totalCents)}</span>
+              </div>
             </div>
           </div>
         )}

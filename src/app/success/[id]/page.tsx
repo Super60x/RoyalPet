@@ -6,6 +6,9 @@ interface PageProps {
   params: { id: string };
 }
 
+// Force dynamic rendering — never cache this page
+export const dynamic = "force-dynamic";
+
 export default async function SuccessPage({ params }: PageProps) {
   const supabase = createAdminClient();
 
@@ -18,14 +21,30 @@ export default async function SuccessPage({ params }: PageProps) {
 
   if (error || !portrait) return notFound();
 
-  // Fetch latest order for this portrait
+  // Cache-bust the image URL to always show the latest version
+  const imageUrl = portrait.image_url
+    ? `${portrait.image_url}${portrait.image_url.includes("?") ? "&" : "?"}t=${Date.now()}`
+    : null;
+
+  // Fetch latest order for this portrait (with frame info)
   const { data: order } = await supabase
     .from("orders")
-    .select("id, product, status, customer_email")
+    .select("id, product, status, customer_email, frame_id, frame_price_cents, price_cents")
     .eq("portrait_id", params.id)
     .order("created_at", { ascending: false })
     .limit(1)
     .single();
+
+  // Fetch frame name if selected
+  let frameName: string | null = null;
+  if (order?.frame_id) {
+    const { data: frame } = await supabase
+      .from("frames")
+      .select("name")
+      .eq("id", order.frame_id)
+      .single();
+    frameName = frame?.name || null;
+  }
 
   // Determine product type
   const isDigital = order?.product?.startsWith("digital");
@@ -33,24 +52,17 @@ export default async function SuccessPage({ params }: PageProps) {
   // Generate signed download URL for digital purchases (24h)
   let downloadUrl: string | null = null;
   if (portrait.paid && isDigital) {
-    // Find the clean file in portraits-private
-    const { data: files } = await supabase.storage
+    // Clean files are stored directly as {id}.png
+    const { data: signed } = await supabase.storage
       .from("portraits-private")
-      .list("clean", { search: params.id });
-
-    const cleanFile = files?.find((f) => f.name.startsWith(params.id));
-    if (cleanFile) {
-      const { data: signed } = await supabase.storage
-        .from("portraits-private")
-        .createSignedUrl(`clean/${cleanFile.name}`, 86400); // 24 hours
-      downloadUrl = signed?.signedUrl || null;
-    }
+      .createSignedUrl(`${params.id}.png`, 86400); // 24 hours
+    downloadUrl = signed?.signedUrl || null;
   }
 
   return (
     <SuccessClient
-      portrait={portrait}
-      order={order}
+      portrait={{ ...portrait, image_url: imageUrl }}
+      order={order ? { ...order, frameName } : null}
       isDigital={isDigital || false}
       downloadUrl={downloadUrl}
     />

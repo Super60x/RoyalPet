@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import StyleSelector from "./StyleSelector";
 
 interface RetryPanelProps {
@@ -30,13 +30,29 @@ export default function RetryPanel({
   const [colorPreference, setColorPreference] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const isDev = process.env.NODE_ENV === "development";
-  const canRetry = isDev || retryCount < 1;
-  const remainingRetries = isDev ? 99 : canRetry ? 1 : 0;
+  const [credits, setCredits] = useState(0);
+  const hasFreeRetry = retryCount < 1;
+  const canRetry = hasFreeRetry || credits > 0;
+
+  // Fetch credits on mount (only if free retry is used)
+  useEffect(() => {
+    if (!hasFreeRetry) {
+      fetch("/api/usage")
+        .then((res) => res.json())
+        .then((data) => setCredits(data.credits || 0))
+        .catch(() => {});
+    }
+  }, [hasFreeRetry]);
+
+  const retryLabel = hasFreeRetry
+    ? "1 gratis resterend"
+    : credits > 0
+      ? `${credits} credit${credits !== 1 ? "s" : ""} — 1 wordt gebruikt`
+      : "Geen retries beschikbaar";
 
   async function handleRetry() {
     if (!canRetry) {
-      onError("Uw gratis poging is gebruikt. Betaalde retries worden binnenkort beschikbaar.");
+      onError("Uw gratis poging is gebruikt. Koop credits op de homepage om meer retries te doen.");
       return;
     }
 
@@ -77,7 +93,7 @@ export default function RetryPanel({
         <div>
           <h3 className="font-heading text-lg font-bold">Opnieuw proberen</h3>
           <p className="text-xs text-white/50">
-            {remainingRetries} resterend &middot; Elke actie gebruikt 1
+            {retryLabel}
           </p>
         </div>
         <button
@@ -253,9 +269,17 @@ export default function RetryPanel({
         </div>
 
         {!canRetry && (
-          <p className="text-xs text-white/40 text-center">
-            Uw gratis poging is gebruikt. Betaalde retries worden binnenkort beschikbaar.
-          </p>
+          <div className="text-center space-y-2">
+            <p className="text-xs text-white/40">
+              Uw gratis poging is gebruikt.
+            </p>
+            <a
+              href="/"
+              className="inline-block text-xs text-emerald-400 hover:underline"
+            >
+              Koop credits voor meer retries →
+            </a>
+          </div>
         )}
       </div>
     </div>

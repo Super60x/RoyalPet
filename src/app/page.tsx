@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import UploadSection from "@/components/upload/UploadSection";
 
 export default function Home() {
@@ -17,8 +18,14 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Upload */}
-      <UploadSection />
+      {/* Upload — Suspense needed for useSearchParams in UploadSection */}
+      <Suspense fallback={
+        <div className="text-center py-8">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-royal-gold border-t-transparent" />
+        </div>
+      }>
+        <UploadSection />
+      </Suspense>
 
       {/* Trust signals */}
       <div className="max-w-2xl mx-auto mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
