@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import { formatPrice } from "@/config/products";
+import EmailModal from "./EmailModal";
 
 interface PriceSummaryProps {
   productLabel: string | null;
   productPriceCents: number;
+  productId: string | null;
+  frameId: string;
   frameLabel: string;
   framePriceCents: number;
   portraitId: string;
@@ -15,32 +18,47 @@ interface PriceSummaryProps {
 export default function PriceSummary({
   productLabel,
   productPriceCents,
+  productId,
+  frameId,
   frameLabel,
   framePriceCents,
   portraitId,
   disabled,
 }: PriceSummaryProps) {
-  const [showToast, setShowToast] = useState(false);
+  const [showEmail, setShowEmail] = useState(false);
+  const [loading, setLoading] = useState(false);
   const totalCents = productPriceCents + framePriceCents;
 
   const handleCheckout = () => {
-    // Store selection in localStorage for now (Stripe checkout in later session)
-    const selection = {
-      portraitId,
-      productLabel,
-      productPriceCents,
-      frameLabel,
-      framePriceCents,
-      totalCents,
-      savedAt: new Date().toISOString(),
-    };
-    localStorage.setItem(
-      `royalpet_selection_${portraitId}`,
-      JSON.stringify(selection)
-    );
+    setShowEmail(true);
+  };
 
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 3000);
+  const handleEmailSubmit = async (email: string) => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          portraitId,
+          productId,
+          frameId,
+          email,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Er ging iets mis.");
+      }
+
+      // Redirect to Stripe Checkout
+      window.location.href = data.url;
+    } catch (err) {
+      setLoading(false);
+      alert(err instanceof Error ? err.message : "Er ging iets mis. Probeer het opnieuw.");
+    }
   };
 
   return (
@@ -87,12 +105,13 @@ export default function PriceSummary({
         </div>
       </div>
 
-      {/* Toast notification */}
-      {showToast && (
-        <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 bg-royal-brown text-white px-6 py-3 rounded-lg shadow-xl font-body text-sm animate-fade-in">
-          Selectie opgeslagen! Betaling wordt binnenkort beschikbaar.
-        </div>
-      )}
+      {/* Email Modal */}
+      <EmailModal
+        open={showEmail}
+        onClose={() => setShowEmail(false)}
+        onSubmit={handleEmailSubmit}
+        loading={loading}
+      />
     </>
   );
 }

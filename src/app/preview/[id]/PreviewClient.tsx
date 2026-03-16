@@ -220,6 +220,8 @@ export default function PreviewClient({
             <PriceSummary
               productLabel={selectedProduct?.sizeLabel || null}
               productPriceCents={selectedProduct?.priceCents || 0}
+              productId={selectedProduct?.sizeId || null}
+              frameId={selectedFrame.id}
               frameLabel={selectedFrame.name}
               framePriceCents={selectedFrame.priceCents}
               portraitId={portrait.id}
