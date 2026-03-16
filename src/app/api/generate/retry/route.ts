@@ -49,8 +49,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 4. Check retry count (1 free retry allowed)
-    if (portrait.retry_count >= 1) {
+    // 4. Check retry count (1 free retry allowed, unlimited in dev)
+    const isDev = process.env.NODE_ENV === "development";
+    if (!isDev && portrait.retry_count >= 1) {
       return NextResponse.json(
         {
           error:

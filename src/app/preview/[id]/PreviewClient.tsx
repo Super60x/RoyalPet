@@ -127,7 +127,8 @@ export default function PreviewClient({
             {portrait.image_url && (
               <PortraitHero
                 imageUrl={portrait.image_url}
-                frameOverlayUrl={null} // TODO: enable when real frame PNGs are uploaded to Supabase Storage
+                frameId={selectedFrame.id}
+                frameOverlayUrl={selectedFrame.overlayUrl}
                 showRetryOverlay={showRetry}
               >
                 {/* Retry panel overlay */}

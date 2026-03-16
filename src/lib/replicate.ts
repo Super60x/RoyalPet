@@ -14,6 +14,7 @@ export const MODEL_UPSCALE = "nightmareai/real-esrgan";
 
 // ---------------------------------------------------------------------------
 // Generation — primary model (GPT Image 1.5)
+// Short focused prompts = best identity preservation
 // ---------------------------------------------------------------------------
 
 export async function startGeneration(
@@ -24,8 +25,8 @@ export async function startGeneration(
     model: MODEL_PRIMARY,
     input: {
       prompt,
-      image: imageUrl,
-      size: "1024x1536",
+      input_images: [imageUrl],
+      aspect_ratio: "2:3",
       quality: "high",
       output_format: "png",
       input_fidelity: "high",
@@ -40,7 +41,7 @@ export async function startGeneration(
 }
 
 // ---------------------------------------------------------------------------
-// Generation — fallback model (FLUX.2 Pro)
+// Generation — fallback model (FLUX 2 Pro)
 // ---------------------------------------------------------------------------
 
 export async function startFallbackGeneration(

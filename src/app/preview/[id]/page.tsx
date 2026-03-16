@@ -26,7 +26,11 @@ export default async function PreviewPage({ params }: PreviewPageProps) {
   }
 
   const portrait = portraitResult.data;
-  const frames = framesResult.data || [];
+  // Null out overlay_url — no PNGs exist yet, CSS frames handle the preview
+  const frames = (framesResult.data || []).map((f) => ({
+    ...f,
+    overlay_url: null,
+  }));
 
   return (
     <PreviewClient

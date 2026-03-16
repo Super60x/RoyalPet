@@ -30,8 +30,9 @@ export default function RetryPanel({
   const [colorPreference, setColorPreference] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const canRetry = retryCount < 1;
-  const remainingRetries = canRetry ? 1 : 0;
+  const isDev = process.env.NODE_ENV === "development";
+  const canRetry = isDev || retryCount < 1;
+  const remainingRetries = isDev ? 99 : canRetry ? 1 : 0;
 
   async function handleRetry() {
     if (!canRetry) {
