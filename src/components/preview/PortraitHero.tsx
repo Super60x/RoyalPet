@@ -65,7 +65,8 @@ export default function PortraitHero({
   children,
 }: PortraitHeroProps) {
   const frameConfig = FRAME_STYLES[frameId] || FRAME_STYLES.geen;
-  const hasOverlayPng = !!frameOverlayUrl;
+  // Only use overlay PNG if it's a full URL (Supabase Storage), not a placeholder path
+  const hasOverlayPng = !!frameOverlayUrl && frameOverlayUrl.startsWith("http");
   const hasCssFrame = frameId !== "geen" && !hasOverlayPng;
 
   return (

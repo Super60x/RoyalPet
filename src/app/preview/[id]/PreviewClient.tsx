@@ -53,12 +53,27 @@ export default function PreviewClient({
 
   // Default frame: "geen" (first in list, price 0)
   const geenFrame = frames.find((f) => f.id === "geen");
-  const [selectedFrame, setSelectedFrame] = useState<FrameSelection>({
+  const noFrame: FrameSelection = {
     id: geenFrame?.id || "geen",
     name: "Geen kader",
     priceCents: 0,
     overlayUrl: null,
-  });
+  };
+  const [selectedFrame, setSelectedFrame] = useState<FrameSelection>(noFrame);
+
+  const isDigital = selectedProduct?.type === "digital";
+
+  // Reset frame to "geen" when switching to digital
+  const handleProductSelect = useCallback(
+    (product: ProductSelection) => {
+      setSelectedProduct(product);
+      if (product.type === "digital") {
+        setSelectedFrame(noFrame);
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const handleRetryStart = useCallback(() => {
     setShowRetry(false);
@@ -243,7 +258,7 @@ export default function PreviewClient({
             {/* Product selector */}
             <ProductSelector
               selected={selectedProduct}
-              onSelect={setSelectedProduct}
+              onSelect={handleProductSelect}
             />
 
             {/* Frame selector */}
@@ -251,6 +266,7 @@ export default function PreviewClient({
               frames={frames}
               selectedFrameId={selectedFrame.id}
               onSelect={setSelectedFrame}
+              disabled={isDigital}
             />
 
             {/* Social proof */}

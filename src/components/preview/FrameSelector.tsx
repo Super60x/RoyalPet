@@ -20,6 +20,7 @@ interface FrameSelectorProps {
   frames: FrameData[];
   selectedFrameId: string;
   onSelect: (frame: FrameSelection) => void;
+  disabled?: boolean;
 }
 
 // Display names in Dutch
@@ -36,13 +37,14 @@ export default function FrameSelector({
   frames,
   selectedFrameId,
   onSelect,
+  disabled = false,
 }: FrameSelectorProps) {
   return (
-    <div>
+    <div className={disabled ? "opacity-40 pointer-events-none" : ""}>
       <h3 className="font-heading font-semibold text-lg text-royal-brown mb-3">
         Kies een kader{" "}
         <span className="text-sm font-body font-normal text-royal-brown/50">
-          (optioneel)
+          {disabled ? "(niet beschikbaar voor digitale download)" : "(optioneel)"}
         </span>
       </h3>
 
@@ -57,6 +59,7 @@ export default function FrameSelector({
           return (
             <button
               key={frame.id}
+              disabled={disabled}
               onClick={() =>
                 onSelect({
                   id: frame.id,

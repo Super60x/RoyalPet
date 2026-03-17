@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { formatPrice } from "@/config/products";
+import PortraitHero from "@/components/preview/PortraitHero";
 
 // Product ID to readable label
 function getProductLabel(productId: string): string {
@@ -36,6 +36,7 @@ interface SuccessClientProps {
     frame_price_cents: number | null;
     price_cents: number;
     frameName: string | null;
+    frameOverlayUrl: string | null;
   } | null;
   isDigital: boolean;
   downloadUrl: string | null;
@@ -94,18 +95,14 @@ export default function SuccessClient({
             : "Uw portret wordt met zorg geprint en verzonden. U ontvangt een e-mail bij elke statuswijziging."}
         </p>
 
-        {/* Portrait preview */}
+        {/* Portrait preview with frame overlay */}
         {portrait.image_url && (
-          <div className="relative w-64 mx-auto mb-8 rounded-lg overflow-hidden shadow-xl border-4 border-royal-gold/30">
-            <div className="aspect-[2/3]">
-              <Image
-                src={portrait.image_url}
-                alt="Uw Renaissance portret"
-                fill
-                className="object-cover"
-                sizes="256px"
-              />
-            </div>
+          <div className="max-w-xs mx-auto mb-8">
+            <PortraitHero
+              imageUrl={portrait.image_url}
+              frameId={order?.frame_id || "geen"}
+              frameOverlayUrl={order?.frameOverlayUrl || null}
+            />
           </div>
         )}
 

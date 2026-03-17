@@ -35,15 +35,17 @@ export default async function SuccessPage({ params }: PageProps) {
     .limit(1)
     .single();
 
-  // Fetch frame name if selected
+  // Fetch frame name + overlay if selected
   let frameName: string | null = null;
+  let frameOverlayUrl: string | null = null;
   if (order?.frame_id) {
     const { data: frame } = await supabase
       .from("frames")
-      .select("name")
+      .select("name, overlay_url")
       .eq("id", order.frame_id)
       .single();
     frameName = frame?.name || null;
+    frameOverlayUrl = frame?.overlay_url || null;
   }
 
   // Determine product type
@@ -62,7 +64,7 @@ export default async function SuccessPage({ params }: PageProps) {
   return (
     <SuccessClient
       portrait={{ ...portrait, image_url: imageUrl }}
-      order={order ? { ...order, frameName } : null}
+      order={order ? { ...order, frameName, frameOverlayUrl } : null}
       isDigital={isDigital || false}
       downloadUrl={downloadUrl}
     />
