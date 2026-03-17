@@ -154,9 +154,9 @@ export default function PreviewClient({
                 frameOverlayUrl={selectedFrame.overlayUrl}
                 showRetryOverlay={showRetry}
               >
-                {/* Retry panel overlay */}
+                {/* Retry panel overlay — hidden on mobile, shown inside portrait on desktop */}
                 {showRetry && (
-                  <div className="absolute inset-0 z-20 flex items-center justify-center p-4">
+                  <div className="hidden md:flex absolute inset-0 z-20 items-center justify-center p-4">
                     <RetryPanel
                       portraitId={portrait.id}
                       currentStyle={portrait.style}
@@ -171,6 +171,23 @@ export default function PreviewClient({
                   </div>
                 )}
               </PortraitHero>
+            )}
+
+            {/* Mobile retry bottom sheet — full width, below portrait */}
+            {showRetry && (
+              <div className="md:hidden mt-4">
+                <RetryPanel
+                  portraitId={portrait.id}
+                  currentStyle={portrait.style}
+                  retryCount={portrait.retry_count}
+                  onRetryStart={handleRetryStart}
+                  onClose={() => setShowRetry(false)}
+                  onError={(msg) => {
+                    setShowRetry(false);
+                    setError(msg);
+                  }}
+                />
+              </div>
             )}
 
             {/* Error message */}

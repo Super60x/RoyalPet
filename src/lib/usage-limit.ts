@@ -1,6 +1,7 @@
 import crypto from "crypto";
 
-const MAX_FREE_UPLOADS = process.env.NODE_ENV === "development" ? 999 : 1;
+// TODO: zet terug naar dev override (? 999 : 1) na testen
+const MAX_FREE_UPLOADS = 1;
 const WINDOW_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 interface UsageCookie {

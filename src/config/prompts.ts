@@ -64,65 +64,65 @@ const BASE_PROMPTS: Record<string, Record<Pose, string>> = {
   flemish_masters: {
     laying_down:
       "Transform this exact pet into a 16th century Flemish Masters oil painting. " +
-      "The pet reclines on a crimson velvet cushion with golden tassels, wearing an ornate velvet doublet with gold embroidery and a white lace ruff collar with ruby brooch. " +
+      "The pet lies naturally on a crimson velvet cushion with golden tassels. A rich velvet robe with gold embroidery and white ermine fur trim is draped over its back. A gold chain with ruby pendant hangs around its neck. " +
       "Dramatic Rembrandt chiaroscuro lighting. Dark brown background with emerald curtain and marble column. " +
       "Style of Van Eyck and Rembrandt. Museum-quality oil on canvas with crackled varnish texture. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. The pet must be in a natural animal lying position — NOT sitting upright like a human, NO human body, NO human hands or arms.",
 
     standing:
       "Transform this exact pet into a 16th century Flemish Masters oil painting. " +
-      "The pet stands proudly on all four legs on dark marble, wearing a teal military jacket with gold buttons and a white lace ruff collar, red velvet mantle over shoulders. " +
+      "The pet stands proudly on all four legs on dark marble. A teal velvet mantle with gold buttons and white ermine trim is draped over its back. A gold chain with medallion hangs around its neck. " +
       "Dramatic Rembrandt chiaroscuro lighting. Dark interior with stone column and burgundy drape. " +
       "Style of Van Eyck and Rembrandt. Museum-quality oil on canvas with crackled varnish texture. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural four-legged animal pose — NOT sitting upright like a human, NO human body, NO human hands or arms.",
   },
 
   baroque_red: {
     laying_down:
-      "Transform this exact pet into a magnificent Baroque oil painting of a royal court member. " +
-      "The pet reclines on an ornate gilded throne with burgundy velvet, wearing lavish burgundy and gold brocade robes with ermine fur trim and a heavy gold chain with royal medallion. " +
+      "Transform this exact pet into a magnificent Baroque oil painting. " +
+      "The pet lies regally on an ornate gilded throne cushion with burgundy velvet. A lavish burgundy and gold brocade royal robe with ermine fur trim is draped over its body. A heavy gold chain with royal medallion hangs around its neck. " +
       "Warm dramatic candlelight with golden tones. Grand palace interior with crimson curtains, marble pillars, and coat of arms. " +
       "Style of Rubens and Velazquez. Rich saturated oil painting. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. The pet must be in a natural animal lying position — NOT sitting upright like a human, NO human body, NO human hands or arms.",
 
     standing:
-      "Transform this exact pet into a magnificent Baroque oil painting of a royal court member. " +
-      "The pet stands commanding on all four legs on checkered marble before a gilded throne, wearing burgundy and gold brocade robes with ermine trim and a golden coronet. " +
+      "Transform this exact pet into a magnificent Baroque oil painting. " +
+      "The pet stands commanding on all four legs on checkered marble before a gilded throne. A burgundy and gold brocade royal cape with ermine trim is draped over its back. A golden coronet rests near its head. " +
       "Warm dramatic candlelight with golden tones. Grand palace interior with crimson curtains and marble pillars. " +
       "Style of Rubens and Velazquez. Rich saturated oil painting. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural four-legged animal pose — NOT sitting upright like a human, NO human body, NO human hands or arms.",
   },
 
   renaissance_sky: {
     laying_down:
-      "Transform this exact pet into a luminous Italian Renaissance oil painting of a Florentine noble. " +
-      "The pet reclines gracefully on a stone balustrade draped with azure silk, wearing an azure blue silk tunic with pearl buttons and a gold filigree collar with sapphire pendant. " +
+      "Transform this exact pet into a luminous Italian Renaissance oil painting. " +
+      "The pet lies gracefully on a stone balustrade draped with azure silk. An azure blue silk cloak with pearl trim is draped over its body. A gold filigree collar with sapphire pendant hangs around its neck. " +
       "Soft natural daylight with sfumato shadows. Rolling Tuscan hills under azure sky with cypress trees. " +
       "Style of Raphael and Leonardo da Vinci. Ethereal sfumato technique on wood panel. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. The pet must be in a natural animal lying position — NOT sitting upright like a human, NO human body, NO human hands or arms.",
 
     standing:
-      "Transform this exact pet into a luminous Italian Renaissance oil painting of a Florentine noble. " +
-      "The pet stands gracefully on all four legs on a sunlit Renaissance terrace, wearing an azure blue silk tunic with pearl buttons and a gold filigree collar with sapphire pendant. " +
+      "Transform this exact pet into a luminous Italian Renaissance oil painting. " +
+      "The pet stands gracefully on all four legs on a sunlit Renaissance terrace. An azure blue silk cloak with pearl trim is draped over its back. A gold filigree collar with sapphire pendant hangs around its neck. " +
       "Soft natural daylight with sfumato shadows. Rolling Tuscan hills under azure sky with cypress trees. " +
       "Style of Raphael and Leonardo da Vinci. Ethereal sfumato technique on wood panel. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural four-legged animal pose — NOT sitting upright like a human, NO human body, NO human hands or arms.",
   },
 
   rococo: {
     laying_down:
-      "Transform this exact pet into a charming Rococo oil painting of a French aristocrat at Versailles. " +
-      "The pet lounges on a gilded chaise longue with pastel pink silk, surrounded by rose petals, wearing a pastel pink and powder blue silk ensemble with lace and pearl jewelry. " +
+      "Transform this exact pet into a charming Rococo oil painting. " +
+      "The pet lies elegantly on a gilded chaise longue with pastel pink silk, surrounded by rose petals. A pastel pink and powder blue silk cloak with delicate lace trim is draped over its body. Pearl jewelry adorns its neck. " +
       "Soft pearlescent glow. Lush palace garden with roses, fountain with cherubs, and pastel sky. " +
       "Style of Boucher and Fragonard. Delicate brushwork with soft pastel palette. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. The pet must be in a natural animal lying position — NOT sitting upright like a human, NO human body, NO human hands or arms.",
 
     standing:
-      "Transform this exact pet into a charming Rococo oil painting of a French aristocrat at Versailles. " +
-      "The pet stands playfully on all four legs in a manicured palace garden among rose petals, wearing a pastel pink and powder blue silk ensemble with lace and pearl jewelry. " +
+      "Transform this exact pet into a charming Rococo oil painting. " +
+      "The pet stands playfully on all four legs in a manicured palace garden among rose petals. A pastel pink and powder blue silk cloak with lace trim is draped over its back. Pearl jewelry adorns its neck. " +
       "Soft pearlescent glow. Lush garden with roses, fountain with cherubs, and pastel sky. " +
       "Style of Boucher and Fragonard. Delicate brushwork with soft pastel palette. " +
-      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural animal body — no human hands or arms.",
+      "CRITICAL: Keep the pet's exact breed, face, fur colors, and markings identical to the input photo. Natural four-legged animal pose — NOT sitting upright like a human, NO human body, NO human hands or arms.",
   },
 };
 
@@ -151,13 +151,12 @@ export function buildPrompt(options: PromptOptions): string {
   const stylePrompts = BASE_PROMPTS[styleId] || BASE_PROMPTS.flemish_masters;
   let prompt = stylePrompts[pose] || stylePrompts.laying_down;
 
-  // Gender modifier — default to masculine/noble when not specified
-  // Most pet owners expect a "regal" look, not feminine
+  // Gender modifier — affects draped clothing style, not pose
   if (gender === "feminine") {
-    prompt += " Make the attire feminine — elegant gown, delicate lace, refined jewelry.";
+    prompt += " Make the draped fabrics feminine — soft pastel colors, delicate lace trim, refined pearl jewelry.";
   } else {
-    // Default + explicit masculine: noble, commanding look
-    prompt += " Make the attire masculine and noble — military doublet, dark bold colors, commanding presence.";
+    // Default + explicit masculine: dark regal tones
+    prompt += " Make the draped fabrics masculine and regal — dark rich colors like burgundy and navy, heavy gold jewelry, bold royal presence.";
   }
 
   // Color preference

@@ -87,7 +87,7 @@ export default function RetryPanel({
   }
 
   return (
-    <div className="w-full max-w-sm bg-[#1a1a1a]/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden text-white max-h-[80vh] overflow-y-auto">
+    <div className="w-full max-w-full md:max-w-sm bg-[#1a1a1a]/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden text-white max-h-[80vh] overflow-y-auto">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-white/10">
         <div>

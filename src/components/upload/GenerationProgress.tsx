@@ -18,7 +18,7 @@ const WAIT_TEXTS = [
 ];
 
 const POLL_INTERVAL = 2500; // 2.5 seconds
-const TIMEOUT = 120000; // 120 seconds
+const TIMEOUT = 240000; // 240 seconds (generation ~60s + upscale ~30s + watermark/upload ~15s)
 const TEXT_ROTATE_INTERVAL = 5000; // 5 seconds
 
 export default function GenerationProgress({
