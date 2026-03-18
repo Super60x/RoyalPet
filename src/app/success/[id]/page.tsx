@@ -29,7 +29,7 @@ export default async function SuccessPage({ params }: PageProps) {
   // Fetch latest order for this portrait (with frame info)
   const { data: order } = await supabase
     .from("orders")
-    .select("id, product, status, customer_email, frame_id, frame_price_cents, price_cents")
+    .select("id, product, status, customer_email, frame_id, frame_price_cents, price_cents, order_number")
     .eq("portrait_id", params.id)
     .order("created_at", { ascending: false })
     .limit(1)
@@ -48,25 +48,10 @@ export default async function SuccessPage({ params }: PageProps) {
     frameOverlayUrl = frame?.overlay_url || null;
   }
 
-  // Determine product type
-  const isDigital = order?.product?.startsWith("digital");
-
-  // Generate signed download URL for digital purchases (24h)
-  let downloadUrl: string | null = null;
-  if (portrait.paid && isDigital) {
-    // Clean files are stored directly as {id}.png
-    const { data: signed } = await supabase.storage
-      .from("portraits-private")
-      .createSignedUrl(`${params.id}.png`, 86400); // 24 hours
-    downloadUrl = signed?.signedUrl || null;
-  }
-
   return (
     <SuccessClient
       portrait={{ ...portrait, image_url: imageUrl }}
       order={order ? { ...order, frameName, frameOverlayUrl } : null}
-      isDigital={isDigital || false}
-      downloadUrl={downloadUrl}
     />
   );
 }

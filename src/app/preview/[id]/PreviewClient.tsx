@@ -61,19 +61,43 @@ export default function PreviewClient({
   };
   const [selectedFrame, setSelectedFrame] = useState<FrameSelection>(noFrame);
 
-  const isDigital = selectedProduct?.type === "digital";
+  // Download state
+  const [downloadEmail, setDownloadEmail] = useState("");
+  const [showDownloadModal, setShowDownloadModal] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [downloadError, setDownloadError] = useState<string | null>(null);
 
-  // Reset frame to "geen" when switching to digital
   const handleProductSelect = useCallback(
     (product: ProductSelection) => {
       setSelectedProduct(product);
-      if (product.type === "digital") {
-        setSelectedFrame(noFrame);
-      }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
+
+  const handleFreeDownload = async () => {
+    if (!downloadEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(downloadEmail)) {
+      setDownloadError("Vul een geldig e-mailadres in");
+      return;
+    }
+    setIsDownloading(true);
+    setDownloadError(null);
+    try {
+      const res = await fetch("/api/download", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ portraitId: portrait.id, email: downloadEmail }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Download mislukt");
+      // Trigger download
+      window.open(data.downloadUrl, "_blank");
+      setShowDownloadModal(false);
+    } catch (err) {
+      setDownloadError(err instanceof Error ? err.message : "Download mislukt");
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
   const handleRetryStart = useCallback(() => {
     setShowRetry(false);
@@ -245,17 +269,74 @@ export default function PreviewClient({
             )}
           </div>
 
-          {/* RIGHT COLUMN: Selection + Pricing */}
+          {/* RIGHT COLUMN: Download + Print upsell */}
           <div className="space-y-6">
-            {/* Step indicator */}
-            <div className="flex items-center gap-2 text-sm font-body text-royal-brown/50">
-              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-royal-gold/20 text-royal-gold text-xs font-bold">
-                1
-              </span>
-              <span>Stap 1 van 3 — Kies uw product</span>
+            {/* Free digital download section */}
+            <div className="bg-royal-cream/50 rounded-lg p-5 border border-royal-gold/20">
+              <h2 className="font-heading font-bold text-lg text-royal-brown mb-1">
+                Download uw portret
+              </h2>
+              <p className="text-sm font-body text-royal-brown/60 mb-4">
+                High-res bestand, direct beschikbaar
+              </p>
+              <button
+                onClick={() => setShowDownloadModal(true)}
+                className="w-full flex items-center justify-center gap-2 px-6 py-3.5 bg-royal-gold text-white rounded-lg font-body font-semibold text-base hover:bg-royal-gold/90 active:scale-[0.98] transition-all shadow-md"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download Digitaal — Gratis
+              </button>
             </div>
 
-            {/* Product selector */}
+            {/* Download email modal */}
+            {showDownloadModal && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+                <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-2xl">
+                  <h3 className="font-heading font-bold text-xl text-royal-brown mb-2">
+                    Uw e-mailadres
+                  </h3>
+                  <p className="text-sm font-body text-royal-brown/60 mb-4">
+                    Vul uw e-mailadres in om het portret te downloaden.
+                  </p>
+                  <input
+                    type="email"
+                    value={downloadEmail}
+                    onChange={(e) => setDownloadEmail(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && handleFreeDownload()}
+                    placeholder="uw@email.nl"
+                    className="w-full px-4 py-3 border-2 border-royal-brown/20 rounded-lg font-body text-base focus:border-royal-gold focus:outline-none mb-3"
+                    autoFocus
+                  />
+                  {downloadError && (
+                    <p className="text-sm text-red-600 mb-3">{downloadError}</p>
+                  )}
+                  <button
+                    onClick={handleFreeDownload}
+                    disabled={isDownloading}
+                    className="w-full px-6 py-3 bg-royal-gold text-white rounded-lg font-body font-semibold hover:bg-royal-gold/90 disabled:opacity-50 transition-all"
+                  >
+                    {isDownloading ? "Bezig..." : "Download portret"}
+                  </button>
+                  <button
+                    onClick={() => setShowDownloadModal(false)}
+                    className="w-full mt-2 px-6 py-2 text-royal-brown/50 font-body text-sm hover:text-royal-brown transition-colors"
+                  >
+                    Annuleren
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Divider */}
+            <div className="flex items-center gap-3">
+              <div className="flex-1 h-px bg-royal-brown/10" />
+              <span className="text-sm font-body text-royal-brown/40">Laat uw portret drukken</span>
+              <div className="flex-1 h-px bg-royal-brown/10" />
+            </div>
+
+            {/* Product selector (print/canvas only) */}
             <ProductSelector
               selected={selectedProduct}
               onSelect={handleProductSelect}
@@ -266,7 +347,6 @@ export default function PreviewClient({
               frames={frames}
               selectedFrameId={selectedFrame.id}
               onSelect={setSelectedFrame}
-              disabled={isDigital}
             />
 
             {/* Social proof */}

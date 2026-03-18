@@ -99,6 +99,12 @@
 - **Bonus Sessie 4:** Sticky mobile price bar + desktop prijsoverzicht ✅
 - **Bonus Sessie 4:** SocialProof component (trust signals) ✅
 - **Bonus Sessie 4:** RetryPanel volledig vertaald naar Nederlands ✅
+- **Bonus Sessie 4b:** Frame selector disabled bij digitale download ✅
+- **Bonus Sessie 4b:** Success page toont geselecteerd kader rond portret (PortraitHero) ✅
+- **Bonus Sessie 4b:** PortraitHero: CSS frame fallback als PNGs niet bestaan ✅
+- **Bonus Sessie 4b:** Prompts herschreven — draped clothing, sterkere anti-instructies ✅
+- **Bonus Sessie 4b:** Mobile retry panel onder portret ipv overlay ✅
+- **Bonus Sessie 4b:** Generation timeout verlengd naar 240s ✅
 
 ### Sessie 4 — E-mail Modal + Stripe Checkout + Paywall + Credits (~3 uur)
 - [x] E-mail modal: 1 veld + Continue knop (GEEN adresformulier hier) ✅
@@ -112,7 +118,7 @@
   - [x] `customer_email` meegegeven vanuit modal ✅
 - [x] Stripe webhook verwerkt `checkout.session.completed` ✅
 - [x] Na betaling digitaal: signed URL + redirect `/success/[id]` ✅
-- [ ] Na betaling print: Resend notificatie naar owner + klant (→ Sessie 6)
+- [x] Na betaling print: Resend notificatie naar owner + klant ✅
 - [x] Webhook zet `abandoned_checkouts.recovered = true` ✅
 - [x] Learnings opgeslagen → `learnings/dag-04.md` ✅
 - **Bonus Sessie 4:** Paywall + Generation Credits systeem ✅
@@ -125,7 +131,24 @@
   - [x] Success page met order samenvatting + cache-bust images ✅
   - [x] Default masculine prompt modifier ✅
 
-### Sessie 5 — Share URL + Virale Loop + i18n (~2,5 uur)
+- **Sessie 5a:** Resend email notificaties (owner + customer) ✅
+  - [x] Resend package geïnstalleerd + email functies gebouwd ✅
+  - [x] Owner email: portret + product + kader + totaal + adres + besteldatum + verzenddatum + high-res download (1 jaar) ✅
+  - [x] Customer email: "Beste {naam}" + bestelsamenvatting + track & trace belofte ✅
+  - [x] Resend domain `royalpet.app` verified (DKIM, SPF, DMARC, MX) ✅
+  - [x] From: `support@royalpet.app`, reply-to: `ejsdebakker@gmail.com` ✅
+  - [x] Sequential order numbering: `RP-00001` via SERIAL column ✅
+  - [x] Email footer: royalpet.app + support@royalpet.app ✅
+  - [x] Email toont clean (unwatermarked) portret thumbnail ✅
+  - [x] Download link 7 dagen geldig (was 24u) ✅
+- **Sessie 5a:** Business model wijziging — gratis digitale download ✅
+  - [x] Digitale download verwijderd uit product catalog ✅
+  - [x] Gratis download button op preview pagina (email-gated) ✅
+  - [x] `/api/download` endpoint voor gratis signed URL ✅
+  - [x] Success page nu alleen voor print/canvas ✅
+  - [x] Credit packs copy: "incl. download" ✅
+
+### Sessie 5b — Share URL + Virale Loop + i18n (~2,5 uur)
 - [ ] Publieke pagina `/portret/[id]` werkend
 - [ ] CSS ornate gouden frame rondom portret
 - [ ] WhatsApp deelknop met vooringevuld bericht

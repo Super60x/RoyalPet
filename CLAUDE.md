@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [4]
-Sessie titel:   [E-mail Modal + Stripe Checkout + Paywall + Generation Credits]
-Status:         [Klaar ✅ — volledige checkout flow + paywall + credits systeem gebouwd en getest]
-Vorige sessie:  [Sessie 3 — Preview Page + Product Selector + Usage Limiting + Model Switch]
-Volgende stap:  [Commit alle code, Sessie 5 — Share URL + Virale Loop + Resend emails]
-Openstaande issues: [Resend emails nog niet (Sessie 6), frame overlay PNGs niet in Storage, MAX_FREE_UPLOADS hardcoded 1 (zet terug naar dev override voor testen)]
+Sessie nummer:  [5a — Email + Business Model]
+Sessie titel:   [Resend Emails + Free Digital Download + Order Numbering]
+Status:         [Klaar ✅ — emails gebouwd, domain verified, digital gratis, RP-XXXXX ordernummers]
+Vorige sessie:  [Sessie 4b — Frame UX + Prompt fixes + Mobile retry]
+Volgende stap:  [Test volledige flow (Stripe CLI), dan Sessie 5b — Share URL + Virale Loop]
+Openstaande issues: [Flow nog niet live getest via Stripe, frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

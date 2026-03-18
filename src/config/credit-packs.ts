@@ -13,14 +13,14 @@ export const CREDIT_PACKS: CreditPack[] = [
     credits: 3,
     priceCents: 999,
     label: "3 generaties",
-    perGenLabel: "€3,33/portret",
+    perGenLabel: "€3,33/portret incl. download",
   },
   {
     id: "pack_5",
     credits: 5,
     priceCents: 1499,
     label: "5 generaties",
-    perGenLabel: "€3,00/portret",
+    perGenLabel: "€3,00/portret incl. download",
     badge: "Populair",
   },
   {
@@ -28,7 +28,7 @@ export const CREDIT_PACKS: CreditPack[] = [
     credits: 10,
     priceCents: 2499,
     label: "10 generaties",
-    perGenLabel: "€2,50/portret",
+    perGenLabel: "€2,50/portret incl. download",
     badge: "Beste waarde",
   },
 ];

@@ -20,19 +20,6 @@ export interface ProductCategory {
 
 export const PRODUCTS: ProductCategory[] = [
   {
-    type: "digital",
-    name: "Digitale Download",
-    description: "High-res bestand, direct beschikbaar",
-    sizes: [
-      {
-        id: "digital",
-        label: "High-res",
-        labelInch: "",
-        priceCents: 2499,
-      },
-    ],
-  },
-  {
     type: "fine_art",
     name: "Fine Art Print",
     description: "Museumkwaliteit papier, vakkundig verpakt",
@@ -115,6 +102,14 @@ export function formatPrice(cents: number): string {
 
 export function getCategory(type: ProductType): ProductCategory | undefined {
   return PRODUCTS.find((p) => p.type === type);
+}
+
+export function getProductLabel(productId: string): string {
+  for (const cat of PRODUCTS) {
+    const size = cat.sizes.find((s) => s.id === productId);
+    if (size) return `${cat.name} ${size.label}`;
+  }
+  return productId;
 }
 
 export function getStartingPrice(type: ProductType): number {
