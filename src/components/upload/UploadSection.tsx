@@ -37,7 +37,6 @@ export default function UploadSection() {
     const emailParam = searchParams.get("email");
 
     if (creditsParam === "success" && emailParam) {
-      // Set the credit email cookie via API
       fetch("/api/credits/check", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -47,14 +46,13 @@ export default function UploadSection() {
         .then((data) => {
           if (data.credits > 0) {
             setCredits(data.credits);
-            setRemaining(0); // Free is used, but credits available
+            setRemaining(0);
             setCreditToast(true);
             setTimeout(() => setCreditToast(false), 4000);
           }
         })
         .catch(() => {});
 
-      // Clean URL
       window.history.replaceState({}, "", "/");
     }
   }, [searchParams]);
@@ -75,7 +73,6 @@ export default function UploadSection() {
       const data = await res.json();
 
       if (!res.ok) {
-        // Check if usage limit reached
         if (data.limitReached) {
           setRemaining(0);
           setCredits(0);
@@ -87,16 +84,13 @@ export default function UploadSection() {
         return;
       }
 
-      // Update remaining from response
       if (typeof data.remaining === "number") {
         setRemaining(data.remaining);
       }
-      // If a credit was used, decrement local count
       if (data.usedCredit) {
         setCredits((prev) => Math.max(0, prev - 1));
       }
 
-      // Store last portrait ID for paywall CTA
       if (data.id) {
         localStorage.setItem("rp_last_portrait", data.id);
       }
@@ -111,7 +105,6 @@ export default function UploadSection() {
 
   const handleComplete = useCallback(
     (id: string) => {
-      // Use window.location for reliable redirect after generation
       window.location.href = `/preview/${id}`;
     },
     []
@@ -144,8 +137,8 @@ export default function UploadSection() {
     <section className="max-w-2xl mx-auto">
       {/* Credit purchase success toast */}
       {creditToast && (
-        <div className="mb-4 p-3 rounded-lg bg-green-50 border border-green-200 text-center">
-          <p className="text-sm font-body text-green-700">
+        <div className="mb-4 p-3 rounded-lg bg-green-900/30 border border-green-500/30 text-center">
+          <p className="text-sm font-body text-green-300">
             Credits toegevoegd! U kunt nu meer portretten genereren.
           </p>
         </div>
@@ -154,7 +147,7 @@ export default function UploadSection() {
       {/* Credit balance indicator */}
       {credits > 0 && remaining === 0 && state === "idle" && (
         <div className="mb-4 text-center">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-royal-gold/10 text-royal-gold text-xs font-body font-semibold">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-royal-gold/15 text-royal-gold text-xs font-body font-semibold">
             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
@@ -170,7 +163,7 @@ export default function UploadSection() {
       {state === "uploading" && (
         <div className="text-center py-8">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-2 border-royal-gold border-t-transparent mb-4" />
-          <p className="text-lg font-body text-royal-brown/70">
+          <p className="text-lg font-body text-[#FAF8F3]/50">
             Foto wordt voorbereid...
           </p>
         </div>

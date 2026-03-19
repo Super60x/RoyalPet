@@ -175,6 +175,14 @@
 - [ ] `locales/fr.json` en `locales/de.json` aangemaakt — uitgesteld
 - [ ] Taalwisselaar in navigatie — uitgesteld
 - [x] Learnings opgeslagen → `learnings/dag-05c.md` ✅
+- **Bonus Sessie 5c:** Homepage redesign — dark mode (Fable-stijl) ✅
+  - [x] Donker thema (#0A0A0A) op hele homepage ✅
+  - [x] Italic gouden "Vereeuw" headline + serif typografie ✅
+  - [x] Stap-indicator in navigatie ✅
+  - [x] Minimalistische upload zone ✅
+  - [x] Trust signals rij (60 sec, geen creditcard, 1000+ portretten) ✅
+  - [x] 6-portret galerij met hover zoom ✅
+  - [x] Alle upload componenten (DropZone, Progress, Error, Paywall) dark mode ✅
 
 ### Sessie 6 — Auth + Admin Dashboard (~3 uur)
 - [ ] Supabase Auth geconfigureerd

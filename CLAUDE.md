@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [5c — Share URL + Virale Loop]
-Sessie titel:   [Publieke share pagina + deelknoppen + share_count + OG meta tags]
-Status:         [Klaar ✅ — share pagina gebouwd, deelknoppen werkend, OG tags dynamisch]
+Sessie nummer:  [5c — Share URL + Virale Loop + Homepage Redesign]
+Sessie titel:   [Share pagina + deelknoppen + OG tags + dark mode homepage (Fable-stijl)]
+Status:         [Klaar ✅ — share pagina + homepage redesign gebouwd en werkend]
 Vorige sessie:  [Sessie 5b — E2E Flow Bugfixes + Email Improvements]
 Volgende stap:  [Sessie 6 — Auth + Admin Dashboard]
-Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1, i18n uitgesteld]
+Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1, i18n uitgesteld, homepage dark mode uncommitted]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

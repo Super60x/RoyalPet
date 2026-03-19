@@ -52,10 +52,10 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 3l2.09 4.26L19 8.27l-3.5 3.41.82 4.82L12 14.4l-4.32 2.1.82-4.82L5 8.27l4.91-1.01L12 3z" />
           </svg>
         </div>
-        <h2 className="text-2xl md:text-3xl font-heading font-bold text-royal-brown mb-2">
+        <h2 className="text-2xl md:text-3xl font-heading font-bold text-[#FAF8F3] mb-2">
           Uw gratis portret is gebruikt
         </h2>
-        <p className="text-sm font-body text-royal-brown/60">
+        <p className="text-sm font-body text-[#FAF8F3]/50">
           Koop credits om meer meesterwerken te genereren van uw trouwe metgezel.
         </p>
       </div>
@@ -65,7 +65,7 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
         <div className="text-center mb-6">
           <a
             href={`/preview/${lastPortraitId}`}
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-royal-brown/5 text-royal-brown rounded-lg font-body text-sm font-medium hover:bg-royal-brown/10 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FAF8F3]/5 text-[#FAF8F3]/70 rounded-lg font-body text-sm font-medium hover:bg-[#FAF8F3]/10 transition-colors"
           >
             Al een mooi portret? Koop het direct
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -77,11 +77,11 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
 
       {/* Divider */}
       <div className="flex items-center gap-4 mb-8">
-        <div className="flex-1 border-t border-royal-brown/10" />
-        <span className="text-xs font-body text-royal-brown/40 whitespace-nowrap">
+        <div className="flex-1 border-t border-[#FAF8F3]/10" />
+        <span className="text-xs font-body text-[#FAF8F3]/30 whitespace-nowrap">
           of genereer meer portretten
         </span>
-        <div className="flex-1 border-t border-royal-brown/10" />
+        <div className="flex-1 border-t border-[#FAF8F3]/10" />
       </div>
 
       {/* Credit Pack Cards */}
@@ -92,8 +92,8 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
             onClick={() => setSelectedPack(pack)}
             className={`relative rounded-xl border-2 p-5 text-center transition-all
               ${selectedPack?.id === pack.id
-                ? "border-royal-gold bg-royal-gold/5 shadow-lg"
-                : "border-royal-brown/15 bg-white hover:border-royal-gold/50"
+                ? "border-royal-gold bg-royal-gold/10 shadow-lg shadow-royal-gold/10"
+                : "border-[#FAF8F3]/10 bg-[#FAF8F3]/[0.03] hover:border-royal-gold/40"
               }`}
           >
             {/* Badge */}
@@ -104,18 +104,18 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
             )}
 
             {/* Credits count */}
-            <div className="text-4xl font-heading font-bold text-royal-brown mb-1">
+            <div className="text-4xl font-heading font-bold text-[#FAF8F3] mb-1">
               {pack.credits}
             </div>
-            <div className="text-sm font-body text-royal-brown/60 mb-3">
+            <div className="text-sm font-body text-[#FAF8F3]/50 mb-3">
               {pack.label}
             </div>
 
             {/* Price */}
-            <div className="text-2xl font-heading font-bold text-royal-brown mb-1">
+            <div className="text-2xl font-heading font-bold text-[#FAF8F3] mb-1">
               {formatPrice(pack.priceCents)}
             </div>
-            <div className="text-xs font-body text-royal-brown/50">
+            <div className="text-xs font-body text-[#FAF8F3]/40">
               {pack.perGenLabel}
             </div>
 
@@ -134,10 +134,10 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
         ))}
       </div>
 
-      {/* Email + Purchase CTA (appears after pack selection) */}
+      {/* Email + Purchase CTA */}
       {selectedPack && (
-        <div className="bg-royal-cream/50 rounded-xl border border-royal-brown/10 p-6 mb-8">
-          <p className="text-sm font-body text-royal-brown/70 mb-3 text-center">
+        <div className="bg-[#FAF8F3]/[0.03] rounded-xl border border-[#FAF8F3]/10 p-6 mb-8">
+          <p className="text-sm font-body text-[#FAF8F3]/50 mb-3 text-center">
             Voer uw e-mailadres in — dit is uw sleutel tot uw tegoed.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
@@ -150,8 +150,8 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
               }}
               placeholder="uw@email.nl"
               autoComplete="email"
-              className="flex-1 px-4 py-3 rounded-lg border border-royal-brown/20 font-body text-royal-brown
-                placeholder:text-royal-brown/30 focus:outline-none focus:ring-2 focus:ring-royal-gold/50 focus:border-royal-gold"
+              className="flex-1 px-4 py-3 rounded-lg border border-[#FAF8F3]/15 bg-[#FAF8F3]/5 font-body text-[#FAF8F3]
+                placeholder:text-[#FAF8F3]/25 focus:outline-none focus:ring-2 focus:ring-royal-gold/50 focus:border-royal-gold"
             />
             <button
               onClick={handlePurchase}
@@ -159,14 +159,14 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
               className={`px-6 py-3 rounded-lg font-body font-semibold text-white transition-all min-h-[48px] whitespace-nowrap
                 ${loading
                   ? "bg-royal-gold/60 cursor-wait"
-                  : "bg-royal-gold hover:bg-royal-gold/90 active:scale-[0.98] shadow-lg"
+                  : "bg-royal-gold hover:bg-royal-gold/90 active:scale-[0.98] shadow-lg shadow-royal-gold/20"
                 }`}
             >
               {loading ? "Doorsturen..." : `Koop ${selectedPack.label}`}
             </button>
           </div>
           {emailError && (
-            <p className="mt-2 text-sm font-body text-red-600 text-center">{emailError}</p>
+            <p className="mt-2 text-sm font-body text-red-400 text-center">{emailError}</p>
           )}
         </div>
       )}
@@ -181,7 +181,7 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
 
       {/* Mini FAQ */}
       <div className="mt-10 max-w-lg mx-auto">
-        <h3 className="font-heading font-bold text-royal-brown text-center mb-4">
+        <h3 className="font-heading font-bold text-[#FAF8F3] text-center mb-4">
           Veelgestelde vragen
         </h3>
         <div className="space-y-3">
@@ -195,7 +195,7 @@ export default function PaywallScreen({ lastPortraitId }: PaywallScreenProps) {
           />
           <FaqItem
             question="Kan ik retries doen met credits?"
-            answer="Ja! Uw eerste retry is gratis. Daarna kost elke retry 1 credit."
+            answer="Ja! Elke retry kost 1 credit."
           />
         </div>
       </div>
@@ -225,7 +225,6 @@ function ReclaimCredits() {
       if (data.credits > 0) {
         setCredits(data.credits);
         setStatus("success");
-        // Reload after short delay so cookie is set and page refreshes
         setTimeout(() => window.location.reload(), 1500);
       } else {
         setStatus("none");
@@ -254,24 +253,24 @@ function ReclaimCredits() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="uw@email.nl"
-          className="flex-1 px-3 py-2 text-sm rounded-lg border border-royal-brown/20 font-body"
+          className="flex-1 px-3 py-2 text-sm rounded-lg border border-[#FAF8F3]/15 bg-[#FAF8F3]/5 font-body text-[#FAF8F3] placeholder:text-[#FAF8F3]/25"
           onKeyDown={(e) => e.key === "Enter" && handleCheck()}
         />
         <button
           onClick={handleCheck}
           disabled={status === "loading"}
-          className="px-4 py-2 text-sm rounded-lg bg-royal-brown/10 font-body font-medium text-royal-brown hover:bg-royal-brown/20 transition-colors"
+          className="px-4 py-2 text-sm rounded-lg bg-[#FAF8F3]/10 font-body font-medium text-[#FAF8F3]/70 hover:bg-[#FAF8F3]/15 transition-colors"
         >
           {status === "loading" ? "..." : "Controleer"}
         </button>
       </div>
       {status === "success" && (
-        <p className="mt-2 text-sm font-body text-green-600">
+        <p className="mt-2 text-sm font-body text-green-400">
           {credits} credit(s) gevonden! Pagina wordt herladen...
         </p>
       )}
       {status === "none" && (
-        <p className="mt-2 text-sm font-body text-royal-brown/50">
+        <p className="mt-2 text-sm font-body text-[#FAF8F3]/40">
           Geen credits gevonden voor dit e-mailadres.
         </p>
       )}
@@ -300,10 +299,10 @@ function SocialProofSection() {
   ];
 
   return (
-    <div className="bg-royal-cream/30 rounded-xl border border-royal-brown/10 p-6">
+    <div className="bg-[#FAF8F3]/[0.03] rounded-xl border border-[#FAF8F3]/10 p-6">
       {/* Stat */}
       <div className="text-center mb-6">
-        <div className="text-2xl font-heading font-bold text-royal-brown mb-1">
+        <div className="text-2xl font-heading font-bold text-[#FAF8F3] mb-1">
           +500 klanten kozen voor canvas
         </div>
         <div className="flex items-center justify-center gap-0.5">
@@ -318,8 +317,8 @@ function SocialProofSection() {
       {/* Testimonials */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {testimonials.map((t, i) => (
-          <div key={i} className="bg-white rounded-lg p-4 border border-royal-brown/5">
-            <p className="text-sm font-body text-royal-brown/80 italic mb-3">
+          <div key={i} className="bg-[#FAF8F3]/[0.03] rounded-lg p-4 border border-[#FAF8F3]/5">
+            <p className="text-sm font-body text-[#FAF8F3]/70 italic mb-3">
               &ldquo;{t.text}&rdquo;
             </p>
             <div className="flex items-center gap-2">
@@ -330,7 +329,7 @@ function SocialProofSection() {
                   </svg>
                 ))}
               </div>
-              <span className="text-xs font-body text-royal-brown/50">
+              <span className="text-xs font-body text-[#FAF8F3]/40">
                 {t.name}, {t.city}
               </span>
             </div>
@@ -346,14 +345,14 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border border-royal-brown/10 rounded-lg overflow-hidden">
+    <div className="border border-[#FAF8F3]/10 rounded-lg overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-4 py-3 text-left"
       >
-        <span className="text-sm font-body font-medium text-royal-brown">{question}</span>
+        <span className="text-sm font-body font-medium text-[#FAF8F3]/80">{question}</span>
         <svg
-          className={`w-4 h-4 text-royal-brown/40 transition-transform ${open ? "rotate-180" : ""}`}
+          className={`w-4 h-4 text-[#FAF8F3]/30 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
@@ -361,7 +360,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
       </button>
       {open && (
         <div className="px-4 pb-3">
-          <p className="text-sm font-body text-royal-brown/60">{answer}</p>
+          <p className="text-sm font-body text-[#FAF8F3]/50">{answer}</p>
         </div>
       )}
     </div>

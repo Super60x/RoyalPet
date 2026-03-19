@@ -20,19 +20,14 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
   const validateFile = useCallback(
     (file: File): Promise<string | null> => {
       return new Promise((resolve) => {
-        // Type check
         if (!ALLOWED_TYPES.includes(file.type)) {
           resolve("Alleen JPG, PNG of WebP bestanden zijn toegestaan.");
           return;
         }
-
-        // Size check
         if (file.size > MAX_SIZE) {
           resolve("Bestand is te groot. Maximum 10MB toegestaan.");
           return;
         }
-
-        // Resolution check
         const img = new Image();
         img.onload = () => {
           URL.revokeObjectURL(img.src);
@@ -72,7 +67,6 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
       e.preventDefault();
       setIsDragging(false);
       if (disabled) return;
-
       const file = e.dataTransfer.files[0];
       if (file) handleFile(file);
     },
@@ -83,14 +77,16 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (file) handleFile(file);
-      // Reset input so same file can be re-selected
       e.target.value = "";
     },
     [handleFile]
   );
 
+  // Suppress unused variable warning
+  void remaining;
+
   return (
-    <div className="w-full max-w-lg mx-auto">
+    <div className="w-full max-w-xl mx-auto">
       <div
         onDragOver={(e) => {
           e.preventDefault();
@@ -100,16 +96,16 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
         onDrop={handleDrop}
         onClick={() => !disabled && inputRef.current?.click()}
         className={`
-          relative cursor-pointer rounded-xl border-2 border-dashed p-8 md:p-12
+          relative cursor-pointer rounded-xl border border-dashed p-8 md:p-10
           text-center transition-all duration-200
-          ${disabled ? "opacity-50 cursor-not-allowed" : "hover:border-royal-gold hover:bg-royal-gold/5"}
-          ${isDragging ? "border-royal-gold bg-royal-gold/10 scale-[1.02]" : "border-royal-brown/30"}
+          ${disabled ? "opacity-50 cursor-not-allowed" : "hover:border-royal-gold/60 hover:bg-[#FAF8F3]/[0.03]"}
+          ${isDragging ? "border-royal-gold bg-royal-gold/10 scale-[1.02]" : "border-[#FAF8F3]/20"}
         `}
       >
         {/* Upload icon */}
-        <div className="mb-4">
+        <div className="mb-3">
           <svg
-            className="mx-auto h-12 w-12 text-royal-brown/40"
+            className="mx-auto h-8 w-8 text-[#FAF8F3]/30"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -118,29 +114,25 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.41a2.25 2.25 0 013.182 0l2.909 2.91m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+              d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
             />
           </svg>
         </div>
 
         {isDragging ? (
-          <p className="text-lg font-body text-royal-gold font-semibold">
+          <p className="text-base font-body text-royal-gold font-semibold">
             Laat los om te uploaden
           </p>
         ) : (
           <>
-            <p className="text-lg font-body text-royal-brown font-medium mb-2">
-              Sleep uw foto hierheen
+            <p className="text-base font-body text-[#FAF8F3]/80 font-medium mb-1">
+              Upload foto
             </p>
-            <p className="text-sm font-body text-royal-brown/60">
-              of klik om een bestand te selecteren
+            <p className="text-sm font-body text-[#FAF8F3]/30">
+              Oren en snuit volledig zichtbaar
             </p>
           </>
         )}
-
-        <p className="mt-4 text-xs font-body text-royal-brown/40">
-          JPG, PNG of WebP — maximaal 10MB
-        </p>
 
         <input
           ref={inputRef}
@@ -152,11 +144,9 @@ export default function DropZone({ onFileSelected, disabled, remaining }: DropZo
         />
       </div>
 
-      {/* Remaining count — hidden when using credits (shown separately in UploadSection) */}
-
       {error && (
-        <div className="mt-4 p-3 rounded-lg bg-red-50 border border-red-200">
-          <p className="text-sm font-body text-red-700">{error}</p>
+        <div className="mt-4 p-3 rounded-lg bg-red-900/30 border border-red-500/30">
+          <p className="text-sm font-body text-red-300">{error}</p>
         </div>
       )}
     </div>

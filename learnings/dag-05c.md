@@ -33,10 +33,21 @@
 - Preview pagina: "Delen" knop naast "Niet tevreden? Bewerk"
 - Success pagina: "Deel dit portret" gouden CTA naast "Maak nog een meesterwerk"
 
+### Homepage redesign — dark mode (Fable-stijl)
+- Volledige homepage omgebouwd van crème/licht naar donker thema (#0A0A0A)
+- Italic gouden "Vereeuw" headline met Cormorant Garamond serif
+- Stap-indicator in navigatie (Upload > Preview > Download of Bestel Print)
+- Minimalistische upload zone (dashed border, subtiele hover)
+- Trust signals rij (klok, schild, ster iconen)
+- 6-portret galerij (2x3 mobiel, 3x2 desktop) met hover zoom
+- Alle upload componenten (DropZone, GenerationProgress, UploadError, PaywallScreen) naar dark mode
+- Voorbeeld portretten gekopieerd naar `public/examples/` voor statische serving
+
 ## Wat ging goed
-- Hele feature gebouwd in één pass zonder build errors
-- PortraitHero component niet hergebruikt — custom ornate frame is visueel sterker voor share context
+- Share pagina + homepage redesign in één sessie zonder build errors
+- PortraitHero component niet hergebruikt voor share page — custom ornate frame is visueel sterker
 - Subtiele share link op preview pagina past bij de flow zonder te afleiden
+- Upload componenten zijn alleen op homepage gebruikt → veilig om allemaal naar dark mode om te zetten
 
 ## Wat geleerd
 
@@ -49,6 +60,13 @@
 - Bewuste MVP keuze: elke pageview = +1 (geen IP/cookie tracking)
 - Simpeler dan cookie-based deduplicatie, geeft ruwe populariteitsindicatie
 - Kan later verfijnd worden met unique visitor tracking
+
+### Dark mode op component-niveau
+- Homepage is dark maar preview/success pages blijven crème — per-page styling, niet globals.css
+- Upload componenten (DropZone etc.) worden alleen op homepage gebruikt → safe om te converteren
+- Gebruik `[#FAF8F3]/XX` opacity patterns ipv `royal-brown/XX` voor dark mode tekst
+- `bg-[#FAF8F3]/[0.03]` geeft subtiele lichte achtergrond op donkere pagina's
+- `UsageLimitReached.tsx` is dead code (niet meer geïmporteerd) — kan later opgeruimd worden
 
 ---
 
