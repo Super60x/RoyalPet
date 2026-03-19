@@ -50,35 +50,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 4. Check retry count (1 free retry, then credits required)
+    // 4. Every retry costs 1 credit — no free retries
     let usedCredit = false;
 
-    if (portrait.retry_count >= 1) {
-      // Free retry used — check for purchased credits
-      const creditEmail = request.cookies.get(CREDIT_EMAIL_COOKIE)?.value;
-      if (creditEmail) {
-        const credits = await getCredits(creditEmail);
-        if (credits > 0) {
-          const deducted = await deductCredit(creditEmail);
-          if (!deducted) {
-            return NextResponse.json(
-              { error: "Er ging iets mis bij het afschrijven van uw credit." },
-              { status: 403 }
-            );
-          }
-          usedCredit = true;
-        } else {
+    const creditEmail = request.cookies.get(CREDIT_EMAIL_COOKIE)?.value;
+    if (creditEmail) {
+      const credits = await getCredits(creditEmail);
+      if (credits > 0) {
+        const deducted = await deductCredit(creditEmail);
+        if (!deducted) {
           return NextResponse.json(
-            { error: "Uw gratis poging is gebruikt. Koop credits voor meer retries.", needsCredits: true },
+            { error: "Er ging iets mis bij het afschrijven van uw credit." },
             { status: 403 }
           );
         }
+        usedCredit = true;
       } else {
         return NextResponse.json(
-          { error: "Uw gratis poging is gebruikt. Koop credits voor meer retries.", needsCredits: true },
+          { error: "U heeft geen credits meer. Koop credits om opnieuw te genereren.", needsCredits: true },
           { status: 403 }
         );
       }
+    } else {
+      return NextResponse.json(
+        { error: "U heeft geen credits. Koop credits om opnieuw te genereren.", needsCredits: true },
+        { status: 403 }
+      );
     }
 
     // 5. Find the original uploaded photo in storage

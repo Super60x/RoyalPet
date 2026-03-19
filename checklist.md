@@ -148,13 +148,25 @@
   - [x] Success page nu alleen voor print/canvas ✅
   - [x] Credit packs copy: "incl. download" ✅
 
-### Sessie 5b — Share URL + Virale Loop + i18n (~2,5 uur)
+- **Sessie 5b:** E2E Flow Bugfixes + Email Improvements ✅
+  - [x] Retry logic: elke retry kost 1 credit, geen gratis retries meer ✅
+  - [x] "1 gratis" badge verwijderd uit preview UI ✅
+  - [x] Stripe shipping address fix: `collected_information.shipping_details` (API 2026+) ✅
+  - [x] Phone number extraction uit Stripe `customer_details.phone` ✅
+  - [x] Dynamische frame styling in emails (matcht geselecteerd kader) ✅
+  - [x] Customer email: verzendadres toegevoegd, kapotte link verwijderd ✅
+  - [x] Owner email: telefoonnummer + dynamische frame + adres ✅
+  - [x] Duplicate webhook fix: in-memory lock + UNIQUE INDEX op stripe_session_id ✅
+  - [x] E2E flow volledig getest via Stripe CLI ✅
+  - [x] Learnings opgeslagen → `learnings/dag-05b.md` ✅
+
+### Sessie 5c — Share URL + Virale Loop (~2,5 uur)
 - [ ] Publieke pagina `/portret/[id]` werkend
 - [ ] CSS ornate gouden frame rondom portret
 - [ ] WhatsApp deelknop met vooringevuld bericht
 - [ ] Email deelknop werkend
 - [ ] "Kopieer link" knop met visuele bevestiging
-- [ ] CTA "Maak ook een portret" zichtbaar → homepage
+- [ ] CTA "Vereeuw ook uw huisdier" zichtbaar → homepage
 - [ ] `share_count` wordt opgehoogd bij elk bezoek
 - [ ] i18n setup: next-i18next geconfigureerd (NL default, FR, DE)
 - [ ] Alle bestaande strings verplaatst naar `locales/nl.json`

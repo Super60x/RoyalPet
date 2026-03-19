@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [5a — Email + Business Model]
-Sessie titel:   [Resend Emails + Free Digital Download + Order Numbering]
-Status:         [Klaar ✅ — emails gebouwd, domain verified, digital gratis, RP-XXXXX ordernummers]
-Vorige sessie:  [Sessie 4b — Frame UX + Prompt fixes + Mobile retry]
-Volgende stap:  [Test volledige flow (Stripe CLI), dan Sessie 5b — Share URL + Virale Loop]
-Openstaande issues: [Flow nog niet live getest via Stripe, frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1]
+Sessie nummer:  [5b — E2E Flow Bugfixes + Email Improvements]
+Sessie titel:   [Retry credits fix + Shipping/phone extraction + Dynamic email frames + Duplicate webhook fix]
+Status:         [Klaar ✅ — alle bugs gefixt, E2E flow getest en werkend]
+Vorige sessie:  [Sessie 5a — Resend Emails + Free Digital Download + Order Numbering]
+Volgende stap:  [Sessie 5c — Share URL + Virale Loop (/portret/[id] + deelknoppen + share_count)]
+Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

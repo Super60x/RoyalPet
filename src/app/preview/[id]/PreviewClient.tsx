@@ -259,11 +259,6 @@ export default function PreviewClient({
                     />
                   </svg>
                   Niet tevreden? Bewerk
-                  {portrait.retry_count < 1 && (
-                    <span className="text-xs bg-royal-gold/20 text-royal-gold px-2 py-0.5 rounded-full">
-                      1 gratis
-                    </span>
-                  )}
                 </button>
               </div>
             )}

@@ -14,11 +14,13 @@ export interface OrderEmailParams {
   product: string; // e.g. "fine_art_30x40" or "digital"
   productType: string; // "digital" | "fine_art" | "canvas"
   priceCents: number;
+  frameId: string | null;
   frameName: string | null;
   framePriceCents: number;
   totalCents: number;
   customerEmail: string;
   customerName: string | null;
+  customerPhone: string | null;
   shippingAddress: {
     name?: string;
     line1?: string;
@@ -26,8 +28,9 @@ export interface OrderEmailParams {
     city?: string;
     postal_code?: string;
     country?: string;
+    phone?: string | null;
   } | null;
-  portraitImageUrl: string; // watermarked public URL (thumbnail)
+  portraitImageUrl: string; // clean image URL (customer paid)
   cleanDownloadUrl: string; // signed URL for high-res download
   customerDownloadUrl?: string; // signed URL for customer (24h, digital only)
   orderDate: Date;
@@ -61,8 +64,28 @@ function formatDutchDate(date: Date): string {
   });
 }
 
+/** Generate inline CSS for frame around portrait image in emails */
+function getFrameStyle(frameId: string | null): string {
+  switch (frameId) {
+    case "zwart_modern":
+      return "display: inline-block; padding: 6px; border: 8px solid #1a1a1a; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.15);";
+    case "wit_modern":
+      return "display: inline-block; padding: 6px; border: 8px solid #f5f5f0; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.1);";
+    case "klassiek_goud":
+      return "display: inline-block; padding: 6px; border: 8px solid #B8942A; background: #FAF8F3; box-shadow: inset 0 0 0 2px #d4b44a, 0 2px 8px rgba(0,0,0,0.15);";
+    case "klassiek_walnoot":
+      return "display: inline-block; padding: 6px; border: 8px solid #5C3A1E; background: #FAF8F3; box-shadow: inset 0 0 0 2px #7a5233, 0 2px 8px rgba(0,0,0,0.15);";
+    case "antiek_zilver":
+      return "display: inline-block; padding: 6px; border: 8px solid #A8A8A8; background: #FAF8F3; box-shadow: inset 0 0 0 2px #c0c0c0, 0 2px 8px rgba(0,0,0,0.15);";
+    default:
+      // No frame or "geen" — simple subtle border
+      return "display: inline-block; padding: 8px; border: 3px solid #B8942A; border-radius: 4px; background: #FAF8F3;";
+  }
+}
+
 function formatAddress(
-  addr: OrderEmailParams["shippingAddress"]
+  addr: OrderEmailParams["shippingAddress"],
+  phone?: string | null
 ): string {
   if (!addr) return "—";
   const lines = [
@@ -72,6 +95,8 @@ function formatAddress(
     [addr.postal_code, addr.city].filter(Boolean).join(" "),
     addr.country,
   ].filter(Boolean);
+  const phoneStr = phone || addr.phone;
+  if (phoneStr) lines.push(`Tel: ${phoneStr}`);
   return lines.join("<br>");
 }
 
@@ -130,10 +155,12 @@ export async function sendOwnerNotification(
     portraitId,
     product,
     productType,
+    frameId,
     frameName,
     framePriceCents,
     totalCents,
     customerEmail,
+    customerPhone,
     shippingAddress,
     portraitImageUrl,
     cleanDownloadUrl,
@@ -142,10 +169,13 @@ export async function sendOwnerNotification(
 
   const productLabel = getProductLabel(product);
   const isPhysical = productType !== "digital";
+  const frameStyle = getFrameStyle(frameId);
 
   let bodyHtml = `
     <div style="${emailStyles.imgContainer}">
-      <img src="${portraitImageUrl}" alt="Portret" style="max-width: 280px; border-radius: 4px;" />
+      <div style="${frameStyle}">
+        <img src="${portraitImageUrl}" alt="Portret" style="max-width: 264px; display: block;" />
+      </div>
     </div>
 
     <p style="${emailStyles.label}">Bestelling</p>
@@ -169,10 +199,16 @@ export async function sendOwnerNotification(
     <p style="${emailStyles.label}">Klant e-mail</p>
     <p style="${emailStyles.value}">${customerEmail}</p>`;
 
+  if (customerPhone) {
+    bodyHtml += `
+    <p style="${emailStyles.label}">Telefoonnummer</p>
+    <p style="${emailStyles.value}">${customerPhone}</p>`;
+  }
+
   if (isPhysical && shippingAddress) {
     bodyHtml += `
     <p style="${emailStyles.label}">Verzendadres</p>
-    <p style="${emailStyles.value}">${formatAddress(shippingAddress)}</p>`;
+    <p style="${emailStyles.value}">${formatAddress(shippingAddress, customerPhone)}</p>`;
   }
 
   bodyHtml += `
@@ -214,21 +250,23 @@ export async function sendCustomerConfirmation(
 ): Promise<void> {
   const {
     orderId,
-    portraitId,
     product,
     productType,
+    frameId,
     frameName,
     framePriceCents,
     totalCents,
     customerEmail,
     customerName,
+    shippingAddress,
     portraitImageUrl,
-    customerDownloadUrl,
     orderDate,
   } = params;
 
   const productLabel = getProductLabel(product);
+  const isPhysical = productType !== "digital";
   const displayName = customerName || customerEmail.split("@")[0];
+  const frameStyle = getFrameStyle(frameId);
 
   let bodyHtml = `
     <p style="font-size: 16px; color: #0A0A0A; margin: 0 0 20px 0;">
@@ -239,7 +277,9 @@ export async function sendCustomerConfirmation(
     </p>
 
     <div style="${emailStyles.imgContainer}">
-      <img src="${portraitImageUrl}" alt="Uw portret" style="max-width: 280px; border-radius: 4px;" />
+      <div style="${frameStyle}">
+        <img src="${portraitImageUrl}" alt="Uw portret" style="max-width: 264px; display: block;" />
+      </div>
     </div>
 
     <p style="font-size: 18px; color: #0A0A0A; margin: 0 0 8px 0;">
@@ -270,15 +310,20 @@ export async function sendCustomerConfirmation(
     <p style="${emailStyles.label}">Besteldatum</p>
     <p style="${emailStyles.value}">${formatDutchDate(orderDate)}</p>`;
 
+  if (isPhysical && shippingAddress) {
+    bodyHtml += `
+    <hr style="${emailStyles.divider}" />
+    <p style="${emailStyles.label}">Verzendadres</p>
+    <p style="${emailStyles.value}">${formatAddress(shippingAddress)}</p>`;
+  }
+
   bodyHtml += `
     <hr style="${emailStyles.divider}" />
     <p style="color: #555; font-size: 14px;">
       U ontvangt een e-mail zodra uw bestelling is verzonden met een track & trace code.
     </p>
-    <p style="text-align: center; margin-top: 16px;">
-      <a href="https://royalpet.app/success/${portraitId}" style="color: #B8942A; font-size: 13px; text-decoration: underline;">
-        Bekijk uw bestelling online
-      </a>
+    <p style="text-align: center; color: #888; font-size: 12px; margin-top: 12px;">
+      Vragen? Neem contact op via <a href="mailto:support@royalpet.app" style="color: #B8942A;">support@royalpet.app</a>
     </p>`;
 
   await resend.emails.send({

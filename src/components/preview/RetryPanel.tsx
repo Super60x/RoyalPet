@@ -31,24 +31,19 @@ export default function RetryPanel({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [credits, setCredits] = useState(0);
-  const hasFreeRetry = retryCount < 1;
-  const canRetry = hasFreeRetry || credits > 0;
+  const canRetry = credits > 0;
 
-  // Fetch credits on mount (only if free retry is used)
+  // Fetch credits on mount
   useEffect(() => {
-    if (!hasFreeRetry) {
-      fetch("/api/usage")
-        .then((res) => res.json())
-        .then((data) => setCredits(data.credits || 0))
-        .catch(() => {});
-    }
-  }, [hasFreeRetry]);
+    fetch("/api/usage")
+      .then((res) => res.json())
+      .then((data) => setCredits(data.credits || 0))
+      .catch(() => {});
+  }, []);
 
-  const retryLabel = hasFreeRetry
-    ? "1 gratis resterend"
-    : credits > 0
-      ? `${credits} credit${credits !== 1 ? "s" : ""} — 1 wordt gebruikt`
-      : "Geen retries beschikbaar";
+  const retryLabel = credits > 0
+    ? `${credits} credit${credits !== 1 ? "s" : ""} — 1 wordt gebruikt`
+    : "Geen credits — koop credits om te bewerken";
 
   async function handleRetry() {
     if (!canRetry) {
