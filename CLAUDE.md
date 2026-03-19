@@ -339,7 +339,7 @@ NOTION_DATABASE_ID=
 | 2 | Dag 2 | Upload + AI Generatie | ✅ Klaar |
 | 3 | Dag 3 | Preview + Prijzen + Kaders | ✅ Klaar |
 | 4 | Dag 4 | E-mail Modal + Stripe Checkout + Paywall + Credits | ✅ Klaar |
-| 5 | Dag 5 | Share URL + Virale Loop + i18n | ⬜ Te doen |
+| 5 | Dag 5 | Share URL + Virale Loop + i18n | ✅ Klaar (i18n uitgesteld) |
 | 6 | Dag 6 | Auth + Admin Dashboard | ⬜ Te doen |
 | 7 | Dag 7 | Abandoned Checkout Recovery | ⬜ Te doen |
 | 8 | Dag 8 | SEO Blog via Notion CMS | ⬜ Te doen |
@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [5b — E2E Flow Bugfixes + Email Improvements]
-Sessie titel:   [Retry credits fix + Shipping/phone extraction + Dynamic email frames + Duplicate webhook fix]
-Status:         [Klaar ✅ — alle bugs gefixt, E2E flow getest en werkend]
-Vorige sessie:  [Sessie 5a — Resend Emails + Free Digital Download + Order Numbering]
-Volgende stap:  [Sessie 5c — Share URL + Virale Loop (/portret/[id] + deelknoppen + share_count)]
-Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1]
+Sessie nummer:  [5c — Share URL + Virale Loop]
+Sessie titel:   [Publieke share pagina + deelknoppen + share_count + OG meta tags]
+Status:         [Klaar ✅ — share pagina gebouwd, deelknoppen werkend, OG tags dynamisch]
+Vorige sessie:  [Sessie 5b — E2E Flow Bugfixes + Email Improvements]
+Volgende stap:  [Sessie 6 — Auth + Admin Dashboard]
+Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1, i18n uitgesteld]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

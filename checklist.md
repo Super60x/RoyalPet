@@ -160,19 +160,21 @@
   - [x] E2E flow volledig getest via Stripe CLI ✅
   - [x] Learnings opgeslagen → `learnings/dag-05b.md` ✅
 
-### Sessie 5c — Share URL + Virale Loop (~2,5 uur)
-- [ ] Publieke pagina `/portret/[id]` werkend
-- [ ] CSS ornate gouden frame rondom portret
-- [ ] WhatsApp deelknop met vooringevuld bericht
-- [ ] Email deelknop werkend
-- [ ] "Kopieer link" knop met visuele bevestiging
-- [ ] CTA "Vereeuw ook uw huisdier" zichtbaar → homepage
-- [ ] `share_count` wordt opgehoogd bij elk bezoek
-- [ ] i18n setup: next-i18next geconfigureerd (NL default, FR, DE)
-- [ ] Alle bestaande strings verplaatst naar `locales/nl.json`
-- [ ] `locales/fr.json` en `locales/de.json` aangemaakt
-- [ ] Taalwisselaar in navigatie
-- [ ] Learnings opgeslagen → `learnings/dag-05.md`
+### Sessie 5c — Share URL + Virale Loop (~2,5 uur) ✅
+- [x] Publieke pagina `/portret/[id]` werkend ✅
+- [x] CSS ornate gouden frame rondom portret ✅
+- [x] WhatsApp deelknop met vooringevuld bericht ✅
+- [x] Email deelknop werkend ✅
+- [x] "Kopieer link" knop met visuele bevestiging ✅
+- [x] CTA "Vereeuw ook uw huisdier" zichtbaar → homepage ✅
+- [x] `share_count` wordt opgehoogd bij elk bezoek ✅
+- [x] Open Graph + Twitter meta tags met dynamisch portret ✅
+- [x] "Delen" link op preview pagina + "Deel dit portret" op success pagina ✅
+- [ ] i18n setup: next-i18next geconfigureerd (NL default, FR, DE) — uitgesteld
+- [ ] Alle bestaande strings verplaatst naar `locales/nl.json` — uitgesteld
+- [ ] `locales/fr.json` en `locales/de.json` aangemaakt — uitgesteld
+- [ ] Taalwisselaar in navigatie — uitgesteld
+- [x] Learnings opgeslagen → `learnings/dag-05c.md` ✅
 
 ### Sessie 6 — Auth + Admin Dashboard (~3 uur)
 - [ ] Supabase Auth geconfigureerd
