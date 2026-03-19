@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import UploadSection from "@/components/upload/UploadSection";
 
 const EXAMPLES = [
@@ -96,10 +97,31 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="text-center py-8 border-t border-[#FAF8F3]/5">
-        <p className="text-xs text-[#FAF8F3]/20 font-body">
-          &copy; {new Date().getFullYear()} RoyalPet.app — Alle rechten voorbehouden
-        </p>
+      <footer className="py-10 border-t border-[#FAF8F3]/5">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs text-[#FAF8F3]/20 font-body">
+              &copy; {new Date().getFullYear()} RoyalPet.app — Alle rechten voorbehouden
+            </p>
+            <nav className="flex items-center gap-6">
+              <Link href="/privacy" className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors">
+                Privacybeleid
+              </Link>
+              <Link href="/terms" className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors">
+                Voorwaarden
+              </Link>
+              <a href="mailto:support@royalpet.app" className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors">
+                Contact
+              </a>
+            </nav>
+          </div>
+          <div className="flex items-center justify-center gap-4 mt-6">
+            <span className="text-[10px] text-[#FAF8F3]/15 font-body">Betaal veilig met</span>
+            <span className="text-[10px] text-[#FAF8F3]/25 font-body font-medium">iDEAL</span>
+            <span className="text-[10px] text-[#FAF8F3]/25 font-body font-medium">Bancontact</span>
+            <span className="text-[10px] text-[#FAF8F3]/25 font-body font-medium">Visa / Mastercard</span>
+          </div>
+        </div>
       </footer>
     </main>
   );
