@@ -159,14 +159,14 @@ export function buildPrompt(options: PromptOptions): string {
     prompt += " Make the draped fabrics masculine and regal — dark rich colors like burgundy and navy, heavy gold jewelry, bold royal presence.";
   }
 
-  // Color preference
+  // Color preference — placed prominently so the model respects it
   if (colorPreference && colorPreference.trim()) {
-    prompt += ` Change attire colors to: ${colorPreference.trim().slice(0, 100)}.`;
+    prompt += ` IMPORTANT COLOR CHANGE: The clothing, robes, and fabrics MUST be ${colorPreference.trim().slice(0, 100)} colored. Replace all fabric colors with ${colorPreference.trim().slice(0, 100)}.`;
   }
 
-  // Custom edit
+  // Custom edit — strong instruction
   if (customEdit && customEdit.trim()) {
-    prompt += ` Also: ${customEdit.trim().slice(0, 200)}`;
+    prompt += ` ADDITIONAL CHANGE: ${customEdit.trim().slice(0, 200)}.`;
   }
 
   return prompt;

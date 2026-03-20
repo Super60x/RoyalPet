@@ -340,7 +340,7 @@ NOTION_DATABASE_ID=
 | 3 | Dag 3 | Preview + Prijzen + Kaders | ✅ Klaar |
 | 4 | Dag 4 | E-mail Modal + Stripe Checkout + Paywall + Credits | ✅ Klaar |
 | 5 | Dag 5 | Share URL + Virale Loop + i18n | ✅ Klaar (i18n uitgesteld) |
-| 6 | Dag 6 | Auth + Admin Dashboard | ⬜ Te doen |
+| 6 | Dag 6 | Launch Essentials + Retry Fixes | 🔄 Bezig |
 | 7 | Dag 7 | Abandoned Checkout Recovery | ⬜ Te doen |
 | 8 | Dag 8 | SEO Blog via Notion CMS | ⬜ Te doen |
 
@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [5c — Share URL + Virale Loop + Homepage Redesign]
-Sessie titel:   [Share pagina + deelknoppen + OG tags + dark mode homepage (Fable-stijl)]
-Status:         [Klaar ✅ — share pagina + homepage redesign gebouwd en werkend]
-Vorige sessie:  [Sessie 5b — E2E Flow Bugfixes + Email Improvements]
-Volgende stap:  [Sessie 6 — Auth + Admin Dashboard]
-Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), MAX_FREE_UPLOADS hardcoded 1, i18n uitgesteld, homepage dark mode uncommitted]
+Sessie nummer:  [6 — Launch Essentials + Retry Fixes]
+Sessie titel:   [Privacy/Terms, SEO, GA4, cookie consent, retry credits fix, inline credit purchase]
+Status:         [Gedeeltelijk ✅ — launch essentials committed, retry fixes uncommitted]
+Vorige sessie:  [Sessie 5c — Share URL + Virale Loop + Homepage Redesign]
+Volgende stap:  [Commit retry fixes, GA4 property aanmaken, domein koppelen, feature branch post-launch]
+Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), i18n uitgesteld, retry prompt kleur-effectiviteit testen, Stripe live keys nog niet geconfigureerd]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

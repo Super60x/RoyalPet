@@ -135,15 +135,15 @@ export default function PreviewClient({
   // Still generating (initial or retry)
   if (isRegenerating) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center px-4">
+      <main className="min-h-screen flex flex-col items-center justify-center px-4 bg-royal-black">
         <div className="max-w-lg w-full">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-heading font-bold text-royal-brown mb-2">
+            <h1 className="text-3xl font-heading font-bold text-[#FAF8F3] mb-2">
               {portrait.retry_count > 0
                 ? "Nieuw portret wordt gegenereerd"
                 : "Uw portret wordt geschilderd"}
             </h1>
-            <p className="text-base font-body text-royal-brown/60">
+            <p className="text-base font-body text-[#FAF8F3]/60">
               Even geduld, de hofschilder is aan het werk...
             </p>
           </div>
@@ -193,9 +193,9 @@ export default function PreviewClient({
                 frameOverlayUrl={selectedFrame.overlayUrl}
                 showRetryOverlay={showRetry}
               >
-                {/* Retry panel overlay — hidden on mobile, shown inside portrait on desktop */}
+                {/* Retry panel overlay — hidden on mobile, shown as modal on desktop */}
                 {showRetry && (
-                  <div className="hidden md:flex absolute inset-0 z-20 items-center justify-center p-4">
+                  <div className="hidden md:flex fixed inset-0 z-50 items-center justify-center bg-black/60 backdrop-blur-sm p-4">
                     <RetryPanel
                       portraitId={portrait.id}
                       currentStyle={portrait.style}

@@ -50,33 +50,29 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 4. Every retry costs 1 credit — no free retries
-    let usedCredit = false;
-
+    // 4. Credits are primary currency. Free first retry only if NO credits available.
     const creditEmail = request.cookies.get(CREDIT_EMAIL_COOKIE)?.value;
-    if (creditEmail) {
-      const credits = await getCredits(creditEmail);
-      if (credits > 0) {
-        const deducted = await deductCredit(creditEmail);
-        if (!deducted) {
-          return NextResponse.json(
-            { error: "Er ging iets mis bij het afschrijven van uw credit." },
-            { status: 403 }
-          );
-        }
-        usedCredit = true;
-      } else {
+    const userCredits = creditEmail ? await getCredits(creditEmail) : 0;
+    const isFirstRetry = portrait.retry_count === 0;
+    const hasFreeRetry = isFirstRetry && userCredits === 0;
+
+    if (userCredits > 0) {
+      // Has credits → always deduct
+      const deducted = await deductCredit(creditEmail!);
+      if (!deducted) {
         return NextResponse.json(
-          { error: "U heeft geen credits meer. Koop credits om opnieuw te genereren.", needsCredits: true },
+          { error: "Er ging iets mis bij het afschrijven van uw credit." },
           { status: 403 }
         );
       }
-    } else {
+    } else if (!hasFreeRetry) {
+      // No credits AND no free retry → block
       return NextResponse.json(
-        { error: "U heeft geen credits. Koop credits om opnieuw te genereren.", needsCredits: true },
+        { error: "U heeft geen credits meer. Koop credits om opnieuw te genereren.", needsCredits: true },
         { status: 403 }
       );
     }
+    // else: hasFreeRetry === true → proceed for free
 
     // 5. Find the original uploaded photo in storage
     const { data: files } = await supabase.storage
@@ -113,6 +109,9 @@ export async function POST(request: NextRequest) {
       colorPreference: color_preference,
       customEdit: custom_edit,
     });
+
+    console.log("[Retry] Options:", { selectedStyle, selectedPose, gender, color_preference, custom_edit });
+    console.log("[Retry] Prompt:", prompt.slice(0, 200) + "...");
 
     // 8. Reset portrait for regeneration (overwrite existing)
     await supabase

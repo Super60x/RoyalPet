@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { CREDIT_PACKS } from "@/config/credit-packs";
 import StyleSelector from "./StyleSelector";
 
 interface RetryPanelProps {
@@ -31,7 +32,15 @@ export default function RetryPanel({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [credits, setCredits] = useState(0);
-  const canRetry = credits > 0;
+  const [showBuyCredits, setShowBuyCredits] = useState(false);
+  const [creditEmail, setCreditEmail] = useState("");
+  const [buyingPack, setBuyingPack] = useState<string | null>(null);
+  const [creditError, setCreditError] = useState<string | null>(null);
+
+  // Credits are the primary currency. Free first retry is a fallback only when no credits.
+  const isFirstRetry = retryCount === 0;
+  const hasFreeRetry = isFirstRetry && credits === 0;
+  const canRetry = credits > 0 || hasFreeRetry;
 
   // Fetch credits on mount
   useEffect(() => {
@@ -43,11 +52,35 @@ export default function RetryPanel({
 
   const retryLabel = credits > 0
     ? `${credits} credit${credits !== 1 ? "s" : ""} — 1 wordt gebruikt`
-    : "Geen credits — koop credits om te bewerken";
+    : hasFreeRetry
+      ? "1 gratis retry beschikbaar"
+      : "Geen credits — koop credits om te bewerken";
+
+  async function handleBuyCredits(packId: string) {
+    setCreditError(null);
+    if (!creditEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(creditEmail)) {
+      setCreditError("Vul een geldig e-mailadres in.");
+      return;
+    }
+    setBuyingPack(packId);
+    try {
+      const res = await fetch("/api/credits/purchase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ packId, email: creditEmail.trim().toLowerCase() }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      window.location.href = data.url;
+    } catch (err) {
+      setCreditError(err instanceof Error ? err.message : "Aankoop mislukt.");
+      setBuyingPack(null);
+    }
+  }
 
   async function handleRetry() {
     if (!canRetry) {
-      onError("Uw gratis poging is gebruikt. Koop credits op de homepage om meer retries te doen.");
+      setShowBuyCredits(true);
       return;
     }
 
@@ -82,7 +115,7 @@ export default function RetryPanel({
   }
 
   return (
-    <div className="w-full max-w-full md:max-w-sm bg-[#1a1a1a]/95 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden text-white max-h-[80vh] overflow-y-auto">
+    <div className="w-full max-w-md bg-[#1a1a1a] backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden text-white max-h-[85vh] overflow-y-auto">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-white/10">
         <div>
@@ -113,6 +146,9 @@ export default function RetryPanel({
               <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
             </svg>
             Opnieuw
+            {hasFreeRetry && (
+              <span className="text-[10px] bg-white/20 px-1.5 py-0.5 rounded-full">Gratis</span>
+            )}
           </button>
           <a
             href="/"
@@ -263,17 +299,55 @@ export default function RetryPanel({
           )}
         </div>
 
-        {!canRetry && (
-          <div className="text-center space-y-2">
-            <p className="text-xs text-white/40">
-              Uw gratis poging is gebruikt.
-            </p>
-            <a
-              href="/"
-              className="inline-block text-xs text-emerald-400 hover:underline"
+        {!canRetry && !isFirstRetry && !showBuyCredits && (
+          <div className="text-center">
+            <button
+              onClick={() => setShowBuyCredits(true)}
+              className="text-xs text-emerald-400 hover:underline"
             >
               Koop credits voor meer retries →
-            </a>
+            </button>
+          </div>
+        )}
+
+        {showBuyCredits && (
+          <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/5 p-4 space-y-3">
+            <h4 className="text-sm font-semibold text-white">Credits kopen</h4>
+            <input
+              type="email"
+              value={creditEmail}
+              onChange={(e) => { setCreditEmail(e.target.value); setCreditError(null); }}
+              placeholder="uw@email.nl"
+              className={`w-full rounded-lg bg-white/10 border px-3 py-2 font-body text-sm text-white placeholder:text-white/30 focus:outline-none focus:ring-1 focus:ring-emerald-500/50 ${
+                creditError ? "border-red-500" : "border-white/10"
+              }`}
+            />
+            {creditError && (
+              <p className="text-xs text-red-400 mt-1">{creditError}</p>
+            )}
+            <div className="space-y-2">
+              {CREDIT_PACKS.map((pack) => (
+                <button
+                  key={pack.id}
+                  onClick={() => handleBuyCredits(pack.id)}
+                  disabled={buyingPack !== null}
+                  className="w-full flex items-center justify-between p-3 rounded-lg border border-white/10 hover:border-emerald-500/50 hover:bg-white/5 transition-colors disabled:opacity-50"
+                >
+                  <div className="text-left">
+                    <span className="block text-sm font-semibold">{pack.label}</span>
+                    <span className="block text-[10px] text-white/50">{pack.perGenLabel}</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-sm font-bold text-emerald-400">
+                      €{(pack.priceCents / 100).toFixed(2).replace(".", ",")}
+                    </span>
+                    {pack.badge && (
+                      <span className="block text-[9px] text-emerald-400/70">{pack.badge}</span>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
           </div>
         )}
       </div>

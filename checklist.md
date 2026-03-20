@@ -184,7 +184,29 @@
   - [x] 6-portret galerij met hover zoom ✅
   - [x] Alle upload componenten (DropZone, Progress, Error, Paywall) dark mode ✅
 
-### Sessie 6 — Auth + Admin Dashboard (~3 uur)
+### Sessie 6 — Launch Essentials + Retry Fixes (~2,5 uur) 🔄
+- [x] `/privacy` pagina (AVG-compliant, 10 secties) ✅
+- [x] `/terms` pagina (12 secties incl. herroepingsrecht) ✅
+- [x] `robots.txt` + dynamische `sitemap.ts` ✅
+- [x] SVG favicon (gouden kroon) ✅
+- [x] OG fallback image + metadataBase ✅
+- [x] Footer met juridische links + betaalbadges ✅
+- [x] GA4 Analytics component (opt-in, AVG-compliant) ✅
+- [x] Cookie consent banner (Accepteren / Alleen noodzakelijk) ✅
+- [x] `MAX_FREE_UPLOADS` dev override hersteld ✅
+- [x] RetryPanel → fixed modal (responsive) ✅
+- [x] Credits logica: primair credits, gratis retry als fallback ✅
+- [x] Inline credit purchase in RetryPanel ✅
+- [x] Generation progress screen → dark mode ✅
+- [x] Sterkere kleur/custom edit prompt instructies ✅
+- [ ] Learnings opgeslagen → `learnings/dag-06.md` ✅
+- **Uitgesteld naar aparte feature branch:**
+  - [ ] Supabase Auth (Google OAuth + magic link)
+  - [ ] Admin Dashboard (/admin)
+  - [ ] Abandoned checkout recovery
+  - [ ] Taalwisselaar (i18n)
+
+### Sessie 6b (uitgesteld) — Auth + Admin Dashboard (~3 uur)
 - [ ] Supabase Auth geconfigureerd
 - [ ] Google OAuth werkend
 - [ ] Email magic link werkend
@@ -234,10 +256,10 @@
 - [ ] Lighthouse score ≥ 90 op Performance + SEO
 - [ ] Alle afbeeldingen: Next.js Image + WebP + retina (1200px+)
 - [ ] Error tracking actief (Vercel Analytics of Sentry)
-- [ ] Favicon + og:image ingesteld
-- [ ] `robots.txt` + `sitemap.xml` aangemaakt
-- [ ] `/privacy` pagina gepubliceerd
-- [ ] `/terms` pagina gepubliceerd
+- [x] Favicon + og:image ingesteld ✅ (SVG kroon + voorbeeld portret)
+- [x] `robots.txt` + `sitemap.xml` aangemaakt ✅ (dynamische sitemap.ts)
+- [x] `/privacy` pagina gepubliceerd ✅ (10 secties, AVG-compliant)
+- [x] `/terms` pagina gepubliceerd ✅ (12 secties, herroepingsrecht)
 
 ### Stripe live zetten
 - [ ] Stripe live mode geactiveerd
@@ -257,7 +279,7 @@
 - [ ] Cormorant Garamond geladen op alle headings
 - [ ] Kleurenpalet correct: `#0A0A0A` / `#B8942A` / `#FAF8F3` / `#3D2B1F`
 - [ ] Alle CTA buttons goud met witte tekst
-- [ ] Betaalbadges in footer: iDEAL + Bancontact + Stripe
+- [x] Betaalbadges in footer: iDEAL + Bancontact + Stripe ✅ (Sessie 6)
 - [ ] Geen generieke copywriting (zie premiumtaal in `CLAUDE.md`)
 
 ---
