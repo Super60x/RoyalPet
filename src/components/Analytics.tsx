@@ -1,9 +1,17 @@
 "use client";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
+}
+
 import Script from "next/script";
 import { useEffect, useState } from "react";
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const GADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
 export function Analytics() {
   const [consent, setConsent] = useState<boolean | null>(null);
@@ -12,16 +20,17 @@ export function Analytics() {
     const stored = localStorage.getItem("rp_cookie_consent");
     if (stored === "true") setConsent(true);
     else if (stored === "false") setConsent(false);
-    // null = not yet decided, show banner
   }, []);
 
-  if (!GA_ID) return null;
+  // Need at least one tag ID and consent
+  const primaryId = GA_ID || GADS_ID;
+  if (!primaryId) return null;
   if (consent !== true) return null;
 
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${primaryId}`}
         strategy="afterInteractive"
       />
       <Script id="ga-init" strategy="afterInteractive">
@@ -29,14 +38,43 @@ export function Analytics() {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${GA_ID}', {
-            anonymize_ip: true,
-            cookie_flags: 'SameSite=None;Secure'
-          });
+          ${GA_ID ? `gtag('config', '${GA_ID}', { anonymize_ip: true, cookie_flags: 'SameSite=None;Secure' });` : ""}
+          ${GADS_ID ? `gtag('config', '${GADS_ID}');` : ""}
         `}
       </Script>
     </>
   );
+}
+
+/**
+ * Fire a Google Ads conversion event.
+ * Call this on the success page after a confirmed purchase.
+ */
+export function trackAdsConversion({
+  valueCents,
+  orderId,
+  email,
+}: {
+  valueCents: number;
+  orderId: string;
+  email?: string;
+}) {
+  const conversionLabel = process.env.NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL;
+  if (!GADS_ID || !conversionLabel) return;
+  if (typeof window === "undefined" || !window.gtag) return;
+
+  window.gtag("event", "conversion", {
+    send_to: `${GADS_ID}/${conversionLabel}`,
+    value: valueCents / 100,
+    currency: "EUR",
+    transaction_id: orderId,
+  });
+
+  // Enhanced conversions — hashed email helps Google match the conversion
+  // to the ad click even without third-party cookies
+  if (email) {
+    window.gtag("set", "user_data", { email: email.toLowerCase().trim() });
+  }
 }
 
 export function CookieConsent() {

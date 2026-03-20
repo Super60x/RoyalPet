@@ -1,8 +1,10 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { formatPrice } from "@/config/products";
 import PortraitHero from "@/components/preview/PortraitHero";
+import { trackAdsConversion } from "@/components/Analytics";
 
 // Product ID to readable label
 function getProductLabel(productId: string): string {
@@ -44,6 +46,22 @@ export default function SuccessClient({
   portrait,
   order,
 }: SuccessClientProps) {
+  const tracked = useRef(false);
+
+  useEffect(() => {
+    if (!portrait.paid || !order || tracked.current) return;
+    tracked.current = true;
+
+    const totalCents = (order.price_cents || 0) + (order.frame_price_cents || 0);
+    trackAdsConversion({
+      valueCents: totalCents,
+      orderId: order.order_number
+        ? `RP-${String(order.order_number).padStart(5, "0")}`
+        : order.id,
+      email: order.customer_email,
+    });
+  }, [portrait.paid, order]);
+
   if (!portrait.paid) {
     return (
       <main className="min-h-screen flex items-center justify-center px-4">

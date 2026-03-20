@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [6 — Launch Essentials + Retry Fixes]
-Sessie titel:   [Privacy/Terms, SEO, GA4, cookie consent, retry credits fix, inline credit purchase]
-Status:         [Gedeeltelijk ✅ — launch essentials committed, retry fixes uncommitted]
-Vorige sessie:  [Sessie 5c — Share URL + Virale Loop + Homepage Redesign]
-Volgende stap:  [Commit retry fixes, GA4 property aanmaken, domein koppelen, feature branch post-launch]
-Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), i18n uitgesteld, retry prompt kleur-effectiviteit testen, Stripe live keys nog niet geconfigureerd]
+Sessie nummer:  [7 — Launch Prep: Domain + Stripe Live + Google Ads]
+Sessie titel:   [Domain koppelen, Stripe live mode, Google Ads conversion tracking]
+Status:         [Gedeeltelijk 🔄 — plan gemaakt, code nog niet geschreven]
+Vorige sessie:  [Sessie 6 — Launch Essentials + Retry Fixes]
+Volgende stap:  [1) Domain koppelen Vercel, 2) Stripe live keys, 3) Google Ads tracking bouwen]
+Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), i18n uitgesteld, Google Ads tracking code nog niet gebouwd, Stripe live keys nog niet geconfigureerd]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

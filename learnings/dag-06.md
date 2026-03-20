@@ -63,8 +63,9 @@
 ---
 
 ## Voorbereiding volgende sessie
-- **GA4 property aanmaken** in Google Analytics en `NEXT_PUBLIC_GA_MEASUREMENT_ID` toevoegen aan env
-- **Domein** `royalpet.app` registreren en koppelen aan Vercel
-- **Stripe live keys** configureren in Vercel dashboard
-- **Feature branch** `feature/post-launch` aanmaken voor: admin dashboard, abandoned checkout, taalwisselaar
+- **Domein** `royalpet.app` koppelen aan Vercel (DNS records instellen)
+- **Vercel env:** `NEXT_PUBLIC_BASE_URL=https://royalpet.app` toevoegen
+- **Stripe live mode:** Live keys + webhook endpoint configureren in Vercel
+- **Google Ads:** Account aanmaken, Conversion ID + label ophalen
+- **Code:** Google Ads conversion tracking bouwen in Analytics.tsx + SuccessClient.tsx
 - Overweeg: Sentry error tracking toevoegen voor productie monitoring
