@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { formatPrice } from "@/config/products";
 import EmailModal from "./EmailModal";
+import { trackBeginCheckout, trackEmailCaptured } from "@/components/Analytics";
 
 interface PriceSummaryProps {
   productLabel: string | null;
@@ -30,11 +31,15 @@ export default function PriceSummary({
   const totalCents = productPriceCents + framePriceCents;
 
   const handleCheckout = () => {
+    if (productId && productLabel) {
+      trackBeginCheckout({ itemId: productId, itemName: productLabel, priceCents: totalCents });
+    }
     setShowEmail(true);
   };
 
   const handleEmailSubmit = async (email: string) => {
     setLoading(true);
+    trackEmailCaptured("checkout");
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",

@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { formatPrice } from "@/config/products";
 import PortraitHero from "@/components/preview/PortraitHero";
-import { trackAdsConversion } from "@/components/Analytics";
+import { trackAdsConversion, trackPurchase } from "@/components/Analytics";
 
 // Product ID to readable label
 function getProductLabel(productId: string): string {
@@ -53,12 +53,21 @@ export default function SuccessClient({
     tracked.current = true;
 
     const totalCents = (order.price_cents || 0) + (order.frame_price_cents || 0);
+    const formattedOrderId = order.order_number
+      ? `RP-${String(order.order_number).padStart(5, "0")}`
+      : order.id;
+
     trackAdsConversion({
       valueCents: totalCents,
-      orderId: order.order_number
-        ? `RP-${String(order.order_number).padStart(5, "0")}`
-        : order.id,
+      orderId: formattedOrderId,
       email: order.customer_email,
+    });
+
+    trackPurchase({
+      orderId: formattedOrderId,
+      valueCents: totalCents,
+      itemId: order.product,
+      itemName: getProductLabel(order.product),
     });
   }, [portrait.paid, order]);
 

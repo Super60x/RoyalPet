@@ -6,6 +6,7 @@ import DropZone from "./DropZone";
 import GenerationProgress from "./GenerationProgress";
 import UploadError from "./UploadError";
 import PaywallScreen from "./PaywallScreen";
+import { trackUploadComplete } from "@/components/Analytics";
 
 type State = "idle" | "uploading" | "generating" | "error";
 
@@ -105,6 +106,7 @@ export default function UploadSection() {
 
   const handleComplete = useCallback(
     (id: string) => {
+      trackUploadComplete(id);
       window.location.href = `/preview/${id}`;
     },
     []

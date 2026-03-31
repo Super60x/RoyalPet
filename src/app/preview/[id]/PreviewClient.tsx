@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import GenerationProgress from "@/components/upload/GenerationProgress";
 import RetryPanel from "@/components/preview/RetryPanel";
 import PortraitHero from "@/components/preview/PortraitHero";
@@ -13,6 +13,7 @@ import FrameSelector, {
 } from "@/components/preview/FrameSelector";
 import PriceSummary from "@/components/preview/PriceSummary";
 import SocialProof from "@/components/preview/SocialProof";
+import { trackViewItem, trackAddToCart, trackEmailCaptured } from "@/components/Analytics";
 
 interface PortraitData {
   id: string;
@@ -47,6 +48,15 @@ export default function PreviewClient({
       .catch(() => {});
   }, []);
 
+  // GA4: track view_item when portrait is completed
+  const viewTracked = useRef(false);
+  useEffect(() => {
+    if (portrait.status === "completed" && portrait.image_url && !viewTracked.current) {
+      viewTracked.current = true;
+      trackViewItem({ itemId: portrait.id, itemName: "Renaissance Portret", priceCents: 8900 });
+    }
+  }, [portrait.status, portrait.image_url, portrait.id]);
+
   // Product + Frame selection state
   const [selectedProduct, setSelectedProduct] =
     useState<ProductSelection | null>(null);
@@ -70,6 +80,7 @@ export default function PreviewClient({
   const handleProductSelect = useCallback(
     (product: ProductSelection) => {
       setSelectedProduct(product);
+      trackAddToCart({ itemId: product.sizeId, itemName: product.sizeLabel, priceCents: product.priceCents });
     },
     []
   );
@@ -81,6 +92,7 @@ export default function PreviewClient({
     }
     setIsDownloading(true);
     setDownloadError(null);
+    trackEmailCaptured("download");
     try {
       const res = await fetch("/api/download", {
         method: "POST",

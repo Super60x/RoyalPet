@@ -13,20 +13,36 @@ import { useEffect, useState } from "react";
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const GADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID;
 
+/**
+ * Update Google consent state. Call when user accepts/declines cookies.
+ */
+export function updateConsent(granted: boolean) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  const state = granted ? "granted" : "denied";
+  window.gtag("consent", "update", {
+    analytics_storage: state,
+    ad_storage: state,
+    ad_user_data: state,
+    ad_personalization: state,
+  });
+}
+
 export function Analytics() {
-  const [consent, setConsent] = useState<boolean | null>(null);
+  const [consentLoaded, setConsentLoaded] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("rp_cookie_consent");
-    if (stored === "true") setConsent(true);
-    else if (stored === "false") setConsent(false);
+    if (stored === "true") {
+      updateConsent(true);
+    }
+    setConsentLoaded(true);
   }, []);
 
-  // Need at least one tag ID and consent
+  // Need at least one tag ID
   const primaryId = GA_ID || GADS_ID;
   if (!primaryId) return null;
-  if (consent !== true) return null;
 
+  // Always load gtag with Consent Mode v2 defaults (denied until user accepts)
   return (
     <>
       <Script
@@ -37,6 +53,16 @@ export function Analytics() {
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+
+          // Consent Mode v2: deny all by default (GDPR/AVG compliant)
+          gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            wait_for_update: 500
+          });
+
           gtag('js', new Date());
           ${GA_ID ? `gtag('config', '${GA_ID}', { anonymize_ip: true, cookie_flags: 'SameSite=None;Secure' });` : ""}
           ${GADS_ID ? `gtag('config', '${GADS_ID}');` : ""}
@@ -77,6 +103,89 @@ export function trackAdsConversion({
   }
 }
 
+/**
+ * GA4 ecommerce: view_item — fire when preview page loads with a completed portrait.
+ */
+export function trackViewItem({ itemId, itemName, priceCents }: {
+  itemId: string;
+  itemName: string;
+  priceCents: number;
+}) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "view_item", {
+    currency: "EUR",
+    value: priceCents / 100,
+    items: [{ item_id: itemId, item_name: itemName, price: priceCents / 100 }],
+  });
+}
+
+/**
+ * GA4 ecommerce: add_to_cart — fire when user selects a product/size.
+ */
+export function trackAddToCart({ itemId, itemName, priceCents }: {
+  itemId: string;
+  itemName: string;
+  priceCents: number;
+}) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "add_to_cart", {
+    currency: "EUR",
+    value: priceCents / 100,
+    items: [{ item_id: itemId, item_name: itemName, price: priceCents / 100 }],
+  });
+}
+
+/**
+ * GA4 ecommerce: begin_checkout — fire when user clicks "Bestel uw meesterwerk".
+ */
+export function trackBeginCheckout({ itemId, itemName, priceCents }: {
+  itemId: string;
+  itemName: string;
+  priceCents: number;
+}) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "begin_checkout", {
+    currency: "EUR",
+    value: priceCents / 100,
+    items: [{ item_id: itemId, item_name: itemName, price: priceCents / 100 }],
+  });
+}
+
+/**
+ * Micro-conversion: upload_complete — fire when portrait generation finishes.
+ */
+export function trackUploadComplete(portraitId: string) {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "upload_complete", { portrait_id: portraitId });
+}
+
+/**
+ * Micro-conversion: email_captured — fire when user submits email (download or checkout).
+ */
+export function trackEmailCaptured(method: "download" | "checkout") {
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "email_captured", { method });
+}
+
+/**
+ * GA4 ecommerce: purchase — fire on success page alongside trackAdsConversion.
+ */
+export function trackPurchase({ orderId, valueCents, itemId, itemName }: {
+  orderId: string;
+  valueCents: number;
+  itemId: string;
+  itemName: string;
+}) {
+  if (!GA_ID) return;
+  if (typeof window === "undefined" || !window.gtag) return;
+  window.gtag("event", "purchase", {
+    transaction_id: orderId,
+    value: valueCents / 100,
+    currency: "EUR",
+    items: [{ item_id: itemId, item_name: itemName, price: valueCents / 100 }],
+  });
+}
+
 export function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
@@ -92,8 +201,8 @@ export function CookieConsent() {
   function handleAccept() {
     localStorage.setItem("rp_cookie_consent", "true");
     setVisible(false);
-    // Reload to activate GA4
-    window.location.reload();
+    // Update consent state — no reload needed with Consent Mode v2
+    updateConsent(true);
   }
 
   function handleDecline() {
