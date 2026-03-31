@@ -340,9 +340,9 @@ NOTION_DATABASE_ID=
 | 3 | Dag 3 | Preview + Prijzen + Kaders | ✅ Klaar |
 | 4 | Dag 4 | E-mail Modal + Stripe Checkout + Paywall + Credits | ✅ Klaar |
 | 5 | Dag 5 | Share URL + Virale Loop + i18n | ✅ Klaar (i18n uitgesteld) |
-| 6 | Dag 6 | Launch Essentials + Retry Fixes | 🔄 Bezig |
-| 7 | Dag 7 | Abandoned Checkout Recovery | ⬜ Te doen |
-| 8 | Dag 8 | SEO Blog via Notion CMS | ⬜ Te doen |
+| 6 | Dag 6 | Launch Essentials + Retry Fixes | ✅ Klaar |
+| 7 | Dag 7 | Domain + Stripe Live + Landing Page + Ads Tracking | ✅ Klaar |
+| 8 | Dag 8 | GA4 + Google Ads Tracking + Agency Agents | ✅ Klaar |
 
 > **Update de status na elke sessie:** ⬜ Te doen → 🔄 Bezig → ✅ Klaar
 
@@ -406,12 +406,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [7 — Launch Prep: Domain + Stripe Live + Google Ads]
-Sessie titel:   [Domain koppelen, Stripe live mode, Google Ads conversion tracking]
-Status:         [Gedeeltelijk 🔄 — plan gemaakt, code nog niet geschreven]
-Vorige sessie:  [Sessie 6 — Launch Essentials + Retry Fixes]
-Volgende stap:  [1) Domain koppelen Vercel, 2) Stripe live keys, 3) Google Ads tracking bouwen]
-Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), i18n uitgesteld, Google Ads tracking code nog niet gebouwd, Stripe live keys nog niet geconfigureerd]
+Sessie nummer:  [8 — GA4 + Google Ads Tracking + Agency Agents + Ads Strategie]
+Sessie titel:   [GA4 live, Google Ads tracking, Consent Mode v2, ecommerce funnel events, PPC strategie]
+Status:         [✅ Klaar — alles live en verified]
+Vorige sessie:  [Sessie 7 — Domain + Stripe Live + Landing Page + Ads Tracking]
+Volgende stap:  [Google Ads campagne aanmaken, negative keywords importeren, before/after visuals maken, abandoned checkout recovery bouwen]
+Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), i18n uitgesteld, abandoned checkout recovery nog niet gebouwd, assets_visuals reorganisatie nog niet gecommit]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

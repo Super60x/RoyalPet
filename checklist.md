@@ -20,9 +20,9 @@
 - [ ] **Notion** — database aangemaakt voor blog CMS (Sessie 8)
 
 ### Domein & hosting
-- [ ] `royalpet.app` geregistreerd (Namecheap of TransIP)
-- [ ] Domein gekoppeld aan Vercel
-- [ ] SSL actief (gratis via Vercel, automatisch)
+- [x] `royalpet.app` geregistreerd ✅
+- [x] Domein gekoppeld aan Vercel ✅ (www.royalpet.app live)
+- [x] SSL actief (gratis via Vercel, automatisch) ✅
 
 ### VS Code & GitHub
 - [x] GitHub repo aangemaakt (`royalpet_app`) ✅
@@ -236,7 +236,22 @@
   - [ ] Verwijder bestanden uit `portraits-public` + `portraits-private` buckets
 - [ ] Learnings opgeslagen → `learnings/dag-07.md`
 
-### Sessie 8 — SEO Blog via Notion CMS (~2 uur)
+### Sessie 8 — GA4 + Google Ads Tracking + Agency Agents (~2 uur) ✅
+- [x] 15 agency agents geinstalleerd (Paid Media + Marketing + Design) ✅
+- [x] GA4 property aangemaakt (G-9RNXDQYSS0) ✅
+- [x] Google Ads tag gekoppeld (AW-17490304645) ✅
+- [x] Consent Mode v2 geimplementeerd (GDPR/AVG) ✅
+- [x] Cookie banner: geen page reload meer, consent update via gtag ✅
+- [x] GA4 ecommerce events: view_item, add_to_cart, begin_checkout, purchase ✅
+- [x] Micro-conversies: upload_complete, email_captured ✅
+- [x] Google Ads conversion via GA4 purchase event ✅
+- [x] Env vars ingesteld lokaal + Vercel ✅
+- [x] Negative keywords CSV aangemaakt (48 termen) ✅
+- [x] Volledige PPC campagnestructuur ontworpen ✅
+- [x] RSA ad copy in Nederlands geschreven ✅
+- [x] Learnings opgeslagen → `learnings/dag-08.md` ✅
+
+### Sessie 9 — SEO Blog via Notion CMS (~2 uur)
 - [ ] Notion database properties: Title, Slug, MetaDescription, FocusKeyword, OGImageUrl, Published, PublishDate
 - [ ] Next.js fetcht posts via Notion API (ISR 60 min)
 - [ ] `/blog/[slug]` pagina werkend + statisch gegenereerd
@@ -262,9 +277,9 @@
 - [x] `/terms` pagina gepubliceerd ✅ (12 secties, herroepingsrecht)
 
 ### Stripe live zetten
-- [ ] Stripe live mode geactiveerd
-- [ ] Live keys in Vercel environment variables gezet
-- [ ] Webhook endpoint geconfigureerd voor productie URL
+- [x] Stripe live mode geactiveerd ✅
+- [x] Live keys in Vercel environment variables gezet 🔄 (user updating now)
+- [x] Webhook endpoint geconfigureerd voor productie URL ✅ (https://www.royalpet.app/api/webhook)
 - [ ] Test betaling gedaan met echte iDEAL (klein bedrag)
 - [ ] Test betaling gedaan met echte Bancontact
 
