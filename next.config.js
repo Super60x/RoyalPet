@@ -7,6 +7,18 @@ const nextConfig = {
         hostname: "ylollsyoquziqdezmcyv.supabase.co",
         pathname: "/storage/v1/object/public/**",
       },
+      {
+        protocol: "https",
+        hostname: "replicate.delivery",
+      },
+      {
+        protocol: "https",
+        hostname: "pbxt.replicate.delivery",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
 };

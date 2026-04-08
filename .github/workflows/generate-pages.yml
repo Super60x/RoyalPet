@@ -1,0 +1,64 @@
+name: Generate breed pages
+
+on:
+  # Run every Monday at 3am Amsterdam time (1am UTC)
+  schedule:
+    - cron: '0 1 * * 1'
+
+  # Manual trigger
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run breed page generator
+        run: npx tsx scripts/generate-pages.ts
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
+      - name: Check if seo-pages.json changed
+        id: changes
+        run: |
+          git diff --quiet data/seo-pages.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and create PR if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          BRANCH="automation/seo-pages-$(date +%Y%m%d)"
+          git checkout -b $BRANCH
+
+          git add data/seo-pages.json
+          git commit -m "auto: generate new SEO pages $(date +%Y-%m-%d)"
+          git push origin $BRANCH
+
+          gh pr create \
+            --title "Auto: new SEO pages $(date +%Y-%m-%d)" \
+            --body "Generated automatically by the SEO page script. Review the Vercel preview URL before merging." \
+            --base main \
+            --head $BRANCH
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - name: No changes
+        if: steps.changes.outputs.changed != 'true'
+        run: echo "No new breeds to add — all done!"
