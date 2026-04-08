@@ -157,6 +157,48 @@ created_at       timestamp DEFAULT now()
 
 ---
 
+## 🔍 SEO Engine — Programmatic Content
+
+### Architectuur
+- **Route:** `/kennisbank/[slug]` — informatieve artikelen per ras/onderwerp
+- **Data:** `data/seo-pages.json` — alle pagina's in één JSON bestand (committed in git)
+- **Template:** `src/app/kennisbank/[slug]/page.tsx` — SSG via `generateStaticParams()`
+- **Afbeeldingen (2 per pagina):**
+  - Rasfoto: Unsplash API → Supabase Storage `portraits-public/breeds/photos/{slug}.jpg`
+  - Renaissance portret: Replicate FLUX → Supabase Storage `portraits-public/breeds/portraits/{slug}.webp`
+
+### Page types (expandable)
+- `"type": "breed"` — informatieve rasartikelen (30+ honden + 5 katten)
+- `"type": "gift"` — cadeaugidsen (Kerst, Moederdag, Vaderdag) — toekomstig
+- `"type": "occasion"` — gelegenheidspagina's — toekomstig
+
+### Scripts
+- `npm run generate-pages` — genereert content (Claude) + portret (Replicate FLUX) + upload naar Supabase
+  - Flags: `--batch-size N`, `--start-date YYYY-MM-DD`, `--interval-days N`
+  - Crash-safe: slaat op na elk ras, skipt bestaande bij herstart
+- `npm run publish-pages` — zet `published: true` voor pagina's waarvan `publishDate <= vandaag`
+
+### Drip campaign
+- Nieuwe pagina's krijgen een `publishDate` en starten als `published: false`
+- Dagelijkse GitHub Action (`publish-pages.yml`) publiceert pagina's op schema
+- Sitemap en build bevatten alleen `published: true` pagina's
+
+### GitHub Actions
+- `.github/workflows/publish-pages.yml` — dagelijks 6:00 NL tijd, publiceert scheduled pages
+- `.github/workflows/generate-pages.yml` — wekelijks maandag 3:00 NL, genereert nieuwe rassen + opent PR
+
+### Kosten per run
+- ~35 rassen × ($0.003 Replicate + $0.01 Claude Sonnet) ≈ $0.45 totaal
+
+### Dependencies toegevoegd
+- `@anthropic-ai/sdk` — Claude API voor content generatie
+- `tsx` (devDependency) — TypeScript scripts direct uitvoeren
+
+### Extra env var nodig
+- `UNSPLASH_ACCESS_KEY` — gratis via https://unsplash.com/developers (50 req/uur)
+
+---
+
 ## 💳 Betaling & Checkout — KRITIEKE BESLISSINGEN
 
 > ⚠️ **Verander deze beslissingen NOOIT zonder expliciet toestemming te vragen.**
@@ -406,12 +448,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [8 — GA4 + Google Ads Tracking + Agency Agents + Ads Strategie]
-Sessie titel:   [GA4 live, Google Ads tracking, Consent Mode v2, ecommerce funnel events, PPC strategie]
-Status:         [✅ Klaar — alles live en verified]
-Vorige sessie:  [Sessie 7 — Domain + Stripe Live + Landing Page + Ads Tracking]
-Volgende stap:  [Google Ads campagne aanmaken, negative keywords importeren, before/after visuals maken, abandoned checkout recovery bouwen]
-Openstaande issues: [Frame overlay PNGs niet in Storage (CSS fallback werkt), i18n uitgesteld, abandoned checkout recovery nog niet gebouwd, assets_visuals reorganisatie nog niet gecommit]
+Sessie nummer:  [11 — Programmatic SEO Engine]
+Sessie titel:   [SEO engine gebouwd: kennisbank template, generatie script, drip campaign, GitHub Actions]
+Status:         [✅ Klaar]
+Vorige sessie:  [Sessie 10 — Google Ads Finalisatie + Tracking Verificatie]
+Volgende stap:  [Generate-pages draaien (35 rassen), merge, GitHub secrets, sitemap indienen, Pinterest automation]
+Openstaande issues: [Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd, generate-pages nog niet gedraaid]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**

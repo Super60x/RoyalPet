@@ -251,16 +251,34 @@
 - [x] RSA ad copy in Nederlands geschreven ✅
 - [x] Learnings opgeslagen → `learnings/dag-08.md` ✅
 
-### Sessie 9 — SEO Blog via Notion CMS (~2 uur)
-- [ ] Notion database properties: Title, Slug, MetaDescription, FocusKeyword, OGImageUrl, Published, PublishDate
-- [ ] Next.js fetcht posts via Notion API (ISR 60 min)
-- [ ] `/blog/[slug]` pagina werkend + statisch gegenereerd
-- [ ] Dynamische `<meta>` + Open Graph tags per post
-- [ ] Eerste 3 SEO-posts gepubliceerd:
-  - [ ] `cadeau-hond-verjaardag`
-  - [ ] `renaissance-portret-kat-bestellen`
-  - [ ] `hondenschilderij-laten-maken`
-- [ ] Learnings opgeslagen → `learnings/dag-08.md`
+### Sessie 9 — SEO Blog via Notion CMS (~2 uur) — VERVANGEN door Sessie 11
+- [ ] ~~Notion CMS~~ — vervangen door programmatic SEO engine (kennisbank)
+
+### Sessie 11 — Programmatic SEO Engine (~2,5 uur) 🔄
+- [x] Feature branch `feature/seo-engine` aangemaakt ✅
+- [x] `@anthropic-ai/sdk` + `tsx` geïnstalleerd ✅
+- [x] Data structuur `data/seo-pages.json` met 3 seed breeds ✅
+- [x] Kennisbank template `src/app/kennisbank/[slug]/page.tsx` gebouwd ✅
+  - [x] SSG via `generateStaticParams()` ✅
+  - [x] Article + BreadcrumbList JSON-LD structured data ✅
+  - [x] Blog-lengte content (5 informatieve secties per ras) ✅
+  - [x] Informatieve toon, subtiele CTA onderaan ✅
+  - [x] Social proof: "We verzenden gratis in NL en BE" ✅
+  - [x] Mobile-responsive, dark theme matching ✅
+- [x] Sitemap uitgebreid met kennisbank pagina's (filter op `published`) ✅
+- [x] `next.config.js` bijgewerkt met Replicate image domains ✅
+- [x] Generatie script `scripts/generate-pages.ts` gebouwd ✅
+  - [x] Claude content + Replicate FLUX portret + Supabase upload ✅
+  - [x] Drip campaign flags: `--batch-size`, `--start-date`, `--interval-days` ✅
+  - [x] Crash-safe: saves na elk ras ✅
+- [x] Publish script `scripts/publish-pages.ts` gebouwd ✅
+- [x] GitHub Actions: dagelijkse publish + wekelijkse generatie workflows ✅
+- [x] CLAUDE.md bijgewerkt met SEO engine sectie ✅
+- [ ] Generatie script draaien voor 35 rassen (~$0.45)
+- [ ] Review + merge naar main
+- [ ] GitHub secrets toevoegen voor automation
+- [ ] Sitemap indienen bij Google Search Console
+- [x] Learnings opgeslagen → `learnings/dag-11.md` ✅
 
 ---
 

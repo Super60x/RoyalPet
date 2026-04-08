@@ -32,6 +32,11 @@ yarn-error.log*
 
 # assets (local only, not deployed)
 assets_visuals/
+ads/
+ads-source/
+
+# pinterest progress (local state)
+data/pinterest-posted.json
 
 # vercel
 .vercel
