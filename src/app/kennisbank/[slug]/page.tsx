@@ -28,12 +28,12 @@ export async function generateMetadata({
     title: page.title,
     description: page.metaDescription,
     alternates: {
-      canonical: `https://royalpet.app/kennisbank/${page.slug}`,
+      canonical: `https://www.royalpet.app/kennisbank/${page.slug}`,
     },
     openGraph: {
       title: page.title,
       description: page.metaDescription,
-      url: `https://royalpet.app/kennisbank/${page.slug}`,
+      url: `https://www.royalpet.app/kennisbank/${page.slug}`,
       siteName: "RoyalPet.app",
       images: page.portraitUrl
         ? [{ url: page.portraitUrl, alt: page.altText }]
@@ -52,6 +52,17 @@ export default function KennisbankPage({
   const page = getPage(params.slug);
   if (!page) notFound();
 
+  // Related breeds: pick 3 other published pages (deterministic based on slug)
+  const otherPages = pages.filter((p) => p.published && p.slug !== params.slug);
+  const seed = params.slug.length + params.slug.charCodeAt(0);
+  const related = otherPages
+    .sort((a, b) => {
+      const hashA = (a.slug.charCodeAt(0) * 31 + seed) % 1000;
+      const hashB = (b.slug.charCodeAt(0) * 31 + seed) % 1000;
+      return hashA - hashB;
+    })
+    .slice(0, 3);
+
   // JSON-LD: BreadcrumbList schema
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -61,13 +72,13 @@ export default function KennisbankPage({
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://royalpet.app",
+        item: "https://www.royalpet.app",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Kennisbank",
-        item: "https://royalpet.app/kennisbank",
+        item: "https://www.royalpet.app/kennisbank",
       },
       {
         "@type": "ListItem",
@@ -88,12 +99,12 @@ export default function KennisbankPage({
     author: {
       "@type": "Organization",
       name: "RoyalPet",
-      url: "https://royalpet.app",
+      url: "https://www.royalpet.app",
     },
     publisher: {
       "@type": "Organization",
       name: "RoyalPet",
-      url: "https://royalpet.app",
+      url: "https://www.royalpet.app",
     },
     datePublished: page.publishDate,
     mainEntityOfPage: `https://royalpet.app/kennisbank/${page.slug}`,
@@ -133,7 +144,9 @@ export default function KennisbankPage({
             Home
           </Link>
           <span>/</span>
-          <span className="text-[#FAF8F3]/50">Kennisbank</span>
+          <Link href="/kennisbank" className="hover:text-[#FAF8F3]/60 transition-colors">
+            Kennisbank
+          </Link>
           <span>/</span>
           <span className="text-[#FAF8F3]/50">{page.naam}</span>
         </nav>
@@ -251,6 +264,56 @@ export default function KennisbankPage({
         </div>
       </section>
 
+      {/* Related breeds */}
+      {related.length > 0 && (
+        <section className="max-w-3xl mx-auto px-6 pb-16">
+          <h3 className="text-xl sm:text-2xl font-heading mb-6 text-center text-[#FAF8F3]/70">
+            Meer uit de Kennisbank
+          </h3>
+          <div className="grid grid-cols-3 gap-3 sm:gap-5">
+            {related.map((r) => (
+              <Link
+                key={r.slug}
+                href={`/kennisbank/${r.slug}`}
+                className="group"
+              >
+                <div className="relative aspect-square rounded-xl overflow-hidden bg-[#1A1A1A] border border-[#FAF8F3]/5 group-hover:border-royal-gold/30 transition-colors duration-300">
+                  {r.photoUrl ? (
+                    <Image
+                      src={r.photoUrl}
+                      alt={r.naam}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 640px) 33vw, 200px"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-2xl font-heading text-[#FAF8F3]/20">
+                        {r.naam[0]}
+                      </span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-royal-black/80 via-transparent to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-3">
+                    <p className="text-xs sm:text-sm font-heading text-[#FAF8F3] leading-tight">
+                      {r.naam}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link
+              href="/kennisbank"
+              className="text-sm font-body text-royal-gold/60 hover:text-royal-gold transition-colors"
+            >
+              Bekijk alle rassen &rarr;
+            </Link>
+          </div>
+        </section>
+      )}
+
       {/* Footer */}
       <footer className="py-10 border-t border-[#FAF8F3]/5">
         <div className="max-w-4xl mx-auto px-6">
@@ -260,6 +323,12 @@ export default function KennisbankPage({
               rechten voorbehouden
             </p>
             <nav className="flex items-center gap-6">
+              <Link
+                href="/kennisbank"
+                className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors"
+              >
+                Kennisbank
+              </Link>
               <Link
                 href="/privacy"
                 className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors"

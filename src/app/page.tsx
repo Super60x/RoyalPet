@@ -44,7 +44,11 @@ export default function Home() {
             RoyalPet
           </span>
         </div>
-        <div className="hidden sm:flex items-center gap-1 text-xs text-[#FAF8F3]/40 font-body tracking-wide">
+        <div className="hidden sm:flex items-center gap-3 text-xs text-[#FAF8F3]/40 font-body tracking-wide">
+          <Link href="/kennisbank" className="text-[#FAF8F3]/40 hover:text-[#FAF8F3]/70 transition-colors">
+            Kennisbank
+          </Link>
+          <span className="text-[#FAF8F3]/15">|</span>
           <span className="text-[#FAF8F3]/70">Upload</span>
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
@@ -255,6 +259,9 @@ export default function Home() {
               &copy; {new Date().getFullYear()} RoyalPet.app — Alle rechten voorbehouden
             </p>
             <nav className="flex items-center gap-6">
+              <Link href="/kennisbank" className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors">
+                Kennisbank
+              </Link>
               <Link href="/privacy" className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors">
                 Privacybeleid
               </Link>
