@@ -254,7 +254,7 @@
 ### Sessie 9 — SEO Blog via Notion CMS (~2 uur) — VERVANGEN door Sessie 11
 - [ ] ~~Notion CMS~~ — vervangen door programmatic SEO engine (kennisbank)
 
-### Sessie 11 — Programmatic SEO Engine (~2,5 uur) 🔄
+### Sessie 11-12 — Programmatic SEO Engine (~4 uur) ✅
 - [x] Feature branch `feature/seo-engine` aangemaakt ✅
 - [x] `@anthropic-ai/sdk` + `tsx` geïnstalleerd ✅
 - [x] Data structuur `data/seo-pages.json` met 3 seed breeds ✅
@@ -274,10 +274,17 @@
 - [x] Publish script `scripts/publish-pages.ts` gebouwd ✅
 - [x] GitHub Actions: dagelijkse publish + wekelijkse generatie workflows ✅
 - [x] CLAUDE.md bijgewerkt met SEO engine sectie ✅
-- [ ] Generatie script draaien voor 35 rassen (~$0.45)
-- [ ] Review + merge naar main
-- [ ] GitHub secrets toevoegen voor automation
-- [ ] Sitemap indienen bij Google Search Console
+- [x] Generatie script gedraaid voor 35 rassen (FLUX 2 Pro + productie prompt) ✅
+- [x] Template verbeterd: tekst-eerst, inline afbeeldingen ✅
+- [x] 3 seed breeds gefixt (Unsplash foto + FLUX 2 Pro portret) ✅
+- [x] Review + merge naar main (fast-forward) ✅
+- [x] GitHub secrets toegevoegd + publish workflow getest ✅
+- [x] Sitemap ingediend bij Google Search Console ✅
+- [x] Google Search Console property geverifieerd (www.royalpet.app) ✅
+- [x] Internal linking: /kennisbank index + gerelateerde rassen + nav/footer links ✅
+- [x] Canonical URLs gefixed (www.royalpet.app) ✅
+- [x] GitHub Actions publish workflow permissions fix ✅
+- [x] Drip schema aangepast: 2 per batch, elke 2 dagen ✅
 - [x] Learnings opgeslagen → `learnings/dag-11.md` ✅
 
 ---

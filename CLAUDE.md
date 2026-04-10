@@ -448,12 +448,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [11 — Programmatic SEO Engine]
-Sessie titel:   [SEO engine gebouwd: kennisbank template, generatie script, drip campaign, GitHub Actions]
+Sessie nummer:  [13 — Distribution: GSC + Internal Linking + Drip Fix]
+Sessie titel:   [GitHub Actions fix, drip schema 2/batch, GSC verified, internal linking gebouwd]
 Status:         [✅ Klaar]
-Vorige sessie:  [Sessie 10 — Google Ads Finalisatie + Tracking Verificatie]
-Volgende stap:  [Generate-pages draaien (35 rassen), merge, GitHub secrets, sitemap indienen, Pinterest automation]
-Openstaande issues: [Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd, generate-pages nog niet gedraaid]
+Vorige sessie:  [Sessie 12 — SEO Engine Live + Merge]
+Volgende stap:  [Sessie 14: IndexNow API, FAQ schema, Pinterest autoposter, AI crawler visibility]
+Openstaande issues: [Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
