@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import seoPages from "../../data/seo-pages.json";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://royalpet.app";
+  const baseUrl = "https://www.royalpet.app";
 
   const kennisbankPages = seoPages
     .filter((p) => p.published)
