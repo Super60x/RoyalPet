@@ -5,7 +5,7 @@
     "naam": "Gouden Retriever",
     "nameEn": "Golden Retriever",
     "title": "Gouden Retriever Portret Schilderij | RoyalPet",
-    "metaDescription": "Laat jouw Gouden Retriever vereeuwigen als een Renaissance meesterwerk. AI-gegenereerd portret, digitaal vanaf €24,99.",
+    "metaDescription": "Laat jouw Gouden Retriever vereeuwigen als een Renaissance meesterwerk. AI-gegenereerd portret, digitaal vanaf \u20ac24,99.",
     "h1": "De Gouden Retriever — trouw, zachtaardig en koninklijk",
     "intro": "De Gouden Retriever is een van de meest geliefde hondenrassen ter wereld, en dat is niet zonder reden. Met hun zachte, golvende gouden vacht, expressieve donkere ogen en altijd kwispelende staart heeft deze hond iets onweerstaanbaar hartelijks. Oorspronkelijk gefokt in de Schotse Hooglanden in de 19e eeuw, werd de Golden Retriever ontwikkeld als jachthond — specifiek om geschoten watervogels terug te brengen zonder beschadiging. Die zachte bek en dat geduldige karakter zijn tot op de dag van vandaag kenmerkend voor het ras.",
     "sections": [
@@ -35,7 +35,12 @@
     "pinterestDescription": "Laat jouw Gouden Retriever vereeuwigen als een 16e-eeuws Renaissance portret. AI-gegenereerd, digitaal of op canvas. Bekijk het op royalpet.app",
     "photoUrl": "https://ylollsyoquziqdezmcyv.supabase.co/storage/v1/object/public/portraits-public/breeds/photos/gouden-retriever-portret.jpg",
     "portraitUrl": "https://ylollsyoquziqdezmcyv.supabase.co/storage/v1/object/public/portraits-public/breeds/portraits/gouden-retriever-portret.webp",
-    "faq": [],
+    "faq": [
+      { "question": "Is een Gouden Retriever geschikt voor gezinnen met kinderen?", "answer": "Absoluut. De Gouden Retriever staat bekend als een van de meest gezinsvriendelijke hondenrassen ter wereld. Ze zijn geduldig, zachtaardig en hebben een natuurlijk beschermend instinct richting kinderen, waardoor ze ideale familiehonden zijn." },
+      { "question": "Hoeveel beweging heeft een Gouden Retriever dagelijks nodig?", "answer": "Een Gouden Retriever heeft minimaal één tot twee uur beweging per dag nodig. Denk aan wandelingen, zwemmen en apporteerspelletjes. Zonder voldoende beweging kan deze energieke hond destructief gedrag vertonen." },
+      { "question": "Hoe ziet een Gouden Retriever eruit als Renaissance portret?", "answer": "De warme gouden vacht van een Golden Retriever vangt het dramatische licht van een Renaissance schilderij prachtig op. Met hun waardige houding en intelligente blik worden ze overtuigende edellieden in Vlaamse meesterstijl. Vereeuwig jouw Golden als tijdloos kunstwerk." },
+      { "question": "Hoe lang duurt het om een portret van mijn Gouden Retriever te maken?", "answer": "Het AI-gegenereerde Renaissance portret is binnen 60 seconden klaar na het uploaden van een foto. Je kunt het resultaat direct bekijken als gratis preview en vervolgens kiezen voor een digitale download of een print op canvas." }
+    ],
     "publishDate": "2026-04-08",
     "published": true
   },
@@ -75,7 +80,12 @@
     "pinterestDescription": "Laat jouw Franse Bulldog schitteren als een Renaissance edelman. AI-portret in Vlaamse meesterstijl, digitaal of op canvas. royalpet.app",
     "photoUrl": "https://ylollsyoquziqdezmcyv.supabase.co/storage/v1/object/public/portraits-public/breeds/photos/franse-bulldog-portret.jpg",
     "portraitUrl": "https://ylollsyoquziqdezmcyv.supabase.co/storage/v1/object/public/portraits-public/breeds/portraits/franse-bulldog-portret.webp",
-    "faq": [],
+    "faq": [
+      { "question": "Is een Franse Bulldog geschikt voor een appartement?", "answer": "Ja, de Franse Bulldog is bij uitstek een stadshond. Door hun compacte formaat, lage behoefte aan beweging en rustige aard voelen ze zich uitstekend thuis in een appartement. Let wel op voldoende ventilatie, want Frenchies zijn gevoelig voor warmte." },
+      { "question": "Welke gezondheidsproblemen komen veel voor bij Franse Bulldogs?", "answer": "Franse Bulldogs kunnen last hebben van ademhalingsproblemen door hun platte snuit (brachycefalie), huidplooiinfecties en rugklachten. Regelmatige dierenarts controles en een verantwoorde fokker zijn essentieel voor een gezonde Frenchie." },
+      { "question": "Hoe komt een Franse Bulldog tot zijn recht in een Renaissance portret?", "answer": "De kenmerkende vleermuisoren en expressieve ogen van een Franse Bulldog geven een Renaissance portret een uniek en charismatisch karakter. Hun compacte, gespierde bouw doet denken aan de krachtige edellieden uit de 16e eeuw. Vereeuwig jouw Frenchie als aristocraat." },
+      { "question": "Kan ik een portret van mijn Franse Bulldog op canvas laten drukken?", "answer": "Ja, naast een digitale download kun je jouw Renaissance portret ook laten drukken als fine art print of op canvas in verschillende formaten. Alle prints worden op hoge kwaliteit materiaal geproduceerd en binnen 7-9 werkdagen thuisbezorgd." }
+    ],
     "publishDate": "2026-04-08",
     "published": true
   },
@@ -115,7 +125,12 @@
     "pinterestDescription": "Jouw Labrador als Renaissance meesterwerk — AI-gegenereerd portret in Vlaamse stijl. Digitaal of op canvas. Ontdek het op royalpet.app",
     "photoUrl": "https://ylollsyoquziqdezmcyv.supabase.co/storage/v1/object/public/portraits-public/breeds/photos/labrador-portret.jpg",
     "portraitUrl": "https://ylollsyoquziqdezmcyv.supabase.co/storage/v1/object/public/portraits-public/breeds/portraits/labrador-portret.webp",
-    "faq": [],
+    "faq": [
+      { "question": "Wat is het verschil tussen een Labrador en een Gouden Retriever?", "answer": "Hoewel beide rassen retriever-types zijn, heeft de Labrador een kortere, dichtere vacht en een steviger postuur. Labradors zijn er in drie kleuren (geel, zwart, chocolade), terwijl Golden Retrievers altijd een goudkleurige lange vacht hebben. Qua karakter zijn beide rassen vriendelijk en intelligent." },
+      { "question": "Hoeveel eet een Labrador per dag en zijn ze gevoelig voor overgewicht?", "answer": "Labradors staan bekend om hun onverzadigbare eetlust en zijn inderdaad gevoelig voor overgewicht. Een volwassen Labrador eet gemiddeld 250-350 gram droogvoer per dag, afhankelijk van activiteitsniveau. Geportioneerde maaltijden en voldoende beweging zijn cruciaal." },
+      { "question": "Hoe ziet een Labrador eruit als Renaissance schilderij?", "answer": "De glanzende, korte vacht van een Labrador reflecteert prachtig in het dramatische clair-obscur licht van een Renaissance portret. Of het nu een zwarte, chocolade of blonde Labrador is — elke kleurvariant krijgt een koninklijke uitstraling in Vlaamse meesterstijl. Vereeuwig jouw Labrador als edelman." },
+      { "question": "Welke foto werkt het beste voor een Labrador portret?", "answer": "Een scherpe foto van het gezicht en de borst van je Labrador werkt het beste. Zorg voor goede belichting en een rustige achtergrond. De AI werkt het beste met een duidelijk zichtbaar gezicht, bij voorkeur vanuit een licht verhoogd perspectief." }
+    ],
     "publishDate": "2026-04-08",
     "published": true
   },
@@ -155,7 +170,12 @@
     "altText": "Beagle hond portret in Renaissance stijl met klassieke Vlaamse meester schildertechniek en rijke kleuren",
     "pinterestTitle": "Beagle Renaissance Portret | Klassieke Hondenschilderij | RoyalPet Nederland",
     "pinterestDescription": "Ontdek alles over de Beagle: karakter, verzorging, geschiedenis in Nederland en België. Zie waarom deze vriendelijke jachthond perfect is voor een Renaissance portret. De Beagle combineert een speelse natuur met tijdloze elegantie. Leer meer over dit geliefde gezinsras en hun artistieke kwaliteiten via royalpet.app",
-    "faq": [],
+    "faq": [
+      { "question": "Blaffen Beagles veel en zijn ze moeilijk te trainen?", "answer": "Beagles staan inderdaad bekend om hun luide blaf en kenmerkende gehuil. Als geurhond volgen ze graag hun neus, wat training uitdagender maakt. Met consequente, positieve training en geduld kun je een Beagle echter uitstekend opvoeden." },
+      { "question": "Hoeveel beweging heeft een Beagle nodig?", "answer": "Een Beagle heeft minimaal één uur actieve beweging per dag nodig, bij voorkeur met snuffel- en speurelementen. Zonder voldoende beweging en mentale stimulatie kunnen Beagles destructief gedrag vertonen of overgewicht ontwikkelen." },
+      { "question": "Past een Beagle goed bij een Renaissance portret?", "answer": "Verrassend goed zelfs. De zachte, tricolor vacht en de soulvolle ogen van een Beagle creëren een ontroerend Renaissance portret. Hun expressieve blik en edele jachthondhouding passen perfect bij de stijl van de Vlaamse meesters. Vereeuwig jouw Beagle als adellijk jachtgenoot." },
+      { "question": "Hoe werkt het bestellen van een Beagle portret bij RoyalPet?", "answer": "Upload een duidelijke foto van jouw Beagle en de AI genereert binnen 60 seconden een Renaissance portret. Je bekijkt eerst een gratis preview en kiest daarna het gewenste product: digitale download, fine art print of canvas in verschillende formaten." }
+    ],
     "publishDate": "2026-04-10",
     "published": true
   },
@@ -195,7 +215,12 @@
     "altText": "Teckel portret in Renaissance stijl - elegant klassiek schilderij van Duitse jachthond met karakteristieke lange lichaam",
     "pinterestTitle": "Teckel Renaissance Portret - Klassiek Schilderij van Duitse Jachthond | RoyalPet Nederland",
     "pinterestDescription": "Ontdek de majestueuze Teckel in Renaissance stijl! Deze Duitse jachthond met zijn karakteristieke lichaamsbouw en moedige karakter wordt prachtig in klassieke schilderkunst. Perfect voor liefhebbers van dit bijzondere ras. Maak je eigen koninklijke Teckel portret op royalpet.app",
-    "faq": [],
+    "faq": [
+      { "question": "Zijn Teckels geschikt voor gezinnen met kleine kinderen?", "answer": "Teckels kunnen goede gezinshonden zijn, maar ze hebben een eigenwijs karakter en een kwetsbare lange rug. Kinderen moeten leren de Teckel niet op te tillen of ruw te behandelen. Met de juiste omgang en socialisatie zijn Teckels loyale, speelse huisgenoten." },
+      { "question": "Waarom hebben Teckels last van rugproblemen?", "answer": "Door hun lange lichaam en korte poten zijn Teckels gevoelig voor hernia (IVDD). Het is belangrijk om springen van meubels te voorkomen en een gezond gewicht te behouden. Regelmatige dierenarts controles en aangepaste beweging helpen rugproblemen te voorkomen." },
+      { "question": "Hoe ziet een Teckel eruit in een Renaissance portret?", "answer": "De karakteristieke lange lichaamsbouw en expressieve ogen van een Teckel geven een Renaissance portret een uniek en charmant karakter. Hun fiere, alerte houding doet denken aan moedige jagers uit de 16e eeuw. Vereeuwig jouw Teckel als een dappere edelman in Vlaamse meesterstijl." },
+      { "question": "Kan ik een portret laten maken van mijn langharige en kortharige Teckel samen?", "answer": "Op dit moment genereert RoyalPet één portret per foto. Upload een foto met je favoriete Teckel voor het beste resultaat. Wil je beide honden vereeuwigen? Maak dan twee aparte portretten en hang ze naast elkaar voor een prachtig duo aan de muur." }
+    ],
     "publishDate": "2026-04-10",
     "published": true
   },
@@ -235,7 +260,12 @@
     "altText": "Chihuahua hond portret in Renaissance schilderij stijl, kleine hond met grote expressieve ogen en koninklijke uitstraling",
     "pinterestTitle": "Chihuahua Renaissance Portret | Klein van Stuk, Groot van Karakter | Vlaamse Meester Stijl",
     "pinterestDescription": "Ontdek waarom de Chihuahua het perfecte model is voor een Renaissance portret. Van hun expressieve ogen tot hun waardige houding - deze kleine honden stralen koninklijke allure uit. Leer alles over karakter, verzorging en geschiedenis van 's werelds kleinste hondenras. Zie hoe jouw Chihuahua eruitziet als een waar kunstwerk op royalpet.app",
-    "faq": [],
+    "faq": [
+      { "question": "Zijn Chihuahuas agressief of juist lief?", "answer": "Chihuahuas hebben een sterke persoonlijkheid en kunnen waaks zijn, maar agressie is geen raskenmark. Met goede socialisatie en consequente opvoeding zijn het aanhankelijke, loyale hondjes. Hun grote persoonlijkheid in een klein lichaam maakt ze juist bijzonder charmant." },
+      { "question": "Hoe oud wordt een Chihuahua gemiddeld?", "answer": "Chihuahuas behoren tot de langstlevende hondenrassen met een gemiddelde levensverwachting van 14-16 jaar. Sommige Chihuahuas worden zelfs ouder dan 18 jaar. Een gezond dieet, regelmatige dierenarts controles en tandverzorging dragen bij aan een lang leven." },
+      { "question": "Hoe komt een kleine Chihuahua tot zijn recht in een groot Renaissance portret?", "answer": "Juist de kleine Chihuahua maakt een indrukwekkend Renaissance portret. Hun grote, expressieve ogen en alerte houding stralen koninklijke waardigheid uit. De AI vergroot het portret tot een levensecht schilderij waar elke detail van hun persoonlijkheid zichtbaar is. Vereeuwig jouw Chihuahua als miniatuur monarch." },
+      { "question": "Is een digitale download geschikt om in te lijsten?", "answer": "Ja, de digitale download heeft een hoge resolutie die geschikt is voor afdrukken tot A3 formaat. Voor grotere formaten raden wij onze fine art prints of canvas aan, die professioneel worden geproduceerd op museumkwaliteit materiaal." }
+    ],
     "publishDate": "2026-04-10",
     "published": true
   },
@@ -275,7 +305,12 @@
     "altText": "Mopshond portret in Renaissance stijl - klassieke schildering van een charmante pug met aristocratische uitstraling",
     "pinterestTitle": "Mopshond Renaissance Portret - Klassieke Hondenschildering Nederlandse Stijl",
     "pinterestDescription": "Ontdek alles over de charmante Mopshond: van hun Chinese oorsprong tot moderne populariteit in Nederland en België. Leer waarom deze aristocratische honden perfect zijn voor klassieke Renaissance portretten. Bekijk prachtige voorbeelden van Mopshond kunstwerken op royalpet.app en laat je eigen trouwe vriend vereeuwigen in Vlaamse meesterstijl.",
-    "faq": [],
+    "faq": [
+      { "question": "Is een Mopshond een goede hond voor beginners?", "answer": "Ja, Mopshonden zijn uitstekende honden voor beginnende baasjes. Ze zijn aanhankelijk, gemakkelijk in de omgang en hebben weinig beweging nodig. Wel is het belangrijk om alert te zijn op hun ademhaling en gewicht, omdat ze als brachycefaal ras extra aandacht nodig hebben." },
+      { "question": "Hebben Mopshonden veel gezondheidsproblemen?", "answer": "Mopshonden kunnen last hebben van ademhalingsproblemen door hun platte snuit, oogirritaties en huidplooiinfecties. Kies altijd een verantwoorde fokker die op gezondheid selecteert. Regelmatige reiniging van gezichtsplooien en een gezond gewicht zijn essentieel voor hun welzijn." },
+      { "question": "Waarom past een Mopshond zo goed bij een Renaissance portret?", "answer": "De Mopshond heeft een rijke geschiedenis als hond van de adel — ze werden al in de Chinese keizershoven gehouden. Hun ronde, expressieve ogen en waardige houding geven een Renaissance portret een aristrocratische uitstraling. Vereeuwig jouw Mopshond als de edelman die hij van nature is." },
+      { "question": "Kan ik het Renaissance portret van mijn Mopshond ook als cadeau bestellen?", "answer": "Absoluut. Een Renaissance portret van een huisdier is een uniek en persoonlijk cadeau voor elke hondeneigenaar. Bij het bestellen kun je kiezen voor een digitale download of een prachtige print op canvas die direct cadeau-waardig is." }
+    ],
     "publishDate": "2026-04-10",
     "published": true
   },
@@ -315,7 +350,12 @@
     "altText": "Shih Tzu hond met lange zijdeachtige vacht en grote donkere ogen, ideaal model voor Renaissance portret schilderij",
     "pinterestTitle": "Shih Tzu Karakter & Verzorging - Complete Gids voor Dit Koninklijke Ras",
     "pinterestDescription": "Ontdek alles over de charmante Shih Tzu: van hun keizerlijke Chinese geschiedenis tot moderne verzorgingstips. Perfect voor Nederlandse en Belgische gezinnen die op zoek zijn naar een elegante, vriendelijke gezelschapshond. Leer over hun unieke karakter en waarom ze zo geschikt zijn voor een tijdloos Renaissance portret via royalpet.app.",
-    "faq": [],
+    "faq": [
+      { "question": "Is een Shih Tzu hypoallergeen en geschikt voor mensen met allergie?", "answer": "Hoewel geen enkel hondenras volledig hypoallergeen is, verharen Shih Tzu's minimaal. Hun haar groeit continu, vergelijkbaar met menselijk haar, waardoor ze minder allergische reacties veroorzaken. Regelmatig borstelen en trimmen is wel noodzakelijk om klitten te voorkomen." },
+      { "question": "Hoeveel verzorging heeft het haar van een Shih Tzu nodig?", "answer": "Een Shih Tzu heeft dagelijks borstelen nodig om hun lange, zijdezachte vacht klitvrij te houden. Veel eigenaren kiezen voor een kortere 'puppyknip' voor gemakkelijker onderhoud. Daarnaast is regelmatige reiniging van ogen en oren belangrijk vanwege hun platte gezicht." },
+      { "question": "Hoe ziet een Shih Tzu eruit als Renaissance kunstwerk?", "answer": "De luxueuze, lange vacht en aristocratische houding van een Shih Tzu passen perfect bij de weelderige stijl van Renaissance portretten. Als voormalig keizerlijk ras uit China stralen ze van nature koninklijke elegantie uit. Vereeuwig jouw Shih Tzu als het royalty dat ze altijd al waren." },
+      { "question": "Hoe snel ontvang ik mijn Shih Tzu portret na bestelling?", "answer": "Het digitale Renaissance portret is direct beschikbaar als download na het uploaden van je foto. Kies je voor een fine art print of canvas? Dan wordt je bestelling binnen 7-9 werkdagen thuisbezorgd in Nederland en België." }
+    ],
     "publishDate": "2026-04-10",
     "published": true
   },
@@ -355,7 +395,12 @@
     "altText": "Border Collie hond in Renaissance schilderij stijl, zwart-wit vacht, intelligente blik, klassiek portret",
     "pinterestTitle": "Border Collie Renaissance Portret - Intelligente Herdershond als Klassiek Kunstwerk",
     "pinterestDescription": "Ontdek alles over de intelligente Border Collie: karakter, geschiedenis en verzorging. Deze energieke herdershond uit Schotland is perfect voor een elegant Renaissance portret. Van herder tot kunstmodel - zie hoe je Border Collie wordt vereeuwigd in Vlaamse meesters stijl op royalpet.app",
-    "faq": [],
+    "faq": [
+      { "question": "Is een Border Collie geschikt als huishond of alleen als werkhond?", "answer": "Border Collies kunnen uitstekende huishonden zijn, mits ze voldoende mentale en fysieke uitdaging krijgen. Ze zijn extreem intelligent en hebben dagelijks minstens twee uur actieve beweging nodig. Zonder voldoende stimulatie kunnen ze ongewenst gedrag ontwikkelen." },
+      { "question": "Hoe intelligent is een Border Collie vergeleken met andere rassen?", "answer": "De Border Collie wordt algemeen beschouwd als het meest intelligente hondenras ter wereld. Ze kunnen honderden woorden en commando's leren en blinken uit in gehoorzaamheid, agility en herding. Deze intelligentie maakt ze fascinerend, maar vraagt ook om een ervaren eigenaar." },
+      { "question": "Hoe komt de intense blik van een Border Collie tot uiting in een Renaissance portret?", "answer": "De kenmerkende doordringende 'herding eye' van een Border Collie geeft een Renaissance portret een bijzonder intense en magnetische uitstraling. Gecombineerd met hun elegante zwart-witte vacht ontstaat een schilderij dat doet denken aan de krachtigste portretten van de Vlaamse meesters. Vereeuwig jouw Border Collie als wijze edelman." },
+      { "question": "Welk formaat canvas past het beste voor een Border Collie portret?", "answer": "Voor een Border Collie portret adviseren wij minimaal het 30x40cm formaat, zodat de details van hun expressieve gezicht en vacht goed tot hun recht komen. Grotere formaten zoals 45x60cm of 60x90cm maken een nog indrukwekkender statement aan de muur." }
+    ],
     "publishDate": "2026-04-10",
     "published": true
   },

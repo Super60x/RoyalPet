@@ -111,8 +111,25 @@ export default function KennisbankPage({
       url: "https://www.royalpet.app",
     },
     datePublished: page.publishDate,
-    mainEntityOfPage: `https://royalpet.app/kennisbank/${page.slug}`,
+    mainEntityOfPage: `https://www.royalpet.app/kennisbank/${page.slug}`,
   };
+
+  // JSON-LD: FAQPage schema (only if FAQ items exist)
+  const faqSchema =
+    page.faq && page.faq.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: page.faq.map((item: { question: string; answer: string }) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: item.answer,
+            },
+          })),
+        }
+      : null;
 
   return (
     <main className="min-h-screen bg-royal-black text-[#FAF8F3]">
@@ -125,6 +142,12 @@ export default function KennisbankPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
 
       {/* Navigation */}
       <nav className="flex items-center justify-between px-6 py-5">
@@ -135,7 +158,7 @@ export default function KennisbankPage({
         </Link>
         <Link
           href="/"
-          className="text-xs text-[#FAF8F3]/40 font-body hover:text-[#FAF8F3]/70 transition-colors"
+          className="text-xs text-[#FAF8F3]/60 font-body hover:text-[#FAF8F3]/80 transition-colors"
         >
           &larr; Terug naar home
         </Link>
@@ -143,12 +166,12 @@ export default function KennisbankPage({
 
       {/* Breadcrumb */}
       <div className="max-w-3xl mx-auto px-6 pb-4">
-        <nav className="flex items-center gap-2 text-xs text-[#FAF8F3]/30 font-body">
-          <Link href="/" className="hover:text-[#FAF8F3]/60 transition-colors">
+        <nav className="flex items-center gap-2 text-xs text-[#FAF8F3]/50 font-body">
+          <Link href="/" className="underline decoration-[#FAF8F3]/20 hover:text-[#FAF8F3]/70 transition-colors">
             Home
           </Link>
           <span>/</span>
-          <Link href="/kennisbank" className="hover:text-[#FAF8F3]/60 transition-colors">
+          <Link href="/kennisbank" className="underline decoration-[#FAF8F3]/20 hover:text-[#FAF8F3]/70 transition-colors">
             Kennisbank
           </Link>
           <span>/</span>
@@ -158,7 +181,7 @@ export default function KennisbankPage({
 
       {/* Hero */}
       <section className="max-w-3xl mx-auto px-6 pt-8 pb-10 text-center">
-        <p className="text-xs font-body text-royal-gold/60 tracking-widest uppercase mb-4">
+        <p className="text-xs font-body text-royal-gold/80 tracking-widest uppercase mb-4">
           {page.type === "breed"
             ? "Renaissance Portretten"
             : page.type === "gift"
@@ -212,7 +235,7 @@ export default function KennisbankPage({
                       sizes="300px"
                     />
                   </div>
-                  <p className="text-center text-[10px] text-[#FAF8F3]/20 font-body mt-2">
+                  <p className="text-center text-[10px] text-[#FAF8F3]/50 font-body mt-2">
                     {page.naam} als Renaissance portret
                   </p>
                 </div>
@@ -230,13 +253,37 @@ export default function KennisbankPage({
         ))}
       </article>
 
+      {/* FAQ Section */}
+      {page.faq && page.faq.length > 0 && (
+        <section className="max-w-3xl mx-auto px-6 pb-12">
+          <h2 className="text-2xl sm:text-3xl font-heading mb-8 text-[#FAF8F3]/90">
+            Veelgestelde vragen over {page.naam}
+          </h2>
+          <dl className="space-y-6">
+            {page.faq.map((item: { question: string; answer: string }, i: number) => (
+              <div
+                key={i}
+                className="border-b border-[#FAF8F3]/5 pb-6 last:border-b-0"
+              >
+                <dt className="text-base md:text-lg font-heading text-[#FAF8F3]/80 mb-2">
+                  {item.question}
+                </dt>
+                <dd className="text-sm md:text-base text-[#FAF8F3]/50 font-body leading-relaxed">
+                  {item.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )}
+
       {/* Subtle CTA — at the end, not in body */}
       <section className="px-6 py-16 md:py-20">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="text-2xl sm:text-3xl font-heading mb-4">
             Benieuwd hoe jouw {page.naam} eruitziet?
           </h2>
-          <p className="text-[#FAF8F3]/40 font-body mb-8 max-w-md mx-auto">
+          <p className="text-[#FAF8F3]/60 font-body mb-8 max-w-md mx-auto">
             Upload een foto en ontdek binnen 60 seconden hoe jouw huisdier
             eruitziet als Renaissance meesterwerk. Gratis te proberen.
           </p>
@@ -261,7 +308,7 @@ export default function KennisbankPage({
           </Link>
 
           {/* Social proof */}
-          <p className="text-sm text-[#FAF8F3]/30 font-body mt-6">
+          <p className="text-sm text-[#FAF8F3]/50 font-body mt-6">
             We verzenden gratis in Nederland en Belgi&euml;. Meer dan 500 trouwe
             klanten gingen jou voor.
           </p>
@@ -310,7 +357,7 @@ export default function KennisbankPage({
           <div className="text-center mt-6">
             <Link
               href="/kennisbank"
-              className="text-sm font-body text-royal-gold/60 hover:text-royal-gold transition-colors"
+              className="text-sm font-body text-royal-gold/80 underline decoration-royal-gold/30 hover:text-royal-gold transition-colors"
             >
               Bekijk alle rassen &rarr;
             </Link>
@@ -322,26 +369,26 @@ export default function KennisbankPage({
       <footer className="py-10 border-t border-[#FAF8F3]/5">
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-[#FAF8F3]/20 font-body">
+            <p className="text-xs text-[#FAF8F3]/50 font-body">
               &copy; {new Date().getFullYear()} RoyalPet.app &mdash; Alle
               rechten voorbehouden
             </p>
             <nav className="flex items-center gap-6">
               <Link
                 href="/kennisbank"
-                className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors"
+                className="text-xs text-[#FAF8F3]/50 underline decoration-[#FAF8F3]/20 hover:text-[#FAF8F3]/70 font-body transition-colors"
               >
                 Kennisbank
               </Link>
               <Link
                 href="/privacy"
-                className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors"
+                className="text-xs text-[#FAF8F3]/50 underline decoration-[#FAF8F3]/20 hover:text-[#FAF8F3]/70 font-body transition-colors"
               >
                 Privacybeleid
               </Link>
               <Link
                 href="/terms"
-                className="text-xs text-[#FAF8F3]/30 hover:text-[#FAF8F3]/60 font-body transition-colors"
+                className="text-xs text-[#FAF8F3]/50 underline decoration-[#FAF8F3]/20 hover:text-[#FAF8F3]/70 font-body transition-colors"
               >
                 Voorwaarden
               </Link>
