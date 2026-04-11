@@ -17,12 +17,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RoyalPet — Vereeuw uw huisdier als Renaissance meesterwerk",
+  title: "RoyalPet — Vereeuwig uw huisdier als Renaissance meesterwerk",
   description:
     "Upload een foto van uw huisdier en ontvang een prachtig AI-gegenereerd Renaissance portret. Digitaal of op canvas.",
   metadataBase: new URL("https://royalpet.app"),
   openGraph: {
-    title: "RoyalPet — Vereeuw uw huisdier als Renaissance meesterwerk",
+    title: "RoyalPet — Vereeuwig uw huisdier als Renaissance meesterwerk",
     description:
       "Upload een foto en ontvang binnen 60 seconden een prachtig AI-geschilderd Renaissance portret van uw huisdier.",
     url: "https://royalpet.app",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "RoyalPet — Vereeuw uw huisdier als Renaissance meesterwerk",
+    title: "RoyalPet — Vereeuwig uw huisdier als Renaissance meesterwerk",
     description:
       "Upload een foto en ontvang binnen 60 seconden een prachtig AI-geschilderd Renaissance portret.",
     images: ["/og-image.webp"],

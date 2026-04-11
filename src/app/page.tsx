@@ -65,7 +65,7 @@ export default function Home() {
       <section className="px-4 pt-12 md:pt-20 pb-8 text-center max-w-4xl mx-auto">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading leading-[1.1] mb-6">
           <em className="text-royal-gold not-italic font-heading" style={{ fontStyle: "italic" }}>
-            Vereeuw
+            Vereeuwig
           </em>
           <br />
           Uw Huisdier als Tijdloos

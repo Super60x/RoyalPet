@@ -1,0 +1,30 @@
+# RoyalPet.app
+
+> RoyalPet is a Dutch AI-powered service that transforms pet photos into Renaissance-style masterpiece portraits. Upload a photo, receive a stunning AI-painted portrait in 60 seconds.
+
+## What we offer
+- AI-generated Renaissance portraits of dogs and cats
+- Digital downloads (free with email)
+- Fine Art prints (20x25cm to 60x90cm)
+- Large canvas prints (30x40cm to 100x150cm)
+- Optional ornate frames (6 styles)
+
+## Markets
+- Netherlands (primary)
+- Belgium
+- Germany
+
+## Kennisbank (Knowledge Base)
+We publish informative articles about dog and cat breeds, including breed history, character traits, care tips, and health information. Each article features an AI-generated Renaissance portrait of the breed.
+
+Browse all breeds: https://www.royalpet.app/kennisbank
+
+## Key pages
+- Homepage: https://www.royalpet.app
+- Knowledge base: https://www.royalpet.app/kennisbank
+- Privacy policy: https://www.royalpet.app/privacy
+- Terms of service: https://www.royalpet.app/terms
+
+## Contact
+- Website: https://www.royalpet.app
+- Email: support@royalpet.app

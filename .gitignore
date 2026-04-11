@@ -35,7 +35,8 @@ assets_visuals/
 ads/
 ads-source/
 
-# pinterest progress (local state)
+# pinterest (generated output + local state)
+pinterest-pins.csv
 data/pinterest-posted.json
 
 # vercel

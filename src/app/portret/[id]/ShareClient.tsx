@@ -229,7 +229,7 @@ export default function ShareClient({
       {/* CTA */}
       <section className="px-4 py-10 text-center">
         <h2 className="font-heading text-2xl md:text-3xl text-[#FAF8F3] mb-3">
-          Vereeuw ook uw huisdier
+          Vereeuwig ook uw huisdier
         </h2>
         <p className="text-[#FAF8F3]/60 mb-6 max-w-md mx-auto">
           Verander uw trouwe metgezel in een tijdloos Renaissance meesterwerk.

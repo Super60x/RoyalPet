@@ -41,6 +41,10 @@ export async function generateMetadata({
       locale: "nl_NL",
       type: "article",
     },
+    other: {
+      "pinterest-rich-pin": "true",
+      ...(page.pinterestTitle && { "pin:description": page.pinterestDescription }),
+    },
   };
 }
 

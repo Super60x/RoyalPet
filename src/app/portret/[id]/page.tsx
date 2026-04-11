@@ -26,8 +26,8 @@ export async function generateMetadata({
     : "Renaissance Huisdierportret | RoyalPet";
 
   const description = portrait.pet_name
-    ? `Bewonder het prachtige Renaissance portret van ${portrait.pet_name}. Vereeuw ook uw huisdier als edelman!`
-    : "Bewonder dit prachtige AI-gegenereerd Renaissance huisdierportret. Vereeuw ook uw huisdier!";
+    ? `Bewonder het prachtige Renaissance portret van ${portrait.pet_name}. Vereeuwig ook uw huisdier als edelman!`
+    : "Bewonder dit prachtige AI-gegenereerd Renaissance huisdierportret. Vereeuwig ook uw huisdier!";
 
   return {
     title,

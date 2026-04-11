@@ -138,7 +138,7 @@ function wrapEmail(title: string, bodyHtml: string): string {
     <div style="${emailStyles.footer}">
       <p style="margin: 0 0 4px 0;"><a href="https://royalpet.app" style="color: #B8942A; text-decoration: none;">royalpet.app</a></p>
       <p style="margin: 0 0 4px 0;"><a href="mailto:support@royalpet.app" style="color: #888; text-decoration: none;">support@royalpet.app</a></p>
-      <p style="margin: 0; color: #aaa;">Vereeuw uw trouwe metgezel</p>
+      <p style="margin: 0; color: #aaa;">Vereeuwig uw trouwe metgezel</p>
     </div>
   </div>
 </body>

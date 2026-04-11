@@ -411,7 +411,7 @@ Antiek bruin: #3D2B1F
 
 **Premium copywriting**
 - ❌ "Bestel nu een portret van je hond!"
-- ✅ "Vereeuw uw trouwe metgezel als de edelman die hij altijd al was."
+- ✅ "Vereeuwig uw trouwe metgezel als de edelman die hij altijd al was."
 
 ---
 
@@ -448,16 +448,16 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [13 — Distribution: GSC + Internal Linking + Drip Fix]
-Sessie titel:   [GitHub Actions fix, drip schema 2/batch, GSC verified, internal linking gebouwd]
+Sessie nummer:  [14 — IndexNow + Taalfix + AI Crawlers + Pinterest Prep]
+Sessie titel:   [IndexNow API, Vereeuwig taalfix, robots.txt AI crawlers, llms.txt, Pinterest CSV + logo]
 Status:         [✅ Klaar]
-Vorige sessie:  [Sessie 12 — SEO Engine Live + Merge]
-Volgende stap:  [Sessie 14: IndexNow API, FAQ schema, Pinterest autoposter, AI crawler visibility]
-Openstaande issues: [Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd]
+Vorige sessie:  [Sessie 13 — GSC + Internal Linking + Drip Fix]
+Volgende stap:  [Sessie 15: FAQ schema, Pinterest live, Lighthouse scores, pet owner audiences]
+Openstaande issues: [Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd, Pinterest profiel inrichten (logo+about+board+pins)]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
 
 ---
 
-*Laatste update: Maart 2026 | royalpet.app | Solo founder project*
+*Laatste update: April 2026 | royalpet.app | Solo founder project*

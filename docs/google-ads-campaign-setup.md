@@ -1135,3 +1135,33 @@ Set up a simple spreadsheet (Google Sheets) and fill in weekly:
 | Remarketing not spending | Audience is too small (need 100+ users). Wait for organic traffic to build the pool. |
 | Ad disapproved | Read the policy reason. Common: "misleading claims." Remove superlatives or guarantees. |
 | Conversion count in Google Ads does not match GA4 | Normal — attribution models differ. GA4 uses last-click; Google Ads uses data-driven. |
+
+---
+
+## TODO: PET OWNER AUDIENCE TARGETING
+
+> **Status:** Not yet configured. Recommended for Display/YouTube campaigns.
+
+The current Search campaigns rely on keyword intent (whoever searches "huisdier portret" already has a pet). But for **Display remarketing**, **YouTube**, or future **Performance Max** campaigns, adding pet owner audiences will significantly improve targeting.
+
+### Recommended audiences to add
+
+| Type | Audience Name | Where to find |
+|---|---|---|
+| **Affinity** | Pet Lovers | Audiences > Browse > Interests & hobbies > Pet Lovers |
+| **In-market** | Pet Food & Supplies | Audiences > Browse > In-market > Pet Food & Supplies |
+| **In-market** | Pet Care Services | Audiences > Browse > In-market > Pet Care Services |
+
+### How to add (Display/YouTube campaigns)
+
+1. Go to campaign → **Audiences** tab
+2. Click **Edit audience segments**
+3. Click **Browse** → find audiences above
+4. Set to **Targeting** (not Observation) for Display/YouTube
+5. For Search campaigns: add as **Observation** only (bid adjustment, don't restrict reach)
+
+### When to implement
+
+- **Now (optional):** Add as Observation on Search campaign — see if pet owners convert better, then bid up
+- **When Display remarketing gets traffic:** Add as Targeting to narrow to pet owners only
+- **When launching YouTube/PMax:** Must-have as primary targeting signal

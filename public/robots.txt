@@ -3,4 +3,23 @@ Allow: /
 Disallow: /api/
 Disallow: /admin/
 
+# AI Crawlers — explicitly allowed for visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: https://www.royalpet.app/sitemap.xml

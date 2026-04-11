@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "generate-pages": "tsx --env-file=.env.local scripts/generate-pages.ts",
-    "publish-pages": "tsx --env-file=.env.local scripts/publish-pages.ts"
+    "publish-pages": "tsx --env-file=.env.local scripts/publish-pages.ts",
+    "export-pins": "tsx scripts/export-pinterest-pins.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.85.0",
