@@ -9,6 +9,7 @@
     "lint": "next lint",
     "generate-pages": "tsx --env-file=.env.local scripts/generate-pages.ts",
     "publish-pages": "tsx --env-file=.env.local scripts/publish-pages.ts",
+    "fix-photo": "tsx --env-file=.env.local scripts/fix-photo.ts",
     "export-pins": "tsx scripts/export-pinterest-pins.ts"
   },
   "dependencies": {

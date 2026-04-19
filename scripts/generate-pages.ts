@@ -124,9 +124,14 @@ async function fetchUnsplashPhoto(breed: { nameEn: string }): Promise<string> {
 
   console.log(`  Fetching Unsplash photo for ${breed.nameEn}...`);
   try {
-    const query = encodeURIComponent(breed.nameEn);
+    // Cat breeds already contain "cat" in nameEn (e.g. "Persian cat") — unambiguous.
+    // Dog breeds need the "dog breed" qualifier, otherwise Unsplash returns sport/object
+    // photos for ambiguous names like "Boxer", "Pug", "Beagle", "Poodle".
+    const isCat = /\bcat\b/i.test(breed.nameEn);
+    const searchTerms = isCat ? breed.nameEn : `${breed.nameEn} dog breed`;
+    const query = encodeURIComponent(searchTerms);
     const res = await fetch(
-      `https://api.unsplash.com/search/photos?query=${query}&per_page=1&orientation=landscape`,
+      `https://api.unsplash.com/search/photos?query=${query}&per_page=1&orientation=landscape&content_filter=high`,
       { headers: { Authorization: `Client-ID ${accessKey}` } }
     );
     const data = await res.json();
