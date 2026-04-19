@@ -448,12 +448,12 @@ Je opereert binnen het WAT framework:
 ## 📋 Huidige Sessie
 
 ```
-Sessie nummer:  [15 — FAQ Schema + Lighthouse Audit]
-Sessie titel:   [FAQ structured data (140 items), accessibility fixes, Lighthouse audit]
+Sessie nummer:  [15b — Hotfix: Boxer breed photo]
+Sessie titel:   [Unsplash query fix (human boxer → Boxer dog), fix-photo script]
 Status:         [✅ Klaar]
-Vorige sessie:  [Sessie 14 — IndexNow + Taalfix + AI Crawlers + Pinterest Prep]
+Vorige sessie:  [Sessie 15 — FAQ Schema + Lighthouse Audit]
 Volgende stap:  [Sessie 16: Pinterest live, lazy-load tracking tags, pet owner audiences]
-Openstaande issues: [Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd, goud/wit button contrast (2.87:1), homepage performance 58 (GA4/Ads tags)]
+Openstaande issues: [Visuele audit Pug/Beagle/Poodle photos (ambiguous Unsplash), Negative keywords importeren in 328-887-3588, Frame overlay PNGs (CSS fallback), i18n uitgesteld, abandoned checkout recovery niet gebouwd, goud/wit button contrast (2.87:1), homepage performance 58 (GA4/Ads tags)]
 ```
 
 > ✏️ **Update dit blok aan het begin van elke nieuwe sessie.**
